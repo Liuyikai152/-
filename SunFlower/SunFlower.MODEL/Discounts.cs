@@ -19,7 +19,7 @@ namespace SunFlower.MODEL
         /// <summary>
         /// 优惠金额
         /// </summary>
-        public double Discountsint { get; set; }
+        public double Discount { get; set; }
 
         /// <summary>
         /// 满减金额
