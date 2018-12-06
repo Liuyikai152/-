@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace SunFlower.IServices
 {
-    public class Class1
+    using MODEL;
+
+    /// <summary>
+    /// 菜品类别接口
+    /// </summary>
+    public interface IFoodType
     {
-        string a = "我最帅";
+
+        List<FoodType> GetFoodTypes();
     }
 }

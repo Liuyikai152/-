@@ -7,54 +7,55 @@ using System.Threading.Tasks;
 namespace SunFlower.MODEL
 {
     /// <summary>
-    /// 用户表
+    /// 订单详情表
     /// </summary>
-    public class User
+    public class Orders
     {
         /// <summary>
-        /// 用户ID
+        /// 订单ID
         /// </summary>
         public int ID { get; set; }
-        
+
+        /// <summary>
+        /// 订单编号
+        /// </summary>
+        public string OrderNumber { get; set; }
+
+        /// <summary>
+        /// 店铺编号
+        /// </summary>
+        public string StoreNumber { get; set; }
+
+        /// <summary>
+        /// 菜品编号
+        /// </summary>
+        public string FoodNumber { get; set; }
+
+        /// <summary>
+        /// 订单金额
+        /// </summary>
+        public string Money { get; set; }
+
         /// <summary>
         /// 地址ID
         /// </summary>
-        public int UserAddressID { get; set; }
-
-        /// <summary>
-        /// 用户姓名
-        /// </summary>
-        public string UserName { get; set; }
+        public int  AddressID { get; set; }
         
         /// <summary>
-        /// 真实姓名
+        ///商品数量 
         /// </summary>
-        public string TureName { get; set; }
+        public int Num { get; set; }
 
         /// <summary>
-        /// 用户电话
+        /// 商品单价
         /// </summary>
-        public string UserPhone { get; set; }
-
+        public double Prices { get; set; }
+       
         /// <summary>
         /// 创建时间
         /// </summary>
         public DateTime CreateTime { get; set; }
 
-        /// <summary>
-        /// 修改时间
-        /// </summary>
-        public DateTime UptTime { get; set; }
-
-        /// <summary>
-        /// 金额
-        /// </summary>
-        public double Wallet { get; set; }
-
-        /// <summary>
-        /// 用户类别
-        /// </summary>
-        public EnumNews UserType { get; set; }
 
     }
 }

@@ -9,7 +9,7 @@ namespace SunFlower.MODEL
     /// <summary>
     /// 评论表
     /// </summary>
-    public class Comment
+    public class Comments
     {
         /// <summary>
         /// 评论编号
