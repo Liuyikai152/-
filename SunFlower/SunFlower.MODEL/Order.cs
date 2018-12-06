@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SunFlower.MODEL
 {
     /// <summary>
-    /// 订单表
+    /// 订单详情表
     /// </summary>
     public class Order
     {
@@ -40,12 +40,17 @@ namespace SunFlower.MODEL
         /// 地址ID
         /// </summary>
         public int  AddressID { get; set; }
+        
+        /// <summary>
+        ///商品数量 
+        /// </summary>
+        public int Num { get; set; }
 
         /// <summary>
-        /// 联系方式
+        /// 商品单价
         /// </summary>
-        public string UserPhone { get; set; }
-
+        public double Prices { get; set; }
+       
         /// <summary>
         /// 创建时间
         /// </summary>
