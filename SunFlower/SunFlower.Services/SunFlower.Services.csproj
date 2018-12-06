@@ -31,8 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dapper">
-      <HintPath>C:\Users\lyk\Desktop\手写的\Dapper\Dapper.dll</HintPath>
+    <Reference Include="Dapper, Version=1.50.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SunFlower.Common\Dapper\Dapper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -44,8 +45,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="FoodService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SunFlower.IServices\SunFlower.IServices.csproj">
+      <Project>{fad0eece-7558-4df8-a894-37abe1e4ffe3}</Project>
+      <Name>SunFlower.IServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SunFlower.MODEL\SunFlower.MODEL.csproj">
+      <Project>{0020ce66-9946-4458-be8c-fd940c35ab95}</Project>
+      <Name>SunFlower.MODEL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
