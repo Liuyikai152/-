@@ -8,12 +8,12 @@ namespace SunFlower.MODEL
 {
 
     /// <summary>
-    /// 订单详情
+    /// 订单表
     /// </summary>
    public  class UserOrder
     {
         /// <summary>
-        /// 商家菜品ID
+        /// 订单表ID
         /// </summary>
         public int ID { get; set; }
 
@@ -36,6 +36,11 @@ namespace SunFlower.MODEL
         /// 订单编号
         /// </summary>
         public string OrderNumber { get; set; }
+        
+        /// <summary>
+        ///购物车ID 
+        /// </summary>
+        public int TrolleyID { get; set; }
 
         /// <summary>
         /// 地址ID
@@ -48,12 +53,11 @@ namespace SunFlower.MODEL
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 数量
+        /// 总数量
         /// </summary>
         public int Num { get; set; }
 
-        /// <summary>
-        /// 订单金额
+        /// <总金额
         /// </summary>
         public Double OrderMoney { get; set; }
 
