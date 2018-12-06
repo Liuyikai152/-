@@ -8,6 +8,6 @@ namespace SunFlower.IServices
 {
     public class Class1
     {
-        string a = "我最帅";
+        
     }
 }
