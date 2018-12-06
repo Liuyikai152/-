@@ -32,7 +32,7 @@ namespace SunFlower.MODEL
         public int UserID { get; set; }
 
         /// <summary>
-        /// 菜品价格
+        /// 总金额
         /// </summary>
         public Double Money { get; set; }
 
@@ -42,13 +42,13 @@ namespace SunFlower.MODEL
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 用户手机号
-        /// </summary>
-        public string UserPhone { get; set; }
-
-        /// <summary>
         /// 数量
         /// </summary>
         public int Num { get; set; }
+
+        /// <summary>
+        /// 商品单价
+        /// </summary>
+        public int Prices { get; set; }
     }
 }
