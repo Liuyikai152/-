@@ -34,15 +34,10 @@ namespace SunFlower.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public int AddCollect()
+        public int AddCollect(Collect collect)
         {
-            Collect collect = new Collect();
-            collect.StoreNumber = "D002";
-            collect.UserID = 3;
-            collect.CreateTime = DateTime.Now;
-
             var addBootstrap = services.AddCollect(collect);
-            return 1;
+            return addBootstrap;
         }
     }
 }
