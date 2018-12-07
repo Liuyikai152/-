@@ -43,7 +43,7 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = string.Format("select * from Users");
+                string sql =@"select * from Users";
                 var UsersList = conn.Query<Users>(sql, null);
                 return UsersList.ToList<Users>();
             }

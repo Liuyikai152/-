@@ -33,7 +33,7 @@ namespace SunFlower.Services
         {
             using ( OracleConnection conn= DapperHelper.GetConnString())
             {
-                string sql = string.Format("select * from Food");
+                string sql = @"select * from Food";
                 var foodList = conn.Query<Food>(sql, null);
                 return foodList.ToList<Food>();
             }
