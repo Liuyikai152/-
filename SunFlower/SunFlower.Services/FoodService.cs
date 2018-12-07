@@ -18,20 +18,32 @@ namespace SunFlower.Services
     /// </summary>
     public class FoodService : IFood
     {
-       
+        /// <summary>
+        /// 添加所有菜品
+        /// </summary>
+        /// <param name="food"></param>
+        /// <returns></returns>
         public int AddFood(Food food)
         {
-            throw new NotImplementedException();
+            using (OracleConnection conn = DapperHelper.GetConnString())
+            {
+                string sql = @"insert into Food (foodnumber,storenumber,foodname,filename,foodsummary,foodsprice,createtime,sale, state, foodtypeid) values(:foodnumber,:storenumber,:foodname,:filename,:foodsummary,:foodsprice,:createtime,:sale,:state,:foodtypeid)";
+                int Add = conn.Execute(sql,food);
+                return Add;
+            }
         }
 
         public int DeleteFood(int ID)
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// 查看所有菜品
+        /// </summary>
+        /// <returns></returns>
         public List<Food> GetFoods()
         {
-            using ( OracleConnection conn= DapperHelper.GetConnString())
+            using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 string sql = string.Format("select * from Food");
                 var foodList = conn.Query<Food>(sql, null);
