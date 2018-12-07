@@ -23,17 +23,9 @@ namespace SunFlower.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public int AddComment()
+        public int AddComment(Comments comment)
         {
-            Comments comments = new Comments();
-            comments.UserID = 3;
-            comments.Content = "好看";
-            comments.CommentTime = DateTime.Now;
-            comments.StoreNumber = "D001";
-            comments.StoreType = EnumNews.Bad;
-            comments.CommentImg = "img.jpg";
-
-            var addComment = services.AddComment(comments);
+            var addComment = services.AddComment(comment);
             return addComment;
         }
 
@@ -54,9 +46,9 @@ namespace SunFlower.Api.Controllers
         /// <param name="ID"></param>
         /// <returns></returns>
         [HttpDelete]
-        public int DeleteComment()
+        public int DeleteComment(int ID)
         {
-            var deleteComment = services.DeleteComment(6);
+            var deleteComment = services.DeleteComment(ID);
             return deleteComment;
         }
     }
