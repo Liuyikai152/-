@@ -21,21 +21,21 @@ namespace SunFlower.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-       
-        public int AddUsers()
+
+        public int AddUsers(Users users)
         {
-            Users users = new Users();
-            users.TureName = "李四";
-            users.UserAddressID = 2;
-            users.UserName = "lisi";
-            users.UserPhone = "18678978978";
-            users.UserType =2;
-            users.Wallet = 32.3;
-            users.CreateTime = DateTime.Now;
-           
-            int Add = service.AddUsers(users);
-            return Add;
-                
+            //Users users = new Users();
+            //users.TureName = "李四";
+            //users.UserAddressID = 2;
+            //users.UserName = "lisi";
+            //users.UserPhone = "18678978978";
+            //users.UserType =2;
+            //users.Wallet = 32.3;
+            //users.CreateTime = DateTime.Now;
+
+            int add = service.AddUsers(users);
+            return add;
+
         }
 
         /// <summary>
@@ -45,10 +45,45 @@ namespace SunFlower.Api.Controllers
         [HttpGet]
         public List<Users> GetUsers()
         {
-            
-            var UsersList = service.GetUsers();
-            return UsersList;
-            
+
+            var usersList = service.GetUsers();
+            return usersList;
+
         }
+
+        /// <summary>
+        /// 删除用户
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        public int DeleteUser(int id)
+        {
+             
+            int delete = service.DeleteUsers(id);
+            return delete;
+        }
+
+        /// <summary>
+        /// 修改用户
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPut]
+        public int UpdateUser()//Users users)
+        {
+            Users users = new Users();
+            users.ID =1;
+            users.TureName = "李阳丹";
+            users.UserAddressID = 2;
+            users.UserName = "liyangdan";
+            users.UserPhone = "18394568379";
+            users.UserType = 2;
+            users.Wallet = 32.3;
+            users.CreateTime = DateTime.Now;
+            int update = service.UptdateUsers(users);
+            return update;
+        }
+
     }
 }
