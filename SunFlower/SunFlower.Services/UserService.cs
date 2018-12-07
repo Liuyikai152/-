@@ -27,9 +27,9 @@ namespace SunFlower.Services
          
                 string sql =@"insert into users(useraddressid,username,turename,userphone,createtime,upttime,wallet,usertype) values(:useraddressid,:username,:turename,:userphone,:createtime,:upttime,:wallet,:usertype)";
                 
-                int i = conn.Execute(sql,users);
+                int Add = conn.Execute(sql,users);
                 
-                return i;
+                return Add;
             }
         }
 
