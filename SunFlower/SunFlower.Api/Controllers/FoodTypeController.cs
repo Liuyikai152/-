@@ -18,7 +18,7 @@ namespace SunFlower.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public List<FoodType> GetFoods()
+        public List<FoodType> GetFoodTypes()
         {
             var foodTypeList = services.GetFoodTypes();
             return foodTypeList;
