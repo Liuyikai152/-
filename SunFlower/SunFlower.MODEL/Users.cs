@@ -54,7 +54,7 @@ namespace SunFlower.MODEL
         /// <summary>
         /// 用户类别
         /// </summary>
-        public EnumNews UserType { get; set; }
+        public int UserType { get; set; }
 
     }
 }
