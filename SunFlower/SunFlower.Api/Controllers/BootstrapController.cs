@@ -11,18 +11,22 @@ using SunFlower.Services;
 
 namespace SunFlower.Api.Controllers
 {
-    public class FoodController : ApiController
+    /// <summary>
+    /// 轮播图控制器
+    /// </summary>
+    public class BootstrapController : ApiController
     {
-        FoodService services = new FoodService();
+        BootstrapServices services = new BootstrapServices();
+      
         /// <summary>
-        /// 查看所有菜品
+        /// 获取轮播图
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public List<Food> GetFoods()
+        public List<Bootstrap> GetBootstraps()
         {
-            var foodList = services.GetFoods();
-            return foodList;
+            var bootstrapList = services.GetBootstraps();
+            return bootstrapList;
         }
     }
 }
