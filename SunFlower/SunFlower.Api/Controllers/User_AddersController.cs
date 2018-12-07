@@ -11,7 +11,7 @@ namespace SunFlower.Api.Controllers
 {
     public class User_AddersController : ApiController
     {
-        User_AddersService services = new   User_AddersService();
+        User_AddersService services = new User_AddersService();
         /// <summary>
         /// 查看用户地址
         /// </summary>
@@ -26,13 +26,13 @@ namespace SunFlower.Api.Controllers
         /// <summary>
         /// 添加用户地址
         /// </summary>
-        /// <param name="food"></param>
+        /// <param name="user_Adders"></param>
         /// <returns></returns>
         [HttpPost]
-        public int AddUserAdder(User_Adders  user_Adders)
+        public int AddUserAdder(User_Adders user_Adders)
         {
             var add = services.AddUserAdder(user_Adders);
-            return 1;
+            return add;
         }
 
         /// <summary>
@@ -55,9 +55,9 @@ namespace SunFlower.Api.Controllers
         /// <param name="food"></param>
         /// <returns></returns>
         [HttpPut]
-        public int UptdateUserAdder(User_Adders food)
+        public int UptdateUserAdder(User_Adders user_Adders)
         {
-            int uptdate = services.UptdateUserAdder(food);
+            int uptdate = services.UptdateUserAdder(user_Adders);
             return uptdate;
         }
     }

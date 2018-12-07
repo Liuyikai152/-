@@ -66,7 +66,7 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = @"update User_Adders set UserID=:UserID,UserGender=::UserGender,ProvinceID=::ProvinceID,CityID=:CityID,DistrictID=:DistrictID,ProvinceName=:ProvinceName,Address=:Address,CreateTime=:CreateTime,EditTime=:EditTime, IsDefault=:IsDefault where Id=:Id";
+                string sql = @"update User_Adders set UserID=:UserID,UserGender=:UserGender,ProvinceID=:,ProvinceID,CityID=:CityID,DistrictID=:DistrictID,ProvinceName=:ProvinceName,Address=:Address,CreateTime=:CreateTime,EditTime=:EditTime, IsDefault=:IsDefault where Id=:Id";
                 int update = conn.Execute(sql, adders);
                 return update;
             }
