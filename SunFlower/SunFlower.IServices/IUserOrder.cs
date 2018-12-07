@@ -11,7 +11,7 @@ namespace SunFlower.IServices
     /// <summary>
     /// 订单接口
     /// </summary>
-   public  interface IUserOrder
+   public interface IUserOrder
     {
         /// <summary>
         /// 添加订单
@@ -31,7 +31,7 @@ namespace SunFlower.IServices
         /// </summary>
         /// <param name="userOrder"></param>
         /// <returns></returns>
-        int DeleteOrder(UserOrder userOrder);
+        int DeleteOrder(int id);
 
     }
 }
