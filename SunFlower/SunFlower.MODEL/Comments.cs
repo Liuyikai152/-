@@ -19,7 +19,7 @@ namespace SunFlower.MODEL
         /// <summary>
         ///评论人
         /// </summary>
-        public string UserID { get; set; }
+        public int UserID { get; set; }
 
         /// <summary>
         /// 评价内容
