@@ -28,15 +28,26 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 string sql = @"insert into Food (foodnumber,storenumber,foodname,filename,foodsummary,foodsprice,createtime,sale, state, foodtypeid) values(:foodnumber,:storenumber,:foodname,:filename,:foodsummary,:foodsprice,:createtime,:sale,:state,:foodtypeid)";
-                int Add = conn.Execute(sql,food);
-                return Add;
+                int add = conn.Execute(sql, food);
+                return add;
             }
         }
 
+        /// <summary>
+        /// 删除菜品
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         public int DeleteFood(int ID)
         {
-            throw new NotImplementedException();
+            using (OracleConnection conn = DapperHelper.GetConnString())
+            {
+                string sql = @"delete from Food where ID=:ID";
+                int delete = conn.Execute(sql, new { ID = ID });
+                return delete;
+            }
         }
+
         /// <summary>
         /// 查看所有菜品
         /// </summary>
@@ -51,9 +62,19 @@ namespace SunFlower.Services
             }
         }
 
+        /// <summary>
+        /// 修改单个菜品
+        /// </summary>
+        /// <param name="food"></param>
+        /// <returns></returns>
         public int UpdateFood(Food food)
         {
-            throw new NotImplementedException();
+            using (OracleConnection conn = DapperHelper.GetConnString())
+            {
+                string sql = @"update Food set foodnumber=:foodnumber,storenumber=:storenumber,foodname=:foodname,filename=:filename,foodsummary=:foodsummary,foodsprice=:foodsprice,createtime=:createtime,sale=:sale,state=:state, foodtypeid=:foodtypeid where id=:id";
+                int update=conn.Execute(sql,food);
+                return update;
+            }
         }
     }
 }
