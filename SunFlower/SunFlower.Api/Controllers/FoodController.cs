@@ -24,27 +24,67 @@ namespace SunFlower.Api.Controllers
             var foodList = services.GetFoods();
             return foodList;
         }
+
         /// <summary>
         /// 添加菜品
         /// </summary>
         /// <param name="food"></param>
         /// <returns></returns>
         [HttpPost]
-        public int AddFood()
+        public int AddFood(Food food)
         {
-            Food food=new Food();
-            food.FoodNumber = "C002";
-            food.StoreNumber = "S001";
-            food.FoodName = "乌龟汤";
-            food.FileName = "cai.png";
-            food.FoodSummary = "大补,清淡";
-            food.FoodSprice = 368.88;
-            food.CreateTime = DateTime.Now;
-            food.Sale = 1;
-            food.State = EnumNews.Putaway;
-            food.FoodTypeID = 1;
-            var Add = services.AddFood(food);
+            //Food food=new Food();
+            //food.FoodNumber = "C002";
+            //food.StoreNumber = "S001";
+            //food.FoodName = "乌龟汤";
+            //food.FileName = "cai.png";
+            //food.FoodSummary = "大补,清淡";
+            //food.FoodSprice = 368.88;
+            //food.CreateTime = DateTime.Now;
+            //food.Sale = 1;
+            //food.State = EnumNews.Putaway;
+            //food.FoodTypeID = 1;
+            var add = services.AddFood(food);
             return 1;
+        }
+
+        /// <summary>
+        /// 删除菜品
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        public int DeleteFood()
+        {
+            Food food = new Food();
+            food.ID = 2;
+            var delete = services.DeleteFood(food.ID);
+            return delete;
+        }
+
+        /// <summary>
+        /// 修改单个菜品
+        /// </summary>
+        /// <param name="food"></param>
+        /// <returns></returns>
+        [HttpPut]
+        public int UpdateFood(Food food)
+        {
+            //Food food = new Food();
+            //food.ID = 2;
+            //food.FoodNumber = "C002";
+            //food.StoreNumber = "S001";
+            //food.FoodName = "王八汤";
+            //food.FileName = "cai.png";
+            //food.FoodSummary = "大补,清淡";
+            //food.FoodSprice = 368.88;
+            //food.CreateTime = DateTime.Now;
+            //food.Sale = 1;
+            //food.State = EnumNews.Putaway;
+            //food.FoodTypeID = 1;
+
+            int uptdate = services.UpdateFood(food);
+            return uptdate;
         }
     }
 }
