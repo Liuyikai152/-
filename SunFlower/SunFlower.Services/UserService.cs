@@ -19,6 +19,11 @@ namespace SunFlower.Services
     /// </summary>
     public class UserService : IUsers
     {
+        /// <summary>
+        /// 添加用户
+        /// </summary>
+        /// <param name="users"></param>
+        /// <returns></returns>
         public int AddUsers(Users users)
         {
             using (OracleConnection conn = DapperHelper.GetConnString()) {
@@ -33,12 +38,30 @@ namespace SunFlower.Services
             }
         }
 
-        public int DeleteUsers(int ID)
+        /// <summary>
+        /// 删除用户
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public int DeleteUsers(int id)
         {
-            throw new NotImplementedException();
+            using (OracleConnection conn = DapperHelper.GetConnString())
+            {
+
+                conn.Open();
+
+                string sql = @"delete from users where id=:id";
+
+                int delete = conn.Execute(sql,new { id=id });
+
+                return delete;
+            }
         }
 
-       
+       /// <summary>
+       /// 获取所有用户
+       /// </summary>
+       /// <returns></returns>
         public List<Users> GetUsers()
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
@@ -49,9 +72,24 @@ namespace SunFlower.Services
             }
         }
 
+        /// <summary>
+        /// 修改用户
+        /// </summary>
+        /// <param name="users"></param>
+        /// <returns></returns>
         public int UptdateUsers(Users users)
         {
-            throw new NotImplementedException();
+            using (OracleConnection conn = DapperHelper.GetConnString())
+            {
+
+                conn.Open();
+
+                string sql = @"update users set useraddressid=:useraddressid,username=:username,turename:turename,userphone:userphone,createtime:createtime,upttime:upttime,wallet:wallet,usertype:usertype where id=:id";
+
+                int uptdate = conn.Execute(sql, users);
+
+                return uptdate;
+            }
         }
     }
 }

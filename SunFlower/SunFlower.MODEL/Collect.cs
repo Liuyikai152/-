@@ -24,7 +24,7 @@ namespace SunFlower.MODEL
         /// <summary>
         /// 用户编号
         /// </summary>
-        public int User_ID { get; set; }
+        public int UserID { get; set; }
 
         /// <summary>
         /// 创建时间
