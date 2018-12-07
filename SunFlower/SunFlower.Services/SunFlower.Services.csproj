@@ -52,6 +52,7 @@
     <Compile Include="AreaService.cs" />
     <Compile Include="BootstrapServices.cs" />
     <Compile Include="CollectService.cs" />
+    <Compile Include="CommentService.cs" />
     <Compile Include="DiscountService.cs" />
     <Compile Include="FoodService.cs" />
     <Compile Include="FoodTypeService.cs" />

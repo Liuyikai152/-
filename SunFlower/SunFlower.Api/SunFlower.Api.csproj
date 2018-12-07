@@ -132,6 +132,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BootstrapController.cs" />
     <Compile Include="Controllers\CollectController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\DiscountController.cs" />
     <Compile Include="Controllers\FoodController.cs" />
     <Compile Include="Controllers\FoodTypeController.cs" />
