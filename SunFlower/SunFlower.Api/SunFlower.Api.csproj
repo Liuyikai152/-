@@ -137,6 +137,7 @@
     <Compile Include="Controllers\FoodTypeController.cs" />
     <Compile Include="Controllers\UserOrderController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\User_AddersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
