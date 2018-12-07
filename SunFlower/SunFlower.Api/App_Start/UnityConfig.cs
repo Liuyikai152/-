@@ -4,6 +4,7 @@ using Unity;
 
 namespace SunFlower.Api
 {
+    using MODEL;
     /// <summary>
     /// Specifies the Unity configuration for the main container.
     /// </summary>
@@ -42,6 +43,7 @@ namespace SunFlower.Api
 
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
+            container.RegisterType<IArea,AreaService>();
         }
     }
 }

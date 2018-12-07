@@ -146,6 +146,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="libman.json" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -159,6 +160,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SunFlower.IServices\SunFlower.IServices.csproj">
+      <Project>{fad0eece-7558-4df8-a894-37abe1e4ffe3}</Project>
+      <Name>SunFlower.IServices</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SunFlower.MODEL\SunFlower.MODEL.csproj">
       <Project>{0020ce66-9946-4458-be8c-fd940c35ab95}</Project>
       <Name>SunFlower.MODEL</Name>
