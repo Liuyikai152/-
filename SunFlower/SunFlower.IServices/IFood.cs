@@ -38,7 +38,7 @@ namespace SunFlower.IServices
         /// 查询菜品
         /// </summary>
         /// <returns></returns>
-        List<Users> GetUsers();
+        List<Food> GetFoods();
           
     }
 }

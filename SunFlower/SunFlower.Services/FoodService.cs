@@ -4,8 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using SunFlower.Common;
 using SunFlower.MODEL;
 using SunFlower.IServices;
+using Dapper;
+using System.Data;
+using Oracle.DataAccess.Client;
+
 namespace SunFlower.Services
 {
     /// <summary>
@@ -13,6 +18,7 @@ namespace SunFlower.Services
     /// </summary>
     public class FoodService : IFood
     {
+       
         public int AddFood(Food food)
         {
             throw new NotImplementedException();
@@ -23,9 +29,14 @@ namespace SunFlower.Services
             throw new NotImplementedException();
         }
 
-        public List<Users> GetUsers()
+        public List<Food> GetFoods()
         {
-            throw new NotImplementedException();
+            using ( OracleConnection conn= DapperHelper.GetConnString())
+            {
+                string sql = string.Format("select * from Food");
+                var foodList = conn.Query<Food>(sql, null);
+                return foodList.ToList<Food>();
+            }
         }
 
         public int UpdateFood(Food food)

@@ -35,6 +35,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\SunFlower.Common\Dapper\Dapper.dll</HintPath>
     </Reference>
+    <Reference Include="Oracle.DataAccess, Version=2.112.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SunFlower.Common\Dapper\Oracle.DataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,6 +53,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SunFlower.Common\SunFlower.Common.csproj">
+      <Project>{be5f1d61-6d05-4621-9809-251219bcc96b}</Project>
+      <Name>SunFlower.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SunFlower.IServices\SunFlower.IServices.csproj">
       <Project>{fad0eece-7558-4df8-a894-37abe1e4ffe3}</Project>
       <Name>SunFlower.IServices</Name>
