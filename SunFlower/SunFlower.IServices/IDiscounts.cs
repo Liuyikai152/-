@@ -20,5 +20,11 @@ namespace SunFlower.IServices
         /// <returns></returns>
         List<Discounts> GetDiscounts();
 
+        /// <summary>
+        /// 添加优惠
+        /// </summary>
+        /// <param name="food"></param>
+        /// <returns></returns>
+        int AddDiscounts(Discounts discounts);
     }
 }
