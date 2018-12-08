@@ -40,8 +40,8 @@ namespace SunFlower.Api.Controllers
             //users.Wallet = 32.3;
             //users.CreateTime = DateTime.Now;
 
-            int add = Users.AddUsers(users);
-            return add;
+            int result = Users.AddUsers(users);
+            return result;
 
         }
 
@@ -67,8 +67,8 @@ namespace SunFlower.Api.Controllers
         public int DeleteUser(int id)
         {
              
-            int delete = Users.DeleteUsers(id);
-            return delete;
+            int result = Users.DeleteUsers(id);
+            return result;
         }
 
         /// <summary>
@@ -88,8 +88,8 @@ namespace SunFlower.Api.Controllers
             //users.UserType = 2;
             //users.Wallet = 32.3;
             //users.CreateTime = DateTime.Now;
-            int update = Users.UptdateUsers(users);
-            return update;
+            int result = Users.UptdateUsers(users);
+            return result;
         }
 
     }
