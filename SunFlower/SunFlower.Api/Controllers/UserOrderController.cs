@@ -25,8 +25,8 @@ namespace SunFlower.Api.Controllers
         public int AddOrder(UserOrder userOrder)
         {
 
-            var add = service.AddOrder(userOrder);
-            return add;
+            var result = service.AddOrder(userOrder);
+            return result;
 
         }
 
@@ -52,8 +52,8 @@ namespace SunFlower.Api.Controllers
         public int DeleteOrder(int id)
         {
 
-            var delete = service.DeleteOrder(id);
-            return delete;
+            var result = service.DeleteOrder(id);
+            return result;
 
         }
     }
