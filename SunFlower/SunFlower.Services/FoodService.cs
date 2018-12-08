@@ -28,8 +28,8 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 string sql = @"insert into Food (foodnumber,storenumber,foodname,filename,foodsummary,foodsprice,createtime,sale, state, foodtypeid) values(:foodnumber,:storenumber,:foodname,:filename,:foodsummary,:foodsprice,:createtime,:sale,:state,:foodtypeid)";
-                int add = conn.Execute(sql, food);
-                return add;
+                int result = conn.Execute(sql, food);
+                return result;
             }
         }
 
@@ -43,8 +43,8 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 string sql = @"delete from Food where ID=:ID";
-                int delete = conn.Execute(sql, new { ID = ID });
-                return delete;
+                int result = conn.Execute(sql, new { ID = ID });
+                return result;
             }
         }
 
@@ -72,8 +72,8 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 string sql = @"update Food set foodnumber=:foodnumber,storenumber=:storenumber,foodname=:foodname,filename=:filename,foodsummary=:foodsummary,foodsprice=:foodsprice,createtime=:createtime,sale=:sale,state=:state, foodtypeid=:foodtypeid where id=:id";
-                int update=conn.Execute(sql,food);
-                return update;
+                int result = conn.Execute(sql,food);
+                return result;
             }
         }
     }

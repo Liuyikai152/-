@@ -24,8 +24,8 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 string sql = @"insert into Store(storenumber, storename, storeimg, filename, address, storephone, auditing, state, createtime, edittime, daysale, daymoney, conntent) values(:storenumber, :storename, :storeimg, :filename, :address,: storephone, :auditing, :state, :createtime, :edittime, :daysale, :daymoney, :conntent)";
-                var Add = conn.Execute(sql,store);
-                return Add;
+                var result = conn.Execute(sql,store);
+                return result;
             }
         }
 
@@ -53,8 +53,8 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 string sql = @"update store set storenumber=:storenumber, storename=:storename, storeimg=:storeimg, filename=:filename, address=:address, storephone=:storephone, auditing=:auditing, state=:state, createtime=:createtime, edittime=:edittime, daysale=:daysale, daymoney=:daymoney, conntent=:conntent where id=:ID";
-                var update = conn.Execute(sql, store);
-                return update;
+                var result = conn.Execute(sql, store);
+                return result;
             }
         }
     }
