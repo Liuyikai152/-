@@ -5,6 +5,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+using Unity.Attributes;
+using SunFlower.IServices;
 namespace SunFlower.Api.Controllers
 {
     using SunFlower.MODEL;
@@ -14,7 +16,8 @@ namespace SunFlower.Api.Controllers
 
     public class StoreLogsController : ApiController
     {
-        StoreLogsService servce = new StoreLogsService();
+        [Dependency]
+        public IStoreLogs StoreLogs { get; set; }
 
         /// <summary>
         /// 添加日志
@@ -23,7 +26,7 @@ namespace SunFlower.Api.Controllers
         /// <returns></returns>
         public int AddStoreLogs(StoreLogs storeLogs)
         {
-            int result = servce.AddStoreLogs(storeLogs);
+            int result = StoreLogs.AddStoreLogs(storeLogs);
             return result;
         }
 
@@ -33,7 +36,7 @@ namespace SunFlower.Api.Controllers
         /// <returns></returns>
         public List<StoreLogs> GetStoreLogs()
         {
-            var stireLogsList = servce.GetStoreLogs();
+            var stireLogsList = StoreLogs.GetStoreLogs();
             return stireLogsList;
         }
     }

@@ -10,11 +10,14 @@ using SunFlower.Services;
 using Oracle.DataAccess.Client;
 using Oracle.DataAccess;
 
+using Unity.Attributes;
+using SunFlower.IServices;
 namespace SunFlower.Api.Controllers
 {
     public class UserLogsController : ApiController
     {
-        UserLogsServce servce = new UserLogsServce();
+        [Dependency]
+        public IUserLogs UserLogs { get; set; }
 
         /// <summary>
         /// 添加日志
@@ -25,8 +28,8 @@ namespace SunFlower.Api.Controllers
         public int AddLogs(UserLogs userLogs)
         {
 
-            int add = servce.AddLogs(userLogs);
-                return add;
+            int result = UserLogs.AddLogs(userLogs);
+                return result;
         
         }
 
@@ -37,7 +40,7 @@ namespace SunFlower.Api.Controllers
         [HttpGet]
         public List<UserLogs> GetUserLogs()
         {
-            var userLogsList = servce.GetUserLogs();
+            var userLogsList = UserLogs.GetUserLogs();
             return userLogsList;
         }
 

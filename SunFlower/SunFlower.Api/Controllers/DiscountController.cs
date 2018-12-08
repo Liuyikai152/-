@@ -8,12 +8,15 @@ using System.Web.Http;
 using System.Data;
 using SunFlower.MODEL;
 using SunFlower.Services;
+using Unity.Attributes;
+using SunFlower.IServices;
 
 namespace SunFlower.Api.Controllers
 {
     public class DiscountController : ApiController
     {
-        DiscountService discountService = new DiscountService();
+        [Dependency]
+        public IDiscounts Discount { get; set; }
         /// <summary>
         /// 添加优惠券信息
         /// </summary>
@@ -21,8 +24,8 @@ namespace SunFlower.Api.Controllers
         /// <returns></returns>
         public int AddDiscounts(Discounts discounts)
         {
-            var add = discountService.AddDiscounts(discounts);
-            return add;
+            var result = Discount.AddDiscounts(discounts);
+            return result;
         }
 
         /// <summary>
@@ -31,7 +34,7 @@ namespace SunFlower.Api.Controllers
         /// <returns></returns>
         public List<Discounts> GetDiscounts()
         {
-            var discountsList = discountService.GetDiscounts();
+            var discountsList = Discount.GetDiscounts();
             return discountsList;
         }
     }

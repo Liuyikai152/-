@@ -8,12 +8,14 @@ using System.Web.Http;
 using System.Data;
 using SunFlower.MODEL;
 using SunFlower.Services;
-
+using Unity.Attributes;
+using SunFlower.IServices;
 namespace SunFlower.Api.Controllers
 {
     public class FoodController : ApiController
     {
-        FoodService services = new FoodService();
+        [Dependency]
+        public IFood Food { get; set; }
         /// <summary>
         /// 查看所有菜品
         /// </summary>
@@ -21,7 +23,7 @@ namespace SunFlower.Api.Controllers
         [HttpGet]
         public List<Food> GetFoods()
         {
-            var foodList = services.GetFoods();
+            var foodList = Food.GetFoods();
             return foodList;
         }
 
@@ -44,8 +46,8 @@ namespace SunFlower.Api.Controllers
             //food.Sale = 1;
             //food.State = EnumNews.Putaway;
             //food.FoodTypeID = 1;
-            var add = services.AddFood(food);
-            return 1;
+            var result = Food.AddFood(food);
+            return result;
         }
 
         /// <summary>
@@ -54,12 +56,10 @@ namespace SunFlower.Api.Controllers
         /// <param name="ID"></param>
         /// <returns></returns>
         [HttpDelete]
-        public int DeleteFood()
+        public int DeleteFood(int ID)
         {
-            Food food = new Food();
-            food.ID = 2;
-            var delete = services.DeleteFood(food.ID);
-            return delete;
+            var result = Food.DeleteFood(ID);
+            return result;
         }
 
         /// <summary>
@@ -83,8 +83,8 @@ namespace SunFlower.Api.Controllers
             //food.State = EnumNews.Putaway;
             //food.FoodTypeID = 1;
 
-            int uptdate = services.UpdateFood(food);
-            return uptdate;
+            int result = Food.UpdateFood(food);
+            return result;
         }
     }
 }

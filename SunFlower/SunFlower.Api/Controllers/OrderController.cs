@@ -8,13 +8,15 @@ using System.Web.Http;
 using System.Data;
 using SunFlower.MODEL;
 using SunFlower.Services;
-
+using Unity.Attributes;
+using SunFlower.IServices;
 namespace SunFlower.Api.Controllers
 {
 
     public class OrderController : ApiController
     {
-        OrderService services = new OrderService();
+        [Dependency]
+        public IOrders Orders { get; set; }
 
         /// <summary>
         /// 添加订单
@@ -24,13 +26,13 @@ namespace SunFlower.Api.Controllers
         [HttpPost]
         public int AddOrders(Orders orders)
         {
-            var result = services.AddOrders(orders);
+            var result = Orders.AddOrders(orders);
             return result;
         }
         [HttpGet]
         public List<Orders> GetOrders()
         {
-            var OrderList = services.GetOrders();
+            var OrderList = Orders.GetOrders();
             return OrderList;
         }
 

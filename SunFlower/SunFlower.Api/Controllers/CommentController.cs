@@ -8,7 +8,8 @@ using System.Web.Http;
 using System.Data;
 using SunFlower.MODEL;
 using SunFlower.Services;
-
+using Unity.Attributes;
+using SunFlower.IServices;
 namespace SunFlower.Api.Controllers
 {
     /// <summary>
@@ -16,7 +17,8 @@ namespace SunFlower.Api.Controllers
     /// </summary>
     public class CommentController : ApiController
     {
-        CommentsService services = new CommentsService();
+        [Dependency]
+        public IComment Comment { get; set; }
 
         /// <summary>
         /// 添加评论
@@ -25,7 +27,7 @@ namespace SunFlower.Api.Controllers
         [HttpPost]
         public int AddComment(Comments comment)
         {
-            var result = services.AddComment(comment);
+            var result = Comment.AddComment(comment);
             return result;
         }
 
@@ -36,7 +38,7 @@ namespace SunFlower.Api.Controllers
         [HttpGet]
         public List<Comments> GetComments()
         {
-            var commentsList = services.GetComments();
+            var commentsList = Comment.GetComments();
             return commentsList;
         }
 
@@ -48,7 +50,7 @@ namespace SunFlower.Api.Controllers
         [HttpDelete]
         public int DeleteComment(int ID)
         {
-            var result = services.DeleteComment(ID);
+            var result = Comment.DeleteComment(ID);
             return result;
         }
     }

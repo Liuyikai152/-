@@ -8,12 +8,14 @@ using System.Web.Http;
 using System.Data;
 using SunFlower.MODEL;
 using SunFlower.Services;
-
+using Unity.Attributes;
+using SunFlower.IServices;
 namespace SunFlower.Api.Controllers
 {
     public class StoreController : ApiController
     {
-        StoreService storeService = new StoreService();
+        [Dependency]
+        public IStore Store { get; set; }
         [HttpPost]
         /// <summary>
         /// 申请店铺
@@ -22,8 +24,8 @@ namespace SunFlower.Api.Controllers
         /// <returns></returns>
         public int AddStore(Store store)
         {
-            var addStore = storeService.AddStore(store);
-            return addStore;
+            var result = Store.AddStore(store);
+            return result;
         }
         [HttpGet]
         /// <summary>
@@ -32,8 +34,8 @@ namespace SunFlower.Api.Controllers
         /// <returns></returns>
         public List<Store> GetStores()
         {
-            var storeList = storeService.GetStores();
-            return storeList;
+            var result = Store.GetStores();
+            return result;
         }
 
         [HttpPut]
@@ -44,8 +46,8 @@ namespace SunFlower.Api.Controllers
         /// <returns></returns>
         public int UptdateStore(Store store)
         {
-            var uptdateStore = storeService.UptdateStore(store);
-            return uptdateStore;
+            var result = Store.UptdateStore(store);
+            return result;
         }
     }
 }

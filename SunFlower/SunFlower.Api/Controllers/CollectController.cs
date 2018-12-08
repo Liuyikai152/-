@@ -8,6 +8,8 @@ using System.Web.Http;
 using System.Data;
 using SunFlower.MODEL;
 using SunFlower.Services;
+using Unity.Attributes;
+using SunFlower.IServices;
 
 namespace SunFlower.Api.Controllers
 {
@@ -16,7 +18,8 @@ namespace SunFlower.Api.Controllers
     /// </summary>
     public class CollectController : ApiController
     {
-        CollectService services = new CollectService();
+        [Dependency]
+        public ICollect Collect { get; set; }
 
         /// <summary>
         /// 显示收藏
@@ -25,7 +28,7 @@ namespace SunFlower.Api.Controllers
         [HttpGet]
         public List<Collect> GetCollects()
         {
-            var CollectList = services.GetCollects();
+            var CollectList = Collect.GetCollects();
             return CollectList;
         }
 
@@ -36,7 +39,7 @@ namespace SunFlower.Api.Controllers
         [HttpPost]
         public int AddCollect(Collect collect)
         {
-            var result = services.AddCollect(collect);
+            var result = Collect.AddCollect(collect);
             return result;
         }
     }

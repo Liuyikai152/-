@@ -9,12 +9,16 @@ using System.Data;
 using SunFlower.MODEL;
 using SunFlower.Services;
 
+using Unity.Attributes;
+using SunFlower.IServices;
+
 namespace SunFlower.Api.Controllers
 {
     public class UserOrderController : ApiController
     {
 
-        UserOrderService service = new UserOrderService();
+        [Dependency]
+        public IUserOrder UserOrder { get; set; }
 
         /// <summary>
         /// 添加订单
@@ -25,7 +29,7 @@ namespace SunFlower.Api.Controllers
         public int AddOrder(UserOrder userOrder)
         {
 
-            var result = service.AddOrder(userOrder);
+            var result = UserOrder.AddOrder(userOrder);
             return result;
 
         }
@@ -38,7 +42,7 @@ namespace SunFlower.Api.Controllers
         public List<UserOrder> GetUserOrders()
         {
 
-            var userOrdersList = service.GetUserOrders();
+            var userOrdersList = UserOrder.GetUserOrders();
             return userOrdersList;
 
         }
@@ -52,7 +56,7 @@ namespace SunFlower.Api.Controllers
         public int DeleteOrder(int id)
         {
 
-            var result = service.DeleteOrder(id);
+            var result = UserOrder.DeleteOrder(id);
             return result;
 
         }

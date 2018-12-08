@@ -7,11 +7,15 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+using Unity.Attributes;
+using SunFlower.IServices;
 namespace SunFlower.Api.Controllers
 {
     public class User_AddersController : ApiController
     {
-        User_AddersService services = new User_AddersService();
+
+        [Dependency]
+        public IUser_Adders User_Adders { get; set; }
         /// <summary>
         /// 查看用户地址
         /// </summary>
@@ -19,7 +23,7 @@ namespace SunFlower.Api.Controllers
         [HttpGet]
         public List<User_Adders> GetUser_Adders()
         {
-            var user_AddersList = services.GetUser_Adders();
+            var user_AddersList = User_Adders.GetUser_Adders();
             return user_AddersList;
         }
 
@@ -31,8 +35,8 @@ namespace SunFlower.Api.Controllers
         [HttpPost]
         public int AddUserAdder(User_Adders user_Adders)
         {
-            var add = services.AddUserAdder(user_Adders);
-            return add;
+            var result = User_Adders.AddUserAdder(user_Adders);
+            return result;
         }
 
         /// <summary>
@@ -41,12 +45,10 @@ namespace SunFlower.Api.Controllers
         /// <param name="ID"></param>
         /// <returns></returns>
         [HttpDelete]
-        public int DeleteUserAdder()
+        public int DeleteUserAdder(int ID)
         {
-            User_Adders user_Adders = new User_Adders();
-            user_Adders.ID = 2;
-            var delete = services.DeleteUserAdder(user_Adders.ID);
-            return delete;
+            var result = User_Adders.DeleteUserAdder(ID);
+            return result;
         }
 
         /// <summary>
@@ -57,8 +59,8 @@ namespace SunFlower.Api.Controllers
         [HttpPut]
         public int UptdateUserAdder(User_Adders user_Adders)
         {
-            int uptdate = services.UptdateUserAdder(user_Adders);
-            return uptdate;
+            int result = User_Adders.UptdateUserAdder(user_Adders);
+            return result;
         }
     }
 }

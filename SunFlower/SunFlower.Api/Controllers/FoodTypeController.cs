@@ -6,12 +6,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
+using Unity.Attributes;
+using SunFlower.IServices;
 namespace SunFlower.Api.Controllers
 {
     public class FoodTypeController : ApiController
     {
-        FoodTypeService services = new FoodTypeService();
+        [Dependency]
+        public IFoodType FoodType { get; set; }
 
         /// <summary>
         /// 显示
@@ -20,7 +22,7 @@ namespace SunFlower.Api.Controllers
         [HttpGet]
         public List<FoodType> GetFoodTypes()
         {
-            var foodTypeList = services.GetFoodTypes();
+            var foodTypeList = FoodType.GetFoodTypes();
             return foodTypeList;
         }
     }

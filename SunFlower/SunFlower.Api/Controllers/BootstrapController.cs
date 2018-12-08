@@ -8,6 +8,8 @@ using System.Web.Http;
 using System.Data;
 using SunFlower.MODEL;
 using SunFlower.Services;
+using Unity.Attributes;
+using SunFlower.IServices;
 
 namespace SunFlower.Api.Controllers
 {
@@ -16,8 +18,9 @@ namespace SunFlower.Api.Controllers
     /// </summary>
     public class BootstrapController : ApiController
     {
-        BootstrapServices services = new BootstrapServices();
-      
+        [Dependency]
+        public IBootstrap Bootstrap { get; set; }
+
         /// <summary>
         /// 获取轮播图
         /// </summary>
@@ -25,7 +28,7 @@ namespace SunFlower.Api.Controllers
         [HttpGet]
         public List<Bootstrap> GetBootstraps()
         {
-            var bootstrapList = services.GetBootstraps();
+            var bootstrapList = Bootstrap.GetBootstraps();
             return bootstrapList;
         }
     }

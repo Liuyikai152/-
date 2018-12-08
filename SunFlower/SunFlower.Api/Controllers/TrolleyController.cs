@@ -10,12 +10,14 @@ using SunFlower.MODEL;
 using SunFlower.Services;
 using Oracle.DataAccess.Client;
 using Oracle.DataAccess;
-
+using SunFlower.IServices;
+using Unity.Attributes;
 namespace SunFlower.Api.Controllers
 {
     public class TrolleyController : ApiController
     {
-        TrolleyService service = new TrolleyService();
+        [Dependency]
+        public ITrolley Trolley { get; set; }
 
 
         /// <summary>
@@ -28,9 +30,9 @@ namespace SunFlower.Api.Controllers
         {
 
 
-            int add = service.AddTrolley(trolley);
-                return add;
-            
+            int result = Trolley.AddTrolley(trolley);
+            return result;
+
         }
 
         /// <summary>
@@ -42,9 +44,9 @@ namespace SunFlower.Api.Controllers
         public int DeleteTrolley(int ID)
         {
 
-            int delete = service.DeleteTrolley(ID);
-                return delete;
-            
+            int result = Trolley.DeleteTrolley(ID);
+            return result;
+
         }
 
         /// <summary>
@@ -55,9 +57,9 @@ namespace SunFlower.Api.Controllers
         public List<Trolley> GetTrolleys()
         {
 
-            var trolleyList = service.GetTrolleys();
-                return trolleyList;
-            
+            var result = Trolley.GetTrolleys();
+            return result;
+
         }
 
         /// <summary>
@@ -69,9 +71,9 @@ namespace SunFlower.Api.Controllers
         public int UpdateTrolley(Trolley trolley)
         {
 
-            int update = service.UpdateTrolley(trolley);
-            return update;
-            
+            int result = Trolley.UpdateTrolley(trolley);
+            return result;
+
         }
     }
 }
