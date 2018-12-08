@@ -34,8 +34,8 @@ namespace SunFlower.Services
 
                 string sql = @"insert into userorder(trolleyid,foodnumber,storenumber,userid,ordermoney,addersid,userphone,createtime,num,orderstate,storeorderstate,ordernumber) values(:trolleyid,:foodnumber,:storenumber,:userid,:ordermoney,:addersid,:userphone,:createtime,:num,:orderstate,:storeorderstate,:ordernumber)";
 
-                var add = conn.Execute(sql, userOrder);
-                return add;
+                var result = conn.Execute(sql, userOrder);
+                return result;
             }
         }
 
@@ -52,7 +52,11 @@ namespace SunFlower.Services
                 string sql = @"select * from users  left join  userorder  on (users.id=userorder.userid)";
 
                 var userOrdersList = conn.Query<UserOrder>(sql, null);
-                return userOrdersList.ToList<UserOrder>();
+                if (userOrdersList != null)
+                {
+                    return userOrdersList.ToList<UserOrder>();
+                }
+                return null;
             }
         }
 
@@ -69,8 +73,8 @@ namespace SunFlower.Services
 
                 string sql = @"delete from userorder where id=:id";
 
-                var delete = conn.Execute(sql,new { id=id});
-                return delete;
+                var result = conn.Execute(sql,new { id=id});
+                return result;
             }
         }
 

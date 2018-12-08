@@ -32,9 +32,9 @@ namespace SunFlower.Services
          
                 string sql =@"insert into users(useraddressid,username,turename,userphone,createtime,upttime,wallet,usertype) values(:useraddressid,:username,:turename,:userphone,:createtime,:upttime,:wallet,:usertype)";
                 
-                int Add = conn.Execute(sql,users);
+                int result = conn.Execute(sql,users);
                 
-                return Add;
+                return result;
             }
         }
 
@@ -52,9 +52,9 @@ namespace SunFlower.Services
 
                 string sql = @"delete from users where id=:id";
 
-                int delete = conn.Execute(sql,new { id=id });
+                int result = conn.Execute(sql,new { id=id });
 
-                return delete;
+                return result;
             }
         }
 
@@ -68,7 +68,10 @@ namespace SunFlower.Services
             {
                 string sql =@"select * from Users";
                 var UsersList = conn.Query<Users>(sql, null);
-                return UsersList.ToList<Users>();
+                if (UsersList != null) {
+                    return UsersList.ToList();
+                }
+                return null;
             }
         }
 
@@ -86,9 +89,9 @@ namespace SunFlower.Services
 
                 string sql = @"update users set useraddressid=:useraddressid,username=:username,turename:turename,userphone:userphone,createtime:createtime,upttime:upttime,wallet:wallet,usertype:usertype where id=:id";
 
-                int uptdate = conn.Execute(sql, users);
+                int result = conn.Execute(sql, users);
 
-                return uptdate;
+                return result;
             }
         }
     }
