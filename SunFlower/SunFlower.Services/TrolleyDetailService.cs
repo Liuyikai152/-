@@ -16,7 +16,7 @@ namespace SunFlower.Services
     public class TrolleyDetailService : ITrolleyDetails
     {
 
-        
+
 
         /// <summary>
         /// 添加购物车详情
@@ -28,9 +28,9 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 conn.Open();
-                string sql = @"";
+                string sql = @"insert into trolleydetails(trolleynumber,userid,foodnumber,createtime,num,money,prices) values(:trolleynumber,:userid,:foodnumber,:createtime,:num,:money,:prices)";
                 int result = conn.Execute(sql, trolleyDetails);
-            
+
                 return result;
             }
         }
@@ -45,8 +45,8 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 conn.Open();
-                string sql = @"";
-                int result = conn.Execute(sql, new { id=ID}); 
+                string sql = @"delete from trolleydetails where id=:id";
+                int result = conn.Execute(sql, new { id = ID });
                 return result;
             }
         }
@@ -60,8 +60,8 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 conn.Open();
-                string sql = @"";
-                var trolleyDetailsList = conn.Query<TrolleyDetails>(sql,null);
+                string sql = @"select a.trolleynumber,e.foodname,e.foodsprice,e.filename from trolleydetails a join Users b on (a.userid=b.id) join trolley c on (a.userid=c.userid) join food e on (c.foodnumber=e.foodnumber)";
+                var trolleyDetailsList = conn.Query<TrolleyDetails>(sql, null);
                 if (trolleyDetailsList != null)
                 {
                     return trolleyDetailsList.ToList();
@@ -80,7 +80,7 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 conn.Open();
-                string sql = @"";
+                string sql = @"update trolleydetails set trolleynumber=:trolleynumber,userid=:userid,foodnumber=:foodnumber,createtime=:createtime,num=:num,money=:money,prices=:prices where id=:id";
                 int result = conn.Execute(sql, trolleyDetails);
                 return result;
             }
