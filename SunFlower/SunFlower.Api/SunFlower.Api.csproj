@@ -136,7 +136,9 @@
     <Compile Include="Controllers\DiscountController.cs" />
     <Compile Include="Controllers\FoodController.cs" />
     <Compile Include="Controllers\FoodTypeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
+    <Compile Include="Controllers\StoreLogsController.cs" />
     <Compile Include="Controllers\TrolleyController.cs" />
     <Compile Include="Controllers\TrolleyDetailController.cs" />
     <Compile Include="Controllers\UserLogsController.cs" />
