@@ -17,7 +17,7 @@ namespace SunFlower.IServices
         /// 添加日志
         /// </summary>
         /// <returns></returns>
-        int AddStoreLogs();
+        int AddStoreLogs(StoreLogs storeLogs);
 
         /// <summary>
         /// 显示日志

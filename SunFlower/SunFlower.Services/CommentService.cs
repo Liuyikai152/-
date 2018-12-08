@@ -30,8 +30,8 @@ namespace SunFlower.Services
                 conn.Open();
                 string sql = @"insert into comments(userid,content,commenttime,storenumber,storetype,commentimg) 
                              values(:userid,:content,:commenttime,:storenumber,:storetype,:commentimg)";
-                int add = conn.Execute(sql, comment);
-                return add;
+                int result = conn.Execute(sql, comment);
+                return result;
             }
         }
 
@@ -45,8 +45,8 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 string sql = @"delete comments where id=:id";
-                var deleteComment = conn.Execute(sql, new { ID = ID });
-                return deleteComment;
+                var result = conn.Execute(sql, new { ID = ID });
+                return result;
             }
         }
 
