@@ -30,8 +30,8 @@ namespace SunFlower.Services
 
                 conn.Open();
                 string sql = @"insert into trolley(trolleynumber,userid,storenumber,foodnumber,createtime,money,userphone,addressid) values(:trolleynumber,:userid,:storenumber,:foodnumber,:createtime,:money,:userphone,:addressid)";
-                int add = conn.Execute(sql, trolley);
-                return add;
+                int result = conn.Execute(sql, trolley);
+                return result;
             }
         }
 
@@ -47,8 +47,8 @@ namespace SunFlower.Services
 
                 conn.Open();
                 string sql = @"delete from  trolley where id=:id)";
-                int delete = conn.Execute(sql, new { id=ID});
-                return delete;
+                int result = conn.Execute(sql, new { id=ID});
+                return result;
             }
         }
 
@@ -80,8 +80,8 @@ namespace SunFlower.Services
 
                 conn.Open();
                 string sql = @"update trolley set trolleynumber=:trolleynumber,userid=:userid,storenumber=:storenumber,foodnumber=:foodnumber,createtime=:createtime,money=:money,userphone=:userphone,addressid=:addressid where id=:id";
-                int update = conn.Execute(sql, trolley);
-                return update;
+                int result = conn.Execute(sql, trolley);
+                return result;
             }
         }
     }

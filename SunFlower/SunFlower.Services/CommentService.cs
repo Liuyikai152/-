@@ -30,8 +30,8 @@ namespace SunFlower.Services
                 conn.Open();
                 string sql = @"insert into comments(userid,content,commenttime,storenumber,storetype,commentimg) 
                              values(:userid,:content,:commenttime,:storenumber,:storetype,:commentimg)";
-                int add = conn.Execute(sql, comment);
-                return add;
+                int result = conn.Execute(sql, comment);
+                return result;
             }
         }
 

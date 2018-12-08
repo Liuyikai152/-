@@ -24,8 +24,8 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString()) {
                 conn.Open();
                 string sql = @"insert into UserLogs(Userid,Storeid,Createtime) values(:Userid,:Storeid,:Createtime)";
-                int add = conn.Execute(sql, userLogs);
-                return add;
+                int result = conn.Execute(sql, userLogs);
+                return result;
             }
            
         }
