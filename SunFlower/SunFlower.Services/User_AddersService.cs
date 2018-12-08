@@ -23,8 +23,8 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 string sql = @"insert into User_Adders (UserID,UserGender,ProvinceID,CityID,DistrictID,ProvinceName,Address,CreateTime, EditTime, IsDefault) values (:UserID,:UserGender,:ProvinceID,:CityID,:DistrictID,:ProvinceName,:Address,:CreateTime,:EditTime,:IsDefault)";
-                int add = conn.Execute(sql, adders);
-                return add;
+                int result = conn.Execute(sql, adders);
+                return result;
             }
         }
 
@@ -38,8 +38,8 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 string sql = @"delete from User_Adders where ID=:ID";
-                int delete = conn.Execute(sql, new { ID = ID });
-                return delete;
+                int result = conn.Execute(sql, new { ID = ID });
+                return result;
             }
         }
 
@@ -67,8 +67,8 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 string sql = @"update User_Adders set UserID=:UserID,UserGender=:UserGender,ProvinceID=:,ProvinceID,CityID=:CityID,DistrictID=:DistrictID,ProvinceName=:ProvinceName,Address=:Address,CreateTime=:CreateTime,EditTime=:EditTime, IsDefault=:IsDefault where Id=:Id";
-                int update = conn.Execute(sql, adders);
-                return update;
+                int result = conn.Execute(sql, adders);
+                return result;
             }
         }
     }
