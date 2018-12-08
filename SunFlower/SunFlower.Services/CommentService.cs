@@ -45,8 +45,8 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 string sql = @"delete comments where id=:id";
-                var deleteComment = conn.Execute(sql, new { ID = ID });
-                return deleteComment;
+                var result = conn.Execute(sql, new { ID = ID });
+                return result;
             }
         }
 

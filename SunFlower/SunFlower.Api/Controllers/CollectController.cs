@@ -36,8 +36,8 @@ namespace SunFlower.Api.Controllers
         [HttpPost]
         public int AddCollect(Collect collect)
         {
-            var addBootstrap = services.AddCollect(collect);
-            return addBootstrap;
+            var result = services.AddCollect(collect);
+            return result;
         }
     }
 }
