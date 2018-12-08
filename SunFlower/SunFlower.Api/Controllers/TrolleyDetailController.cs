@@ -16,9 +16,7 @@ namespace SunFlower.Api.Controllers
 {
     public class TrolleyDetailController : ApiController
     {
-        /// <summary>
-        /// 属性
-        /// </summary>
+     
         [Dependency]
         public ITrolleyDetails TrolleyDetails { get; set; }
 

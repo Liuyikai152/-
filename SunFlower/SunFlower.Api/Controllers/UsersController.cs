@@ -17,9 +17,7 @@ namespace SunFlower.Api.Controllers
     public class UsersController : ApiController
     {
 
-        /// <summary>
-        /// 属性
-        /// </summary>
+       
         [Dependency]
         public  IUsers Users  { get; set; }
 
