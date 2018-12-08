@@ -22,11 +22,13 @@ namespace SunFlower.Api.Controllers
         [Dependency]
         public ITrolleyDetails TrolleyDetails { get; set; }
 
+        //构造函数
+        //public ITrolleyDetails _TrolleyDetails=null;
 
-        public TrolleyDetails(ITrolleyDetails trolleyDetails) {
+        //public TrolleyDetailController(ITrolleyDetails trolleyDetails) {
 
-
-        }
+        //    _TrolleyDetails = trolleyDetails;
+        //}
 
         /// <summary>
         /// 添加购物车详情
@@ -37,7 +39,6 @@ namespace SunFlower.Api.Controllers
         {
 
             int result = TrolleyDetails.AddTrolleyDetails(trolleyDetails);
-
             return result;
 
         }
@@ -61,17 +62,10 @@ namespace SunFlower.Api.Controllers
         /// <returns></returns>
         public List<TrolleyDetails> GetTrolleyDetails()
         {
-            using (OracleConnection conn = DapperHelper.GetConnString())
-            {
-                conn.Open();
-                string sql = @"";
-                var trolleyDetailsList = conn.Query<TrolleyDetails>(sql, null);
-                if (trolleyDetailsList != null)
-                {
-                    return trolleyDetailsList.ToList();
-                }
-                return null;
-            }
+
+            var trolleyDetailsList = TrolleyDetails.GetTrolleyDetails();
+            return trolleyDetailsList;
+
         }
 
         /// <summary>
@@ -81,13 +75,10 @@ namespace SunFlower.Api.Controllers
         /// <returns></returns>
         public int UptdateTrolleyDetails(TrolleyDetails trolleyDetails)
         {
-            using (OracleConnection conn = DapperHelper.GetConnString())
-            {
-                conn.Open();
-                string sql = @"";
-                int result = conn.Execute(sql, trolleyDetails);
-                return result;
-            }
+
+            int result = TrolleyDetails.UptdateTrolleyDetails(trolleyDetails);
+            return result;
+
         }
     }
 }

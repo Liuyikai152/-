@@ -9,12 +9,19 @@ using System.Web.Http;
 using System.Data;
 using SunFlower.MODEL;
 using SunFlower.Services;
+using SunFlower.IServices;
+using Unity.Attributes;
 
 namespace SunFlower.Api.Controllers
 {
     public class UsersController : ApiController
     {
-        UserService service = new UserService();
+
+        /// <summary>
+        /// 属性
+        /// </summary>
+        [Dependency]
+        public  IUsers Users  { get; set; }
 
         /// <summary>
         /// 添加用户
@@ -33,7 +40,7 @@ namespace SunFlower.Api.Controllers
             //users.Wallet = 32.3;
             //users.CreateTime = DateTime.Now;
 
-            int add = service.AddUsers(users);
+            int add = Users.AddUsers(users);
             return add;
 
         }
@@ -46,7 +53,7 @@ namespace SunFlower.Api.Controllers
         public List<Users> GetUsers()
         {
 
-            var usersList = service.GetUsers();
+            var usersList = Users.GetUsers();
             return usersList;
 
         }
@@ -60,7 +67,7 @@ namespace SunFlower.Api.Controllers
         public int DeleteUser(int id)
         {
              
-            int delete = service.DeleteUsers(id);
+            int delete = Users.DeleteUsers(id);
             return delete;
         }
 
@@ -81,7 +88,7 @@ namespace SunFlower.Api.Controllers
             //users.UserType = 2;
             //users.Wallet = 32.3;
             //users.CreateTime = DateTime.Now;
-            int update = service.UptdateUsers(users);
+            int update = Users.UptdateUsers(users);
             return update;
         }
 
