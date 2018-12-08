@@ -25,8 +25,8 @@ namespace SunFlower.Api.Controllers
         [HttpPost]
         public int AddComment(Comments comment)
         {
-            var addComment = services.AddComment(comment);
-            return addComment;
+            var result = services.AddComment(comment);
+            return result;
         }
 
         /// <summary>
@@ -48,8 +48,8 @@ namespace SunFlower.Api.Controllers
         [HttpDelete]
         public int DeleteComment(int ID)
         {
-            var deleteComment = services.DeleteComment(ID);
-            return deleteComment;
+            var result = services.DeleteComment(ID);
+            return result;
         }
     }
 }
