@@ -11,8 +11,15 @@ using System.Threading.Tasks;
 
 namespace SunFlower.Services
 {
+    /// <summary>
+    /// 菜品类别实现类
+    /// </summary>
     public class FoodTypeService : IFoodType
     {
+        /// <summary>
+        /// 显示菜品类别
+        /// </summary>
+        /// <returns></returns>
         public List<FoodType> GetFoodTypes()
         {
             using (OracleConnection conn = DapperHelper.GetConnString())

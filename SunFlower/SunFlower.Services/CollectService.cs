@@ -38,14 +38,17 @@ namespace SunFlower.Services
         /// 显示收藏
         /// </summary>
         /// <returns></returns>
+        
         public List<Collect> GetCollects()
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = string.Format("select store.StoreImg,store.storename from Collect join Store on(collect.storenumber=store.storenumber)");
+                string sql = string.Format("select store.StoreImg,store.conntent from Collect join Store on(collect.storenumber=store.storenumber)");
                 var collectList = conn.Query<Collect>(sql, null);
                 return collectList.ToList<Collect>();
             }
         }
+
+        
     }
 }

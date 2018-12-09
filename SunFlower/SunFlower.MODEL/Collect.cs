@@ -35,5 +35,7 @@ namespace SunFlower.MODEL
         /// 商家店铺头像
         /// </summary>
         public string StoreImg { get; set; }
+
+        public string Conntent { get; set; }
     }
 }

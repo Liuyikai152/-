@@ -48,8 +48,10 @@ namespace SunFlower.Api
 
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
+            container.RegisterType<IComment, CommentsService>();
             container.RegisterType<IArea,AreaService>();
             container.RegisterType<IFood, FoodService>();
+            container.RegisterType<ICollect, CollectService>();
             container.RegisterType<IFoodType, FoodTypeService>();
             container.RegisterType<IDiscounts, DiscountService>();
             container.RegisterType<IBootstrap, BootstrapServices>();
