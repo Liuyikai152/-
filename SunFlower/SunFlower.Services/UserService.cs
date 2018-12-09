@@ -66,7 +66,7 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql =@"select * from Users";
+                string sql = @"select a.turename,a.userphone,b.address from users a join user_adders b on a.id=b.userid";
                 var UsersList = conn.Query<Users>(sql, null);
                 if (UsersList != null) {
                     return UsersList.ToList();

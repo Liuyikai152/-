@@ -56,5 +56,9 @@ namespace SunFlower.MODEL
         /// </summary>
         public int UserType { get; set; }
 
+        /// <summary>
+        /// 详细地址
+        /// </summary>
+        public string Address { get; set; }
     }
 }
