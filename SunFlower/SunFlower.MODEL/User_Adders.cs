@@ -22,25 +22,19 @@ namespace SunFlower.MODEL
        public int UserID { get; set; }
 
         /// <summary>
+        /// 用户姓名
+        /// </summary>
+        public string UserName { get; set; }
+
+        /// <summary>
         ///  用户性别
         /// </summary>
         public EnumNews UserGender { get; set; }
 
-
         /// <summary>
-        /// 省ID
+        ///是否为默认地址 
         /// </summary>
-        public int ProvinceID { get; set; }
-
-        /// <summary>
-        /// 市ID
-        /// </summary>
-        public int CityID { get; set; }
-
-        /// <summary>
-        /// 区ID
-        /// </summary>
-        public int DistrictID { get; set; }
+        public int IsDefault { get; set; }
 
         /// <summary>
         /// 地区名
@@ -62,9 +56,6 @@ namespace SunFlower.MODEL
         /// </summary>
         public DateTime EditTime { get; set; }
         
-        /// <summary>
-        ///是否为默认地址 
-        /// </summary>
-        public int IsDefault { get; set; }
+     
     }
 }
