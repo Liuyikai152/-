@@ -60,7 +60,7 @@ namespace SunFlower.Api
             container.RegisterType<IUserLogs, UserLogsServce>();
             container.RegisterType<IUsers, UserService>();
             container.RegisterType<IUser_Adders, User_AddersService>();
-            container.RegisterType<ITrolley, TrolleyService>();
+            container.RegisterType<ITrolley, TrolleyService>(); 
             container.RegisterType<ITrolleyDetails, TrolleyDetailService>();
             container.RegisterType<IOrders, OrderService>();
         }
