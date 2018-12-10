@@ -1,0 +1,58 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>用户管理</title>
+  
+    <link href="~/Scirpt/BootstrapSouce/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scirpt/jquery-1.10.2.min.js"></script>
+    <script>
+        $(function () {
+            $.ajax({
+                url: "http://localhost:24380/api/Users/GetUsers",
+                data: {},
+                type: "get",
+                success: function (data) {
+                    $(data).each(function (i, d) {
+                        $("table").append("<tr><td><img src='" + d.UserName + "' /></td><td>" + d.TureName + "</td><td>" + d.UserPhone + "</td><td>" + d.CreateTime + "</td><td><a href='#'>驳回</a><a href='#'>通过</a></td></tr>")
+                    })
+
+                }
+            })
+        })
+
+    </script>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        table {
+            margin: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+
+        <table class="table-bordered table-condensed table-responsive">
+            <tr>
+                <th>用户名称</th>
+                <th>真实姓名</th>                
+                <th>联系方式</th>
+                <th>创建时间</th>
+                <th>操作</th>
+               
+            </tr>
+        </table>
+    </div>
+    <div style="margin-left:200px"><a href="/Store/StoreManager">商家管理</a></div>
+</body>
+</html>
