@@ -45,7 +45,7 @@ namespace CommonCache
         {
             get
             {
-                _redisServiceUrl = GetConfigValue("RedisServiceUrl");
+                 _redisServiceUrl = GetConfigValue("RedisServiceUrl");
                // _redisServiceUrl = ConfigurationManager.AppSettings["RedisServiceUrl"];
                 return _redisServiceUrl;
             }
@@ -61,6 +61,7 @@ namespace CommonCache
             get
             {
                 _redisServicePortNum = int.Parse(GetConfigValue("RedisServicePortNum"));
+              //  _redisServicePortNum =int.Parse(ConfigurationManager.AppSettings["RedisServicePortNum"]);
                 return _redisServicePortNum;
             }
         }

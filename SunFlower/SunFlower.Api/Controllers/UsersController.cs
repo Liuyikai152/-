@@ -11,15 +11,19 @@ using SunFlower.MODEL;
 using SunFlower.Services;
 using SunFlower.IServices;
 using Unity.Attributes;
+using CommonCache;
 
 namespace SunFlower.Api.Controllers
 {
+    [RoutePrefix("Users")]
     public class UsersController : ApiController
     {
 
        
         [Dependency]
         public  IUsers Users  { get; set; }
+
+        [HttpGet]
         [Route("Login")]
         public Users Logins(string code)
         {

@@ -66,13 +66,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dapper\ConfigHelper.cs" />
     <Compile Include="Dapper\DapperHelper.cs" />
-    <Compile Include="Dapper\RedisHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Dapper\Dapper.dll" />
+    <Content Include="Dapper\Oracle.DataAccess.dll" />
+    <Content Include="Dapper\ServiceStack.dll" />
+    <Content Include="Dapper\ServiceStack.Interfaces.dll" />
+    <Content Include="Dapper\ServiceStack.ServiceInterface.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

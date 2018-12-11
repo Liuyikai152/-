@@ -69,6 +69,6 @@ namespace SunFlower.MODEL
         /// <summary>
         /// 用户令牌
         /// </summary>
-        public string Seeson_Key { get; set; }
+        public string session_key { get; set; }
     }
 }

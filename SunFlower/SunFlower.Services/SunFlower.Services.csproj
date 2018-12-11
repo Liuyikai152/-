@@ -72,6 +72,10 @@
     <Compile Include="User_AddersService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SunFlower.Cache\SunFlower.Cache.csproj">
+      <Project>{7673cc93-c952-4733-9fac-94a6bcb2db29}</Project>
+      <Name>SunFlower.Cache</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SunFlower.Common\SunFlower.Common.csproj">
       <Project>{be5f1d61-6d05-4621-9809-251219bcc96b}</Project>
       <Name>SunFlower.Common</Name>

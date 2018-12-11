@@ -8,8 +8,9 @@ using SunFlower.MODEL;
 using System.Web.Http.Filters;
 using System.Web.Http.Controllers;
 using System.Threading.Tasks;
-using SunFlower.Common;
+using SunFlower.Cache;
 using CommonCache;
+
 
 namespace SunFlower.Api.Controllers
 {
