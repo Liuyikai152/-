@@ -12,16 +12,19 @@ using Unity.Attributes;
 using SunFlower.IServices;
 namespace SunFlower.Api.Controllers
 {
+    [RoutePrefix("Store")]
     public class StoreController : ApiController
     {
         [Dependency]
         public IStore Store { get; set; }
+
         [HttpPost]
         /// <summary>
         /// 申请店铺
         /// </summary>
         /// <param name="store"></param>
         /// <returns></returns>
+        [Route("AddStore")]
         public int AddStore(Store store)
         {
             var result = Store.AddStore(store);
@@ -33,6 +36,7 @@ namespace SunFlower.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+       [Route("GetStores")]
         public List<Store> GetStores()
         {
             var result = Store.GetStores();
@@ -40,7 +44,18 @@ namespace SunFlower.Api.Controllers
         }
 
 
-     
+        /// <summary>
+        /// 销量显示
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetStoresSales")]
+        public List<Store> GetStoresSales()
+        {
+            var result = Store.GetStoresSales();
+            return result;
+        }
+
 
         /// <summary>
         /// 修改店铺信息
@@ -48,9 +63,23 @@ namespace SunFlower.Api.Controllers
         /// <param name="store"></param>
         /// <returns></returns>
         [HttpPut]
+        [Route("UptdateStore")]
         public int UptdateStore(Store store)
         {
             var result = Store.UptdateStore(store);
+            return result;
+        }
+
+        /// <summary>
+        /// 修改店铺信息
+        /// </summary>
+        /// <param name="store"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("UptdateStoreState")]
+        public int UptdateStoreState(int ID, int state)
+        {
+            var result = Store.UptdateStoreState(ID,state);
             return result;
         }
     }

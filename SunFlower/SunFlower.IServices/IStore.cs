@@ -27,11 +27,27 @@ namespace SunFlower.IServices
         List<Store> GetStores();
 
         /// <summary>
+        /// 销量显示
+        /// </summary>
+        /// <returns></returns>
+
+        List<Store> GetStoresSales();
+      
+
+
+        /// <summary>
         ///修改商家
         /// </summary>
         /// <returns></returns>
         int UptdateStore(Store store);
 
-      
+
+        /// <summary>
+        /// 修改店铺信息
+        /// </summary>
+        /// <param name="store"></param>
+        /// <returns></returns>
+        int UptdateStoreState(int ID, int state);
+       
     }
 }
