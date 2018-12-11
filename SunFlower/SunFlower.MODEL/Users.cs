@@ -60,5 +60,15 @@ namespace SunFlower.MODEL
         /// 详细地址
         /// </summary>
         public string Address { get; set; }
+
+        /// <summary>
+        /// OpenId
+        /// </summary>
+        public string OpenID { get; set; }
+
+        /// <summary>
+        /// 用户令牌
+        /// </summary>
+        public string Seeson_Key { get; set; }
     }
 }
