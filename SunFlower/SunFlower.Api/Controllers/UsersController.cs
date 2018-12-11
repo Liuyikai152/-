@@ -20,6 +20,12 @@ namespace SunFlower.Api.Controllers
        
         [Dependency]
         public  IUsers Users  { get; set; }
+        [Route("Login")]
+        public Users Logins(string code)
+        {
+            var client = Users.Logins(code);
+            return client;
+        }
 
         /// <summary>
         /// 添加用户
