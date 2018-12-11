@@ -27,23 +27,27 @@ namespace SunFlower.Api.Controllers
             var result = Store.AddStore(store);
             return result;
         }
-        [HttpGet]
+
         /// <summary>
         /// 查看店铺信息
         /// </summary>
         /// <returns></returns>
+        [HttpGet]
         public List<Store> GetStores()
         {
             var result = Store.GetStores();
             return result;
         }
 
-        [HttpPut]
+
+     
+
         /// <summary>
         /// 修改店铺信息
         /// </summary>
         /// <param name="store"></param>
         /// <returns></returns>
+        [HttpPut]
         public int UptdateStore(Store store)
         {
             var result = Store.UptdateStore(store);

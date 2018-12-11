@@ -1,0 +1,59 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>StoreManager</title>
+    <link href="~/Scirpt/BootstrapSouce/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scirpt/jquery-1.10.2.min.js"></script>
+    <script>
+        $(function () {
+            $.ajax({
+                url: "http://localhost:24380/api/Store/GetStroes",
+                data: {},
+                type: "get",
+                success: function (data) {
+                    $(data).each(function (i, d) {
+                        $("table").append("<tr><td><img src='" + d.StoreImg + "' /></td><td>" + d.StoreName + "</td><td>" + d.FileName + "</td><td>" + d.Address + "</td><td>" + d.StorePhone + "</td><td>" + (d.Auditing == 5 ? "待审核" : d.Auditing == 6?"通过":"驳回") + "</td><td>" + d.CreateTime + "</td><td>" + d.Conntent+"</td><td><a href='#'>驳回</a><a href='#'>通过</a></td></tr>")
+                    })
+
+                }
+            })
+        })
+
+    </script>
+    <style>
+        body{
+            margin:0px;
+            padding:0px;
+        }
+        table {
+            margin:150px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+
+        <table class="table-bordered table-condensed table-responsive">
+            <tr>
+                <th>店铺实体图片</th>
+                <th>店铺名称</th>
+                <th>店铺头像</th>
+                <th>店铺地址</th>
+                <th>商家电话</th>
+                <th>申请时间</th>
+                <th>申请状态</th>
+                <th>店铺描述</th>
+                <th>操作</th>
+            </tr>
+        </table>
+    </div>
+    <div style="margin-left:200px"><a href="/Users/UsersManager">商家管理</a></div>
+</body>
+</html>

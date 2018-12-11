@@ -22,7 +22,7 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = @"insert into User_Adders (UserID,UserGender,ProvinceID,CityID,DistrictID,ProvinceName,Address,CreateTime, EditTime, IsDefault) values (:UserID,:UserGender,:ProvinceID,:CityID,:DistrictID,:ProvinceName,:Address,:CreateTime,:EditTime,:IsDefault)";
+                string sql = @"insert into User_Adders (UserName,UserGender,ProvinceName,Address,CreateTime, IsDefault) values (:UserName,:UserGender,:ProvinceName,:Address,:CreateTime,:IsDefault)";
                 int result = conn.Execute(sql, adders);
                 return result;
             }
@@ -61,7 +61,7 @@ namespace SunFlower.Services
         /// 修改用户地址
         /// </summary>
         /// <param name="adders"></param>
-        /// <returns></returns>
+        /// <returns></returns>]
         public int UptdateUserAdder(User_Adders adders)
         {
             using (OracleConnection conn = DapperHelper.GetConnString())

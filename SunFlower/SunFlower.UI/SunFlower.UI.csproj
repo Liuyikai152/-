@@ -89,10 +89,25 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Scirpt\BootstrapSouce\css\bootstrap-theme.css" />
+    <Content Include="Scirpt\BootstrapSouce\css\bootstrap-theme.min.css" />
+    <Content Include="Scirpt\BootstrapSouce\css\bootstrap.css" />
+    <Content Include="Scirpt\BootstrapSouce\css\bootstrap.min.css" />
+    <Content Include="Scirpt\BootstrapSouce\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scirpt\BootstrapSouce\js\bootstrap.js" />
+    <Content Include="Scirpt\BootstrapSouce\js\bootstrap.min.js" />
+    <Content Include="Scirpt\BootstrapSouce\js\html5shiv.js" />
+    <Content Include="Scirpt\BootstrapSouce\js\jquery.js" />
+    <Content Include="Scirpt\BootstrapSouce\js\jquery.min.js" />
+    <Content Include="Scirpt\BootstrapSouce\js\npm.js" />
+    <Content Include="Scirpt\BootstrapSouce\js\respond.min.js" />
+    <Content Include="Scirpt\jquery-1.10.2.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\StoreController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -101,6 +116,16 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <None Include="packages.config" />
+    <Content Include="Views\Store\StoreManager.cshtml" />
+    <Content Include="Scirpt\BootstrapSouce\css\bootstrap-theme.css.map" />
+    <Content Include="Scirpt\BootstrapSouce\css\bootstrap-theme.min.css.map" />
+    <Content Include="Scirpt\BootstrapSouce\css\bootstrap.css.map" />
+    <Content Include="Scirpt\BootstrapSouce\css\bootstrap.min.css.map" />
+    <Content Include="Scirpt\BootstrapSouce\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scirpt\BootstrapSouce\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Scirpt\BootstrapSouce\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Scirpt\BootstrapSouce\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Views\Users\UsersManager.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -110,8 +135,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
+    <Folder Include="imgs\" />
     <Folder Include="Models\" />
+    <Folder Include="Scirpt\BootstrapSouce\新建文件夹\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
