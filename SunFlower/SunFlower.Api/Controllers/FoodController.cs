@@ -12,18 +12,33 @@ using Unity.Attributes;
 using SunFlower.IServices;
 namespace SunFlower.Api.Controllers
 {
+    [RoutePrefix("Food")]
     public class FoodController : ApiController
     {
         [Dependency]
         public IFood Food { get; set; }
         /// <summary>
-        /// 查看所有菜品
+        /// 查看点个店铺所有菜品
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Route("GetFoods")]
         public List<Food> GetFoods(int id)
         {
             var foodList = Food.GetFoods(id);
+            return foodList;
+        }
+
+        /// <summary>
+        /// 查看单个菜品
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetFoodByID")]
+        public List<Food> GetFoodByID(int id)
+        {
+
+            var foodList = Food.GetFoodByID(id);
             return foodList;
         }
 
@@ -33,6 +48,7 @@ namespace SunFlower.Api.Controllers
         /// <param name="food"></param>
         /// <returns></returns>
         [HttpPost]
+        [Route("AddFood")]
         public int AddFood(Food food)
         {
             //Food food=new Food();
@@ -56,6 +72,7 @@ namespace SunFlower.Api.Controllers
         /// <param name="ID"></param>
         /// <returns></returns>
         [HttpDelete]
+        [Route("DeleteFood")]
         public int DeleteFood(int ID)
         {
             var result = Food.DeleteFood(ID);
@@ -68,6 +85,7 @@ namespace SunFlower.Api.Controllers
         /// <param name="food"></param>
         /// <returns></returns>
         [HttpPut]
+        [Route("UpdateFood")]
         public int UpdateFood(Food food)
         {
             //Food food = new Food();
