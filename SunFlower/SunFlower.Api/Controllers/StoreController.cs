@@ -44,6 +44,18 @@ namespace SunFlower.Api.Controllers
             return result;
         }
 
+        /// <summary>
+        ///查询单个店铺 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetStore")]
+        public List<Store> GetStore(int id)
+        {
+            var result = Store.GetStore(id);
+            return result;
+        }
 
         /// <summary>
         /// 销量显示

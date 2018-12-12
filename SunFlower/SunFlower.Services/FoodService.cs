@@ -52,12 +52,12 @@ namespace SunFlower.Services
         /// 查看所有菜品
         /// </summary>
         /// <returns></returns>
-        public List<Food> GetFoods()
+        public List<Food> GetFoods(int id)
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = @"select filename,foodname,foodsprice,sale from food";
-                var foodList = conn.Query<Food>(sql, null);
+                string sql = @"select s.storenumber, f.foodname,f.filename,f.foodsprice,f.sale from food f join Store s on(f.storenumber=s.storenumber) where s.id=:id ";
+                var foodList = conn.Query<Food>(sql, new { id = id });
                 return foodList.ToList<Food>();
             }
         }

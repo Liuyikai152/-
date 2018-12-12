@@ -32,8 +32,13 @@ namespace SunFlower.IServices
         /// <returns></returns>
 
         List<Store> GetStoresSales();
-      
 
+        /// <summary>
+        /// 获取单个店铺
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        List<Store> GetStore(int id);
 
         /// <summary>
         ///修改商家
