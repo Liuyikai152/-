@@ -37,7 +37,7 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = @"select storename,storeimg  from  Store where id=3";
+                string sql = @"select * from Store";
                 var soreList = conn.Query<MODEL.Store>(sql, null);
                 return soreList.ToList<MODEL.Store>();
             }

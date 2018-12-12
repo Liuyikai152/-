@@ -37,6 +37,7 @@ namespace SunFlower.Api.Controllers
         /// <returns></returns>
         [HttpGet]
        [Route("GetStores")]
+
         public List<Store> GetStores()
         {
             var result = Store.GetStores();

@@ -15,6 +15,7 @@ using CommonCache;
 
 namespace SunFlower.Api.Controllers
 {
+   
     [RoutePrefix("Users")]
     public class UsersController : ApiController
     {
@@ -23,6 +24,7 @@ namespace SunFlower.Api.Controllers
         [Dependency]
         public  IUsers Users  { get; set; }
 
+        
         [HttpGet]
         [Route("Login")]
         public Users Logins(string code)
