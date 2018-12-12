@@ -23,7 +23,7 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = @"insert into Store(storenumber, storename, storeimg, filename, address, storephone, auditing, state, createtime, edittime, daysale, daymoney, conntent) values(:storenumber, :storename, :storeimg, :filename, :address,:storephone, :auditing, :state, :createtime, :edittime, :daysale, :daymoney, :conntent)";
+                string sql = @"insert into Store(storenumber, storename, address, storephone, auditing, state, createtime, edittime, conntent) values(:storenumber, :storename,:address,:storephone, :auditing, :state, :createtime, :edittime,:conntent)";
                 var result = conn.Execute(sql,store);
                 return result;
             }

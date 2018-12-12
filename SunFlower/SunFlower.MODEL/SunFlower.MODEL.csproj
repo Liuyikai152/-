@@ -55,6 +55,7 @@
     <Compile Include="StoreLogs.cs" />
     <Compile Include="Trolley.cs" />
     <Compile Include="TrolleyDetails.cs" />
+    <Compile Include="UploadFileDTO.cs" />
     <Compile Include="Users.cs" />
     <Compile Include="UserLogs.cs" />
     <Compile Include="UserOrder.cs" />

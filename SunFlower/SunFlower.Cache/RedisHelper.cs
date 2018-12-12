@@ -64,10 +64,10 @@ namespace CommonCache
         {
             var result = new RedisOperatorBase().Set<T>(key, t, tmpExpire);
             return result;
-        }
+            }
 
-        /// <summary>
-        /// 存储数据到hash表
+            /// <summary>
+            /// 存储数据到hash表
         /// </summary>
         public static bool Set<T>(string hashId, string key, T t, DateTime tmpExpire)
         {
