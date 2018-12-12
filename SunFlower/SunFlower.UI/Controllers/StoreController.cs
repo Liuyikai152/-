@@ -8,6 +8,7 @@ namespace SunFlower.UI.Controllers
 {
     public class StoreController : Controller
     {
+       
         // GET: Store
         public ActionResult StoreManager()
         {

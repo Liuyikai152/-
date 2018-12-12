@@ -19,7 +19,7 @@ namespace SunFlower.MODEL
         /// <summary>
         /// 用户ID
         /// </summary>
-       public int UserID { get; set; }
+       public  int  UserID { get; set; }
 
         /// <summary>
         /// 用户姓名

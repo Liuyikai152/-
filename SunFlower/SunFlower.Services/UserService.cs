@@ -15,6 +15,8 @@ using System.Net.Http;
 using SunFlower.Cache;
 using CommonCache;
 using Newtonsoft.Json;
+using System.Configuration;
+
 namespace SunFlower.Services
 {
     /// <summary>
@@ -34,8 +36,8 @@ namespace SunFlower.Services
             {
              Users users = new Users();
             HttpClient httpclient = new HttpClient();
-            string appid = "wx1ef3876da2cd7c4c";
-            string secret = "89ef82382e381ce1de4b695e1fe271a4";
+                string appid = ConfigurationManager.AppSettings["AppID"].ToString();
+            string secret = ConfigurationManager.AppSettings["secret"].ToString();
             httpclient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             HttpResponseMessage response = httpclient.PostAsync("https://api.weixin.qq.com/sns/jscode2session?appid=" + appid + "&secret=" + secret + "&js_code=" + code.ToString() + "&grant_type=authorization_code", null).Result;
             var result = "";
@@ -47,6 +49,7 @@ namespace SunFlower.Services
             var results = JsonConvert.DeserializeObject<Users>(result);
             users.OpenID = results.OpenID;
             users.session_key = results.session_key;//密钥
+
                                                   //if (RedisHelper.Get<Users>(encryptTicket) != null)
                                                   //{
                                                   //    return RedisHelper.Get<Users>(encryptTicket);
