@@ -137,6 +137,7 @@
     <Compile Include="Controllers\FoodController.cs" />
     <Compile Include="Controllers\FoodTypeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\RequestAuthorize.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\StoreLogsController.cs" />
     <Compile Include="Controllers\TrolleyController.cs" />
@@ -152,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="libman.json" />
+    <Content Include="AppSettings.config" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -165,6 +167,14 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SunFlower.Cache\SunFlower.Cache.csproj">
+      <Project>{7673cc93-c952-4733-9fac-94a6bcb2db29}</Project>
+      <Name>SunFlower.Cache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SunFlower.Common\SunFlower.Common.csproj">
+      <Project>{be5f1d61-6d05-4621-9809-251219bcc96b}</Project>
+      <Name>SunFlower.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SunFlower.IServices\SunFlower.IServices.csproj">
       <Project>{fad0eece-7558-4df8-a894-37abe1e4ffe3}</Project>
       <Name>SunFlower.IServices</Name>

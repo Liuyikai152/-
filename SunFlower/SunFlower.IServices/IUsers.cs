@@ -39,5 +39,12 @@ namespace SunFlower.IServices
         /// <param name="users"></param>
         /// <returns></returns>
         int DeleteUsers(int ID);
+
+        /// <summary>
+        /// 获取微信秘钥
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        Users Logins(string code);
     }
 }
