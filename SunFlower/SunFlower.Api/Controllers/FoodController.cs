@@ -21,9 +21,9 @@ namespace SunFlower.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public List<Food> GetFoods()
+        public List<Food> GetFoods(int id)
         {
-            var foodList = Food.GetFoods();
+            var foodList = Food.GetFoods(id);
             return foodList;
         }
 
