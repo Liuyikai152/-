@@ -9,113 +9,113 @@ namespace SunFlower.MODEL
      public enum EnumNews
     {
         /// <summary>
-        /// 普通用户
+        /// 普通用户0
         /// </summary>
         Domestic,
 
         /// <summary>
-        /// 商家
+        /// 商家1
         /// </summary>
         Merchant,
 
         /// <summary>
-        /// 超级管理员
+        /// 超级管理员2
         /// </summary>
         Manager,
 
         /// <summary>
-        /// 先生
+        /// 先生3
         /// </summary>
         Mr,
 
         /// <summary>
-        /// 女士
+        /// 女士4
         /// </summary>
         Lady,
 
         /// <summary>
-        /// 待审核
+        /// 待审核5
         /// </summary>
         Authstr,
 
         /// <summary>
-        /// 通过
+        /// 通过6
         /// </summary>
         Pass,
 
         /// <summary>
-        /// 驳回
+        /// 驳回7
         /// </summary>
         turndown,
 
         /// <summary>
-        /// 营业
+        /// 营业8
         /// </summary>
         Business,
 
         /// <summary>
-        /// 停业
+        /// 停业9
         /// </summary>
         Classdown,
 
         /// <summary>
-        /// 支付
+        /// 支付10
         /// </summary>
         Pay,
 
         /// <summary>
-        /// 待支付
+        /// 待支付11
         /// </summary>
         UnPay,
 
         /// <summary>
-        /// 配送
+        /// 配送12
         /// </summary>
         Delivery,
 
         /// <summary>
-        /// 非常好
+        /// 非常好13
         /// </summary>
         VeryGood,
 
 
         /// <summary>
-        /// 较好
+        /// 较好14
         /// </summary>
         Good,
 
         /// <summary>
-        /// 一般
+        /// 一般15
         /// </summary>
         Ordinary,
 
         /// <summary>
-        /// 较差
+        /// 较差16
         /// </summary>
         Bad,
 
         /// <summary>
-        /// 非常错
+        /// 非常错17
         /// </summary>
         SoBad,
 
         /// <summary>
-        /// 接单
+        /// 接单18
         /// </summary>
         Order,
 
         /// <summary>
-        /// 拒单
+        /// 拒单19
         /// </summary>
         Single,
 
-        /// <summary>
-        /// 上架
+        /// <summ ary>
+        /// 上架20
         /// </summary>
         Putaway,
 
         /// <summary>
-        /// 下架
+        /// 下架21
         /// </summary>
         Soldout,
 
