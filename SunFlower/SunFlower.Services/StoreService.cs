@@ -37,7 +37,7 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = @"select * from Store";
+                string sql = @"select * from Store where auditing=6";
                 var soreList = conn.Query<MODEL.Store>(sql, null);
                 return soreList.ToList<MODEL.Store>();
             }
@@ -52,7 +52,7 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = @"select storename,storeimg  from  Store where id=:id";
+                string sql = @"select storename,storeimg  from  Store where id=:id and auditing=6";
                 var soreList = conn.Query<MODEL.Store>(sql, new { id = id });
                 return soreList.ToList<MODEL.Store>();
             }
@@ -66,7 +66,7 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = @"select * from Store order by daysale desc";
+                string sql = @"select * from Store  where auditing=6 order by daysale desc ";
                 var soreList = conn.Query<MODEL.Store>(sql, null);
                 return soreList.ToList<MODEL.Store>();
             }
