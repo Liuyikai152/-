@@ -62,7 +62,7 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 conn.Open();
-                string sql = @"update T_Role setname=:name,Discription=:Discription,Permission=:Permission where id=ID ";
+                string sql = @"update T_Role set name=:name,Discription=:Discription,Permission=:Permission where id=ID ";
                 int result = conn.Execute(sql, role);
                 return result;
             }

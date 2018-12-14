@@ -42,7 +42,7 @@ namespace SunFlower.Api.Controllers
         }
 
         [Route("UpdateRole")]
-        [HttpPut]
+        [HttpPost]
         public int UpdateRole(Role  role)
         {
             int result = t_Role.UpdateRole(role);
