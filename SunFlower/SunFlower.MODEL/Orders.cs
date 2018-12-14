@@ -56,6 +56,7 @@ namespace SunFlower.MODEL
         /// </summary>
         public DateTime CreateTime { get; set; }
 
-
+        public string FileName { get; set; }
+        public string FoodName { get; set; }
     }
 }

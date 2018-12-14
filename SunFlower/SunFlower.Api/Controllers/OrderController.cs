@@ -35,6 +35,16 @@ namespace SunFlower.Api.Controllers
             var OrderList = Orders.GetOrders();
             return OrderList;
         }
-
+        /// <summary>
+        /// 显示单个订单
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetOrder")]
+        public List<Orders> GetOrder(int id)
+        {
+            var OrdersList = Orders.GetOrder(id);
+            return OrdersList;
+        }
     }
 }
