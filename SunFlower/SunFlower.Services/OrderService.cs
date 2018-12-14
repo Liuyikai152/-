@@ -42,8 +42,23 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = @"select o.ordernumber,s.storename,f.foodname,o.money,u.Address,o.num,o.prices,o.createtime from orders o join store s on o.storenumber=s.storenumber join food f on o.foodnumber=f.foodnumber join User_Adders u on o.addressid=u.id";
+                string sql = @"select o.id, f.filename, o.ordernumber,s.storename,f.foodname,o.money,o.num,o.prices,o.createtime from  orders o join store s on (o.storenumber=s.storenumber)
+  join food f on(o.foodnumber=f.foodnumber ) where o.id=2";
                 var ordersList = conn.Query<Orders>(sql, null);
+                return ordersList.ToList<Orders>();
+            }
+        }
+
+        /// <summary>
+        /// 显示单个订单
+        /// </summary>
+        /// <returns></returns>
+        public List<Orders> GetOrder(int id)
+        {
+            using (OracleConnection conn = DapperHelper.GetConnString())
+            {
+                string sql = @"select o.id, f.foodname,f.filename,o.money,o.prices,o.num from orders o join food f on(o.foodnumber=f.foodnumber) where o.id=:id";
+                var ordersList = conn.Query<Orders>(sql, new { id = id });
                 return ordersList.ToList<Orders>();
             }
         }

@@ -13,6 +13,7 @@ using SunFlower.IServices;
 namespace SunFlower.Api.Controllers
 {
 
+    [RoutePrefix("Order")]
     public class OrderController : ApiController
     {
         [Dependency]
@@ -30,11 +31,22 @@ namespace SunFlower.Api.Controllers
             return result;
         }
         [HttpGet]
+        [Route("GetOrders")]
         public List<Orders> GetOrders()
         {
             var OrderList = Orders.GetOrders();
             return OrderList;
         }
-
+        /// <summary>
+        /// 显示单个订单
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetOrder")]
+        public List<Orders> GetOrder(int id)
+        {
+            var OrdersList = Orders.GetOrder(id);
+            return OrdersList;
+        }
     }
 }
