@@ -70,7 +70,6 @@
     function login() {
         var name = $("#name").val();
         var pwd = $("#pwd").val();
-
         $.ajax({
             url: "http://localhost:24380/api/Tusers/login",
             type: "get",
@@ -83,8 +82,8 @@
                 console.log(data);
                 if (data > 0) {
                     alert("登录成功")
-                    location.href = "index.html";
-
+                    location.href = "admin-list.html";
+           
                 }
                 else {
                     alert("登录失败")
