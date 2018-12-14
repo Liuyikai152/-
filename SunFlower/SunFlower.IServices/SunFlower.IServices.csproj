@@ -49,6 +49,9 @@
     <Compile Include="IFood.cs" />
     <Compile Include="IFoodType.cs" />
     <Compile Include="IOrders.cs" />
+    <Compile Include="IPermission.cs" />
+    <Compile Include="IRole.cs" />
+    <Compile Include="ITUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IStore.cs" />
     <Compile Include="IStoreLogs.cs" />

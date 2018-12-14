@@ -142,6 +142,9 @@
     <Compile Include="Controllers\StoreLogsController.cs" />
     <Compile Include="Controllers\TrolleyController.cs" />
     <Compile Include="Controllers\TrolleyDetailController.cs" />
+    <Compile Include="Controllers\PermissionController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\TUsersController.cs" />
     <Compile Include="Controllers\UserLogsController.cs" />
     <Compile Include="Controllers\UserOrderController.cs" />
     <Compile Include="Controllers\UsersController.cs" />

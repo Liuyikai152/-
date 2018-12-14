@@ -65,6 +65,9 @@
     <Compile Include="StoreLogsService.cs" />
     <Compile Include="TrolleyDetailService.cs" />
     <Compile Include="TrolleyService.cs" />
+    <Compile Include="PermissionService.cs" />
+    <Compile Include="RoleService.cs" />
+    <Compile Include="TUsersService.cs" />
     <Compile Include="UserLogsServce.cs" />
     <Compile Include="UserOrderService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
