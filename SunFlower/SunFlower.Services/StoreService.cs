@@ -33,7 +33,7 @@ namespace SunFlower.Services
         /// 查看店铺信息
         /// </summary>
         /// <returns></returns>
-        public List<Store> GetStores()
+        public List<Store> GetStores() 
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
