@@ -56,6 +56,11 @@ namespace SunFlower.MODEL
         /// </summary>
         public DateTime CreateTime { get; set; }
 
+        /// <summary>
+        /// 订单支付状态
+        /// </summary>
+        public EnumNews OrderState { get; set; }
+
         public string FileName { get; set; }
         public string FoodName { get; set; }
     }

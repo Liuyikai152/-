@@ -43,7 +43,7 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = string.Format("select store.StoreImg,store.conntent from Collect join Store on(collect.storenumber=store.storenumber)");
+                string sql = string.Format("select store.id,store.StoreImg,store.conntent from Collect join Store on(collect.storenumber=store.storenumber)");
                 var collectList = conn.Query<Collect>(sql, null);
                 return collectList.ToList<Collect>();
             }
