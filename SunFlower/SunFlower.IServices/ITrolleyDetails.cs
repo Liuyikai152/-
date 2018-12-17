@@ -33,7 +33,7 @@ namespace SunFlower.IServices
         /// </summary>
         /// <param name="Number"></param>
         /// <returns></returns>
-        List<TrolleyDetails> GetTrolleyByNumber(string Number);
+        List<TrolleyDetails> GetTrolleyByNumber(string TrolleyNumber);
        
 
         /// <summary>

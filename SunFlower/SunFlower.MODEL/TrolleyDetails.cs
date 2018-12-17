@@ -60,7 +60,8 @@ namespace SunFlower.MODEL
         /// 菜品名称
         /// </summary>
         public string FoodName { get; set; }
-
+        
+       
         /// <summary>
         /// 菜品价格
         /// </summary>

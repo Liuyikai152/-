@@ -80,9 +80,9 @@ namespace SunFlower.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetTrolleyByNumber")]
-        public int GetTrolleyByNumber(string Number)
+        public int GetTrolleyByNumber(string TrolleyNumber)
         {
-            var trolleyDetailsList = TrolleyDetails.GetTrolleyByNumber(Number);
+            var trolleyDetailsList = TrolleyDetails.GetTrolleyByNumber(TrolleyNumber);
             if(trolleyDetailsList.Count>0)
              return 0;
             return 1;

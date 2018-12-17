@@ -91,12 +91,12 @@ namespace SunFlower.Services
         /// </summary>
         /// <param name="Number"></param>
         /// <returns></returns>
-        public List<TrolleyDetails> GetTrolleyByNumber(string Number)
+        public List<TrolleyDetails> GetTrolleyByNumber(string TrolleyNumber)
         {
             using (OracleConnection conn = DapperHelper.GetConnString()) {
                 conn.Open();
-                string sql = @"select * from trolley t join trolleydetails d on t.trolleynumber=d.trolleynumber where d.trolleynumber=:Number";
-                var trolleyDetailsList = conn.Query<TrolleyDetails>(sql, new { Number = Number });
+                string sql =@"select t.trolleynumber,t.userid,t.id,t.foodnumber,d.num,t.money from trolley t join trolleydetails d on t.trolleynumber=d.trolleynumber where d.trolleynumber=:TrolleyNumber";
+                var trolleyDetailsList=conn.Query<TrolleyDetails>(sql,new{ TrolleyNumber= TrolleyNumber });
                 return trolleyDetailsList.ToList();
 
             }
