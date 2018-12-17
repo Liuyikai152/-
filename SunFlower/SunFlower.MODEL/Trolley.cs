@@ -56,5 +56,34 @@ namespace SunFlower.MODEL
         /// </summary>
         public string UserPhone { get; set; }
 
+        /// <summary>
+        /// 店铺名称
+        /// </summary>
+        public string StoreName { get; set; }
+
+
+
+        /// <summary>
+        /// 店铺图片
+        /// </summary>
+        public string StoreImg { get; set; }
+
+
+        /// <summary>
+        /// 菜品图片
+        /// </summary>
+        public string FileName { get; set; }
+
+        /// <summary>
+        /// 菜品价格
+        /// </summary>
+        public double FoodSprice { get; set; }
+
+        /// <summary>
+        /// 菜品名称
+        /// </summary>
+        public string FoodName { get; set; }
+      
+
     }
 }

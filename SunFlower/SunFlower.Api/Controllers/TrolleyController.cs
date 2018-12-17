@@ -14,6 +14,7 @@ using SunFlower.IServices;
 using Unity.Attributes;
 namespace SunFlower.Api.Controllers
 {
+    [RoutePrefix("Trolley")]
     public class TrolleyController : ApiController
     {
         [Dependency]
@@ -26,6 +27,7 @@ namespace SunFlower.Api.Controllers
         /// <param name="trolley"></param>
         /// <returns></returns>
         [HttpPost]
+        [Route("AddTrolley")]
         public int AddTrolley(Trolley trolley)
         {
 
@@ -41,6 +43,7 @@ namespace SunFlower.Api.Controllers
         /// <param name="ID"></param>
         /// <returns></returns>
         [HttpDelete]
+        [Route("DeleteTrolley")]
         public int DeleteTrolley(int ID)
         {
 
@@ -54,6 +57,7 @@ namespace SunFlower.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Route("GetTrolleys")]
         public List<Trolley> GetTrolleys()
         {
 
@@ -63,11 +67,24 @@ namespace SunFlower.Api.Controllers
         }
 
         /// <summary>
+        /// 根据条件 获取购物车
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetTrolleyByStore")]
+        public List<Trolley> GetTrolleyByStore(string userID)
+        {
+            var result = Trolley.GetTrolleyByStore(userID);
+            return result;
+        }
+
+        /// <summary>
         /// 修改购物车
         /// </summary>
         /// <param name="trolley"></param>
         /// <returns></returns>
         [HttpPut]
+        [Route("UpdateTrolley")]
         public int UpdateTrolley(Trolley trolley)
         {
 
