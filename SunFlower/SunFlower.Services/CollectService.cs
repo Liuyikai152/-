@@ -49,6 +49,18 @@ namespace SunFlower.Services
             }
         }
 
-        
+        /// <summary>
+        /// 显示单个收藏
+        /// </summary>
+        /// <returns></returns>
+        public List<Collect> GetCollectByID(string storenumber)
+        {
+            using (OracleConnection conn = DapperHelper.GetConnString())
+            {
+                string sql = string.Format("select storenumber from Collect where storenumber=:storenumber");
+                var collectList = conn.Query<Collect>(sql, new { storenumber = storenumber });
+                return collectList.ToList<Collect>();
+            }
+        }
     }
 }

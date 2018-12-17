@@ -59,7 +59,7 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = @"select c.content,c.commenttime,s.storename,s.storeimg from comments c join store s on(c.storenumber=s.storenumber) join users u on(c.userid=u.id)";
+                string sql = @"select c.storenumber, c.content,c.commenttime,s.storename,s.storeimg from comments c join store s on(c.storenumber=s.storenumber) join users u on(c.userid=u.id)";
                 var commentsList = conn.Query<Comments>(sql, null);
                 return commentsList.ToList();
             }
