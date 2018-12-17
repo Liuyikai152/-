@@ -14,6 +14,7 @@ using Unity.Attributes;
 
 namespace SunFlower.Api.Controllers
 {
+    [RoutePrefix("TrolleyDetail")]
     public class TrolleyDetailController : ApiController
     {
      
@@ -33,6 +34,8 @@ namespace SunFlower.Api.Controllers
         /// </summary>
         /// <param name="trolleyDetails"></param>
         /// <returns></returns>
+        [HttpPost]
+        [Route("AddTrolleyDetails")]
         public int AddTrolleyDetails(TrolleyDetails trolleyDetails)
         {
 
@@ -46,6 +49,8 @@ namespace SunFlower.Api.Controllers
         /// </summary>
         /// <param name="ID"></param>
         /// <returns></returns>
+        [HttpDelete]
+        [Route("deleteTrolleyDetails")]
         public int deleteTrolleyDetails(int ID)
         {
 
@@ -58,12 +63,29 @@ namespace SunFlower.Api.Controllers
         /// 查看购物车详情
         /// </summary>
         /// <returns></returns>
-        public List<TrolleyDetails> GetTrolleyDetails()
+        [HttpGet]
+        [Route("GetTrolleyDetails")]
+        public List<TrolleyDetails> GetTrolleyDetails(int id)
         {
 
-            var trolleyDetailsList = TrolleyDetails.GetTrolleyDetails();
+            var trolleyDetailsList = TrolleyDetails.GetTrolleyDetails(id);
             return trolleyDetailsList;
 
+        }
+
+        /// <summary>
+        /// 根据编号查询
+        /// </summary>
+        /// <param name="Number"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetTrolleyByNumber")]
+        public int GetTrolleyByNumber(string Number)
+        {
+            var trolleyDetailsList = TrolleyDetails.GetTrolleyByNumber(Number);
+            if(trolleyDetailsList.Count>0)
+             return 0;
+            return 1;
         }
 
         /// <summary>
@@ -71,6 +93,8 @@ namespace SunFlower.Api.Controllers
         /// </summary>
         /// <param name="trolleyDetails"></param>
         /// <returns></returns>
+        [HttpPut]
+        [Route("UptdateTrolleyDetails")]
         public int UptdateTrolleyDetails(TrolleyDetails trolleyDetails)
         {
 

@@ -55,13 +55,13 @@ namespace SunFlower.Services
         /// 查看购物车详情
         /// </summary>
         /// <returns></returns>
-        public List<TrolleyDetails> GetTrolleyDetails()
+        public List<TrolleyDetails> GetTrolleyDetails(int id)
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 conn.Open();
-                string sql = @"select a.trolleynumber,e.foodname,e.foodsprice,e.filename from trolleydetails a join Users b on (a.userid=b.id) join trolley c on (a.userid=c.userid) join food e on (c.foodnumber=e.foodnumber)";
-                var trolleyDetailsList = conn.Query<TrolleyDetails>(sql, null);
+                string sql = @"select e.id,a.trolleynumber,e.foodnumber,e.foodname,e.filename,a.num,a.num*e.foodsprice as money,e.foodsprice from trolleydetails a join Users b on (a.userid=b.id) join food e on(a.foodnumber=e.foodnumber)where a.userid=:id";
+                var trolleyDetailsList = conn.Query<TrolleyDetails>(sql, new { id = id });
                 if (trolleyDetailsList != null)
                 {
                     return trolleyDetailsList.ToList();
@@ -83,6 +83,22 @@ namespace SunFlower.Services
                 string sql = @"update trolleydetails set trolleynumber=:trolleynumber,userid=:userid,foodnumber=:foodnumber,createtime=:createtime,num=:num,money=:money,prices=:prices where id=:id";
                 int result = conn.Execute(sql, trolleyDetails);
                 return result;
+            }
+        }
+
+        /// <summary>
+        /// 根据编号查询
+        /// </summary>
+        /// <param name="Number"></param>
+        /// <returns></returns>
+        public List<TrolleyDetails> GetTrolleyByNumber(string Number)
+        {
+            using (OracleConnection conn = DapperHelper.GetConnString()) {
+                conn.Open();
+                string sql = @"select * from trolley t join trolleydetails d on t.trolleynumber=d.trolleynumber where d.trolleynumber=:Number";
+                var trolleyDetailsList = conn.Query<TrolleyDetails>(sql, new { Number = Number });
+                return trolleyDetailsList.ToList();
+
             }
         }
     }
