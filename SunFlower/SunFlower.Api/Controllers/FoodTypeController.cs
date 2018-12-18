@@ -10,19 +10,33 @@ using Unity.Attributes;
 using SunFlower.IServices;
 namespace SunFlower.Api.Controllers
 {
+    [RoutePrefix("FoodType")]
     public class FoodTypeController : ApiController
     {
         [Dependency]
         public IFoodType FoodType { get; set; }
 
         /// <summary>
+        /// 根据条件查询
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetFoodTypes")]
+        public List<FoodType> GetFoodTypes()
+        {
+            var foodTypeList = FoodType.GetFoodTypes();
+            return foodTypeList;
+        }
+
+        /// <summary>
         /// 显示
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public List<FoodType> GetFoodTypes()
+        [Route("GetFoodType")]
+        public List<FoodType> GetFoodType()
         {
-            var foodTypeList = FoodType.GetFoodTypes();
+            var foodTypeList = FoodType.GetFoodType();
             return foodTypeList;
         }
     }

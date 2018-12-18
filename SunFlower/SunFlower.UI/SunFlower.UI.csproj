@@ -1238,6 +1238,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\FoodsController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1251,6 +1252,7 @@
     <Compile Include="H-ui\lib\ueditor\1.4.3\net\App_Code\NotSupportedHandler.cs" />
     <Compile Include="H-ui\lib\ueditor\1.4.3\net\App_Code\PathFormater.cs" />
     <Compile Include="H-ui\lib\ueditor\1.4.3\net\App_Code\UploadHandler.cs" />
+    <Compile Include="Models\UploadFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1308,9 +1310,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="imgs\" />
-    <Folder Include="Models\" />
     <Folder Include="Scirpt\BootstrapSouce\新建文件夹\" />
     <Folder Include="Views\Default\" />
+    <Folder Include="Views\Foods\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SunFlower.Common\SunFlower.Common.csproj">

@@ -15,5 +15,7 @@ namespace SunFlower.IServices
     {
 
         List<FoodType> GetFoodTypes();
+
+        List<FoodType> GetFoodType();
     }
 }

@@ -27,7 +27,8 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = @"insert into Food (foodnumber,storenumber,foodname,filename,foodsummary,foodsprice,createtime,sale, state, foodtypeid) values(:foodnumber,:storenumber,:foodname,:filename,:foodsummary,:foodsprice,:createtime,:sale,:state,:foodtypeid)";
+                string sql = @"insert into Food (foodnumber,storenumber,foodname,filename,foodsummary,foodsprice,createtime, foodtypeid) values(:foodnumber,:storenumber,:foodname,:filename,:foodsummary,:foodsprice,:createtime,:foodtypeid)";
+                food.CreateTime = DateTime.Now;
                 int result = conn.Execute(sql, food);
                 return result;
             }

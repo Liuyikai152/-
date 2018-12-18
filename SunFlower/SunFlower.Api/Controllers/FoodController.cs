@@ -51,8 +51,10 @@ namespace SunFlower.Api.Controllers
         [Route("AddFood")]
         public int AddFood(Food food)
         {
-
+     
             var result = Food.AddFood(food);
+          
+
             return result;
         }
 

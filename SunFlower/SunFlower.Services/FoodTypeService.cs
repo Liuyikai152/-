@@ -17,6 +17,20 @@ namespace SunFlower.Services
     public class FoodTypeService : IFoodType
     {
         /// <summary>
+        /// 显示所有菜品类型
+        /// </summary>
+        /// <returns></returns>
+        public List<FoodType> GetFoodType()
+        {
+            using (OracleConnection conn = DapperHelper.GetConnString())
+            {
+                string sql = "select * from FoodType";
+                var foodTypeList = conn.Query<FoodType>(sql, null);
+                return foodTypeList.ToList<FoodType>();
+            }
+        }
+
+        /// <summary>
         /// 显示菜品类别
         /// </summary>
         /// <returns></returns>
@@ -29,5 +43,6 @@ namespace SunFlower.Services
                 return foodTypeList.ToList<FoodType>();
             }
         }
+       
     }
 }
