@@ -27,6 +27,16 @@ namespace SunFlower.MODEL
         public string FoodNumber { get; set; }
 
         /// <summary>
+        /// 店铺编号
+        /// </summary>
+        public string StoreNumber { get; set; }
+
+        /// <summary>
+        /// 用户手机号
+        /// </summary>
+        public string UserPhone { get; set; }
+
+        /// <summary>
         /// 人员编号
         /// </summary>
         public int UserID { get; set; }

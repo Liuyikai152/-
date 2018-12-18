@@ -32,7 +32,7 @@ namespace SunFlower.Services
             {
                 conn.Open();
 
-                string sql = @"insert into userorder(trolleyid,foodnumber,storenumber,userid,ordermoney,addersid,userphone,createtime,num,orderstate,storeorderstate,ordernumber) values(:trolleyid,:foodnumber,:storenumber,:userid,:ordermoney,:addersid,:userphone,:createtime,:num,:orderstate,:storeorderstate,:ordernumber)";
+                string sql = @"insert into userorder(trolleyid,foodnumber,storenumber,userid,ordermoney,addersid,userphone,createtime,num,orderstate,ordernumber) values(:trolleyid,:foodnumber,:storenumber,:userid,:ordermoney,:addersid,:userphone,:createtime,:num,:orderstate,:ordernumber)";
 
                 var result = conn.Execute(sql, userOrder);
                 return result;
@@ -57,6 +57,32 @@ namespace SunFlower.Services
                     return userOrdersList.ToList<UserOrder>();
                 }
                 return null;
+            }
+        }
+
+       /// <summary>
+       /// 获取所有订单详情并添加订单
+       /// </summary>
+       /// <param name="OrderNumber"></param>
+       /// <returns></returns>
+        public int GetUserOrdersAdd(string OrderNumber)
+        {
+            using (OracleConnection conn = DapperHelper.GetConnString())
+            {
+                conn.Open();
+                string sql = @"select Count(orderNumber) as  Num,Sum(OrderMoney) as OrderMoney,OrderNumber,CreateTime,addersid from userorder  group by orderNumber,createtime,addersid having orderNumber=:OrderNumber";
+                var userOrdersList = conn.Query<UserOrder>(sql, new { OrderNumber = OrderNumber }).FirstOrDefault();
+
+                if (userOrdersList != null)
+                {
+                    string sql2 = "insert into orders (money,createtime,ordernumber,num,addressid) values(:money,:createtime,:ordernumber,:num,:addressid)";
+                    var result = conn.Execute(sql2, new { money = userOrdersList.OrderMoney, createtime = userOrdersList.CreateTime, ordernumber = userOrdersList.OrderNumber, num = userOrdersList.Num, addressid = userOrdersList.AddersID });
+                    return result;
+                }
+               
+                    return 0;
+                
+               
             }
         }
 

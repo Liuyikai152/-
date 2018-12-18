@@ -21,6 +21,16 @@ namespace SunFlower.IServices
         int AddOrder(UserOrder userOrder);
 
         /// <summary>
+        /// 获取所有订单详情并添加订单
+        /// </summary>
+        /// <param name="OrderNumber"></param>
+        /// <returns></returns>
+        int GetUserOrdersAdd(string OrderNumber);
+        
+
+
+
+        /// <summary>
         /// 获取所有订单
         /// </summary>
         /// <returns></returns>

@@ -49,7 +49,7 @@ namespace SunFlower.Api.Controllers
         /// </summary>
         /// <param name="ID"></param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpGet]
         [Route("deleteTrolleyDetails")]
         public int deleteTrolleyDetails(int ID)
         {

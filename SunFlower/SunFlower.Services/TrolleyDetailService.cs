@@ -60,7 +60,7 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 conn.Open();
-                string sql = @"select e.id,a.trolleynumber,e.foodnumber,e.foodname,e.filename,a.num,a.num*e.foodsprice as money,e.foodsprice from trolleydetails a join Users b on (a.userid=b.id) join food e on(a.foodnumber=e.foodnumber)where a.userid=:id";
+                string sql = @"select e.id,a.trolleynumber,e.foodnumber,e.foodname,e.filename,a.num,a.num*e.foodsprice as money,e.foodsprice,e.storenumber,b.userphone from trolleydetails a join Users b on (a.userid=b.id) join food e on(a.foodnumber=e.foodnumber)where a.userid=:id";
                 var trolleyDetailsList = conn.Query<TrolleyDetails>(sql, new { id = id });
                 if (trolleyDetailsList != null)
                 {

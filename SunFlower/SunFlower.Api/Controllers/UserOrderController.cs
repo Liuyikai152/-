@@ -14,6 +14,7 @@ using SunFlower.IServices;
 
 namespace SunFlower.Api.Controllers
 {
+    [RoutePrefix("UserOrder")]
     public class UserOrderController : ApiController
     {
 
@@ -26,6 +27,7 @@ namespace SunFlower.Api.Controllers
         /// <param name="userOrder"></param>
         /// <returns></returns>
         [HttpPost]
+        [Route("AddOrder")]
         public int AddOrder(UserOrder userOrder)
         {
 
@@ -34,11 +36,26 @@ namespace SunFlower.Api.Controllers
 
         }
 
+
+        /// <summary>
+        /// 获取所有订单详情并添加订单
+        /// </summary>
+        /// <param name="OrderNumber"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("UserOrdersAdd")]
+        public int GetUserOrdersAdd(string OrderNumber)
+        {
+            var result = UserOrder.GetUserOrdersAdd(OrderNumber);
+            return result;
+        }
+
         /// <summary>
         /// 获取所有订单
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Route("GetUserOrders")]
         public List<UserOrder> GetUserOrders()
         {
 
@@ -52,7 +69,8 @@ namespace SunFlower.Api.Controllers
         /// </summary>
         /// <param name="userOrder"></param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpGet]
+        [Route("DeleteOrder")]
         public int DeleteOrder(int id)
         {
 

@@ -17,6 +17,22 @@ namespace SunFlower.MODEL
         public int ID { get; set; }
 
         /// <summary>
+        /// 订单ID
+        /// </summary>
+        public int OID { get; set; }
+
+        /// <summary>
+        /// 菜品ID
+        /// </summary>
+        public int FID { get; set; }
+
+        /// <summary>
+        /// 店铺ID
+        /// </summary>
+        public int SID { get; set; }
+
+
+        /// <summary>
         /// 订单编号
         /// </summary>
         public string OrderNumber { get; set; }
@@ -50,7 +66,22 @@ namespace SunFlower.MODEL
         /// 商品单价
         /// </summary>
         public double Prices { get; set; }
-       
+
+        /// <summary>
+        /// 价格单价
+        /// </summary>
+        public double FoodsPrice { get; set; }
+
+        /// <summary>
+        /// 用户名
+        /// </summary>
+        public string UserName { get; set; }
+
+        /// <summary>
+        /// 地址
+        /// </summary>
+        public string Address { get; set; }
+
         /// <summary>
         /// 创建时间
         /// </summary>
@@ -61,7 +92,16 @@ namespace SunFlower.MODEL
         /// </summary>
         public EnumNews OrderState { get; set; }
 
+        /// <summary>
+        /// 菜品图片
+        /// </summary>
         public string FileName { get; set; }
+
+        /// <summary>
+        /// 菜品名称
+        /// </summary>
         public string FoodName { get; set; }
+
+        
     }
 }

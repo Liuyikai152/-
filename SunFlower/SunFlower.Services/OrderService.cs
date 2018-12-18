@@ -42,12 +42,14 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = @"select o.id, f.filename, o.ordernumber,s.storename,f.foodname,o.money,o.num,o.prices,o.createtime from  orders o join store s on (o.storenumber=s.storenumber)
-  join food f on(o.foodnumber=f.foodnumber ) where o.id=2";
+                string sql = @"select o.id,o.ordernumber,o.money,o.num,a.address,a.username,o.createtime from Orders o join user_adders a on o.addressid=a.id";
                 var ordersList = conn.Query<Orders>(sql, null);
                 return ordersList.ToList<Orders>();
             }
         }
+
+
+       
 
         /// <summary>
         /// 显示单个订单
@@ -57,7 +59,7 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = @"select o.OrderState,o.storenumber,o.id, f.foodname,f.filename,o.money,o.prices,o.num from orders o join food f on(o.foodnumber=f.foodnumber) where o.id=:id";
+                string sql = @"select o.id as oid,f.id as fid,s.id as sid,f.filename,f.foodname,u.num,f.foodsprice,s.storename from Orders o right join userorder u on o.ordernumber=u.ordernumber join food f on u.foodnumber=f.foodnumber join store s on f.storenumber=s.storenumber  where o.id=:id";
                 var ordersList = conn.Query<Orders>(sql, new { id = id });
                 return ordersList.ToList<Orders>();
             }
