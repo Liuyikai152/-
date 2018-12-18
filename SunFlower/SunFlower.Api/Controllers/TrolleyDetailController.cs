@@ -50,6 +50,19 @@ namespace SunFlower.Api.Controllers
         /// <param name="ID"></param>
         /// <returns></returns>
         [HttpGet]
+        [Route("DeleteTrolleyDetail")]
+        public int DeleteTrolleyDetail()
+        {
+            int result = TrolleyDetails.DeleteTrolleyDetail();
+            return result;
+        }
+
+        /// <summary>
+        /// 删除购物车详情
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        [HttpGet]
         [Route("deleteTrolleyDetails")]
         public int deleteTrolleyDetails(int ID)
         {

@@ -49,5 +49,14 @@ namespace SunFlower.IServices
         /// <param name="trolleyDetails"></param>
         /// <returns></returns>
         int deleteTrolleyDetails(int ID);
+
+
+        /// <summary>
+        /// 删除购物车详情
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+
+        int DeleteTrolleyDetail();
     }
 }

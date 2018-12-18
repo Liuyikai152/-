@@ -51,6 +51,24 @@ namespace SunFlower.Services
             }
         }
 
+
+
+        /// <summary>
+        /// 删除购物车详情
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public int DeleteTrolleyDetail()
+        {
+            using (OracleConnection conn = DapperHelper.GetConnString())
+            {
+                conn.Open();
+                string sql = @"delete from trolleydetails";
+                int result = conn.Execute(sql,null);
+                return result;
+            }
+        }
+
         /// <summary>
         /// 查看购物车详情
         /// </summary>
