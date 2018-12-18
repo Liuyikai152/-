@@ -49,6 +49,22 @@ namespace SunFlower.MODEL
         /// <summary>
         /// 商品单价
         /// </summary>
-        public int Prices { get; set; }
+        public Double Prices { get; set; }
+
+        /// <summary>
+        /// 菜品图片
+        /// </summary>
+        public string FileName { get; set; }
+
+        /// <summary>
+        /// 菜品名称
+        /// </summary>
+        public string FoodName { get; set; }
+        
+       
+        /// <summary>
+        /// 菜品价格
+        /// </summary>
+        public string FoodSprice { get; set; }
     }
 }

@@ -25,7 +25,16 @@ namespace SunFlower.IServices
         /// 显示购物车详情
         /// </summary>
         /// <returns></returns>
-        List<TrolleyDetails> GetTrolleyDetails();
+        List<TrolleyDetails> GetTrolleyDetails(int id);
+
+
+        /// <summary>
+        /// 根据编号查询
+        /// </summary>
+        /// <param name="Number"></param>
+        /// <returns></returns>
+        List<TrolleyDetails> GetTrolleyByNumber(string TrolleyNumber);
+       
 
         /// <summary>
         /// 修改购物城详情

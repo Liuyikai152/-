@@ -13,6 +13,7 @@ using SunFlower.IServices;
 
 namespace SunFlower.Api.Controllers
 {
+    [RoutePrefix("Collect")]
     /// <summary>
     /// 收藏控制器
     /// </summary>
@@ -26,9 +27,22 @@ namespace SunFlower.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Route("GetCollects")]
         public List<Collect> GetCollects()
         {
             var CollectList = Collect.GetCollects();
+            return CollectList;
+        }
+
+        /// <summary>
+        /// 显示单个收藏
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetCollectByID")]
+        public List<Collect> GetCollectByID(string storenumber)
+        {
+            var CollectList = Collect.GetCollectByID(storenumber);
             return CollectList;
         }
 
@@ -37,6 +51,7 @@ namespace SunFlower.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
+        [Route("AddCollect")]
         public int AddCollect(Collect collect)
         {
             var result = Collect.AddCollect(collect);

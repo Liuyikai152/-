@@ -68,6 +68,21 @@ namespace SunFlower.Services
             }
         }
 
+
+        /// <summary>
+        /// 根据条件 获取购物车
+        /// </summary>  
+        /// <returns></returns>
+        public List<Trolley> GetTrolleyByStore(string userID)
+        {
+            using (OracleConnection conn = DapperHelper.GetConnString())
+            {
+                string sql = @"select t.id,t.userid,d.foodname,d.filename,d.storenumber,d.foodsprice,s.storename,s.storeimg from trolley t join Food d on t.foodnumber=d.foodnumber JOIN store s on t.storenumber=s.storenumber  where  t.userid=:userID";
+                var trolleyList = conn.Query<Trolley>(sql, new { userID=userID});
+                return trolleyList.ToList();
+            }
+        }
+
         /// <summary>
         /// 修改购物车
         /// </summary>

@@ -40,5 +40,13 @@ namespace SunFlower.IServices
         /// <returns></returns>
         int DeleteTrolley(int ID);
 
+
+        /// <summary>
+        /// 根据条件 获取购物车
+        /// </summary>
+        /// <returns></returns>
+        List<Trolley> GetTrolleyByStore(string userID);
+       
+
     }
 }

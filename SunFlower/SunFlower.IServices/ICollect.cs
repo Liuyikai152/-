@@ -26,5 +26,11 @@ namespace SunFlower.IServices
         /// </summary>
         /// <returns></returns>
         List<Collect> GetCollects();
+
+        /// <summary>
+        /// 查看单个收藏
+        /// </summary>
+        /// <returns></returns>
+        List<Collect> GetCollectByID(string storenumber);
     }
 }

@@ -45,5 +45,9 @@ namespace SunFlower.MODEL
         /// 评价图片
         /// </summary>
         public string  CommentImg { get; set; }
+
+        public string StoreName { get; set; }
+        public string FileName { get; set; }
+        public string StoreImg { get; set; }
     }
 }

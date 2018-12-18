@@ -51,17 +51,7 @@ namespace SunFlower.Api.Controllers
         [Route("AddFood")]
         public int AddFood(Food food)
         {
-            //Food food=new Food();
-            //food.FoodNumber = "C002";
-            //food.StoreNumber = "S001";
-            //food.FoodName = "乌龟汤";
-            //food.FileName = "cai.png";
-            //food.FoodSummary = "大补,清淡";
-            //food.FoodSprice = 368.88;
-            //food.CreateTime = DateTime.Now;
-            //food.Sale = 1;
-            //food.State = EnumNews.Putaway;
-            //food.FoodTypeID = 1;
+
             var result = Food.AddFood(food);
             return result;
         }
@@ -88,19 +78,6 @@ namespace SunFlower.Api.Controllers
         [Route("UpdateFood")]
         public int UpdateFood(Food food)
         {
-            //Food food = new Food();
-            //food.ID = 2;
-            //food.FoodNumber = "C002";
-            //food.StoreNumber = "S001";
-            //food.FoodName = "王八汤";
-            //food.FileName = "cai.png";
-            //food.FoodSummary = "大补,清淡";
-            //food.FoodSprice = 368.88;
-            //food.CreateTime = DateTime.Now;
-            //food.Sale = 1;
-            //food.State = EnumNews.Putaway;
-            //food.FoodTypeID = 1;
-
             int result = Food.UpdateFood(food);
             return result;
         }

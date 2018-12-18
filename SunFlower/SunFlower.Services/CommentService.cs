@@ -29,8 +29,8 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 conn.Open();
-                string sql = @"insert into comments(userid,content,commenttime,storenumber,storetype,commentimg) 
-                             values(:userid,:content,:commenttime,:storenumber,:storetype,:commentimg)";
+                string sql = @"insert into comments(content,userid,storenumber,CommentTime) 
+             values(:content,:userid,:storenumber,:CommentTime)";
                 int result = conn.Execute(sql, comment);
                 return result;
             }
@@ -59,7 +59,7 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = @"select comments.content as content,users.username as username,comments.commenttime as commenttime,comments.storetype as storetype,comments.commentimg as commentimg from comments join users on comments.userid = users.id";
+                string sql = @"select c.storenumber, c.content,c.commenttime,s.storename,s.storeimg from comments c join store s on(c.storenumber=s.storenumber) join users u on(c.userid=u.id)";
                 var commentsList = conn.Query<Comments>(sql, null);
                 return commentsList.ToList();
             }
