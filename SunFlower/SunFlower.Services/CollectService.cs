@@ -43,7 +43,7 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = string.Format("select store.id,store.StoreImg,store.conntent from Collect join Store on(collect.storenumber=store.storenumber)");
+                string sql = string.Format("  select collect.id as aid,store.id,store.StoreImg,store.conntent from Collect join Store on(collect.storenumber=store.storenumber)");
                 var collectList = conn.Query<Collect>(sql, null);
                 return collectList.ToList<Collect>();
             }
@@ -60,6 +60,23 @@ namespace SunFlower.Services
                 string sql = string.Format("select storenumber from Collect where storenumber=:storenumber");
                 var collectList = conn.Query<Collect>(sql, new { storenumber = storenumber });
                 return collectList.ToList<Collect>();
+            }
+        }
+
+
+        /// <summary>
+        /// 取消收藏
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int DeleteCollect(int id)
+        {
+            using (OracleConnection conn = DapperHelper.GetConnString())
+            {
+                conn.Open();
+                string sql = @"delete from Collect where id=:id";
+                int result = conn.Execute(sql, new { id=id});
+                return result;
             }
         }
     }
