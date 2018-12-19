@@ -51,7 +51,7 @@ namespace SunFlower.Api.Controllers
         [Route("AddFood")]
         public int AddFood(Food food)
         {
-     
+            food.CreateTime = DateTime.Now;
             var result = Food.AddFood(food);
           
 
@@ -83,12 +83,18 @@ namespace SunFlower.Api.Controllers
             int result = Food.UpdateFood(food);
             return result;
         }
+        private const int PAGESIZE = 4;
         [HttpGet]
         [Route("GetFood")]
-        public List<Food> GetFood()
+        public PageBox GetFood( int Page = 1)
         {
-            var foodList = Food.GetFood();
-            return foodList;
+            
+            List<Food> foodlist = Food.GetFood();
+            PageBox pagebox = new PageBox();
+            pagebox.PageIndex = Page;          
+            pagebox.PageCount = foodlist.Count / PAGESIZE + (foodlist.Count % PAGESIZE == 0 ? 0 : 1);
+            pagebox.Data = foodlist.Skip((Page - 1) * PAGESIZE).Take(PAGESIZE);
+            return pagebox;
         }
     }
 }

@@ -11,14 +11,14 @@ public class UploadFiles
     {
         if (getFile != null)
         {
-            string getPath = System.Web.HttpContext.Current.Server.MapPath("~\\imgs\\");
+            string getPath = System.Web.HttpContext.Current.Server.MapPath("~\\imgs\\Food\\");
             if (!Directory.Exists(getPath))
             {
                 Directory.CreateDirectory(getPath);
             }
             string newPath = Path.Combine(getPath, getFile.FileName);
             getFile.SaveAs(newPath);
-            return "/imgs/" + getFile.FileName;
+            return "/imgs/Food/" + getFile.FileName;
         }
         else
         {

@@ -1,4 +1,4 @@
-﻿<!--_meta 作为公共模版分离出去-->
+﻿     <!--_meta 作为公共模版分离出去-->
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -133,7 +133,7 @@
                 type: "get",
                 success: function (data) {
                     $(data).each(function (index, data) {
-                        $("#Num").append("<option value='" + data.ID + "'>" + data.StoreName + "</option>")
+                        $("#Num").append("<option value='" + data.StoreNumber + "'>" + data.StoreName + "</option>")
                     })
                 }
             })

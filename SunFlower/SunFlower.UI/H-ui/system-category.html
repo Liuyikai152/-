@@ -179,6 +179,7 @@
                             <th width="60">商家电话</th>
                             <th width="60">商家描述</th>
 							<th width="60">申请时间</th>
+                            <th width="60">店铺类型</th>
                             <th width="60">申请状态</th>
                             
                         </tr>
@@ -210,7 +211,8 @@
             type: "get",
             success: function (data) {
                 $(data).each(function (index, data) {
-                    $("#tabPane").append("<tr><th><input type='checkbox' class='cks'></th><td>" + data.ID + "</td><td>" + data.StoreNumber + "</td><td>" + data.StoreName + "</td><td>" + data.Address + "</td><td>" + data.StorePhone + "</td><td>" + data.Conntent + "</td><td>" + data.CreateTime + "</td><td>" + (data.Auditing == 5?"待审核":"通过") + "</td></tr>");
+                    $("#tabPane").append("<tr><th><input type='checkbox' class='cks'></th><td>" + data.ID + "</td><td>" + data.StoreNumber + "</td><td>" + data.StoreName + "</td><td>" + data.Address + "</td><td>" + data.StorePhone + "</td><td>" + data.Conntent + "</td><td>" + data.CreateTime + "</td><td>" + data.StoreType + "</td><td>" + (data.Auditing == 5 ? "待审核" : "通过") + "</td></tr>");
+
 
                 })
             }
