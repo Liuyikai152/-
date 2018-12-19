@@ -106,12 +106,12 @@ namespace SunFlower.Api.Controllers
         /// </summary>
         /// <param name="trolleyDetails"></param>
         /// <returns></returns>
-        [HttpPut]
+        [HttpPost]
         [Route("UptdateTrolleyDetails")]
-        public int UptdateTrolleyDetails(TrolleyDetails trolleyDetails)
+        public int UptdateTrolleyDetails(int num, int id)
         {
 
-            int result = TrolleyDetails.UptdateTrolleyDetails(trolleyDetails);
+            int result = TrolleyDetails.UptdateTrolleyDetails(num,id);
             return result;
 
         }

@@ -41,7 +41,7 @@ namespace SunFlower.IServices
         /// </summary>
         /// <param name="trolleyDetails"></param>
         /// <returns></returns>
-        int UptdateTrolleyDetails(TrolleyDetails trolleyDetails);
+        int UptdateTrolleyDetails(int num, int id);
 
         /// <summary>
         /// 删除购物城详情

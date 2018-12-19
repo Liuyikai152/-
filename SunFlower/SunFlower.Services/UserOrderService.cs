@@ -70,7 +70,7 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 conn.Open();
-                string sql = @"select Count(orderNumber) as  Num,Sum(OrderMoney) as OrderMoney,OrderNumber,CreateTime,addersid from userorder  group by orderNumber,createtime,addersid having orderNumber=:OrderNumber";
+                string sql = @"select sum(num) as  Num,Sum(OrderMoney) as OrderMoney,OrderNumber,CreateTime,addersid from userorder  group by orderNumber,createtime,addersid having orderNumber=:OrderNumber";
                 var userOrdersList = conn.Query<UserOrder>(sql, new { OrderNumber = OrderNumber }).FirstOrDefault();
 
                 if (userOrdersList != null)

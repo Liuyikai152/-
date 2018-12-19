@@ -78,7 +78,7 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 conn.Open();
-                string sql = @"select e.id,a.trolleynumber,e.foodnumber,e.foodname,e.filename,a.num,a.num*e.foodsprice as money,e.foodsprice,e.storenumber,b.userphone from trolleydetails a join Users b on (a.userid=b.id) join food e on(a.foodnumber=e.foodnumber)where a.userid=:id order by ID desc";
+                string sql = @"select a.id as aid,e.id,a.trolleynumber,e.foodnumber,e.foodname,e.filename,a.num,a.num*e.foodsprice as money,e.foodsprice,e.storenumber,b.userphone from trolleydetails a join Users b on (a.userid=b.id) join food e on(a.foodnumber=e.foodnumber)where a.userid=:id order by ID desc";
                 var trolleyDetailsList = conn.Query<TrolleyDetails>(sql, new { id = id });
                 if (trolleyDetailsList != null)
                 {
@@ -93,13 +93,13 @@ namespace SunFlower.Services
         /// </summary>
         /// <param name="trolleyDetails"></param>
         /// <returns></returns>
-        public int UptdateTrolleyDetails(TrolleyDetails trolleyDetails)
+        public int UptdateTrolleyDetails(int num,int id)
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 conn.Open();
-                string sql = @"update trolleydetails set trolleynumber=:trolleynumber,userid=:userid,foodnumber=:foodnumber,createtime=:createtime,num=:num,money=:money,prices=:prices where id=:id";
-                int result = conn.Execute(sql, trolleyDetails);
+                string sql = @"update trolleydetails set num=:num where id=:id";
+                int result = conn.Execute(sql, new { num=num,id=id});
                 return result;
             }
         }

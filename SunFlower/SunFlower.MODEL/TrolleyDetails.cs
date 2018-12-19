@@ -12,9 +12,14 @@ namespace SunFlower.MODEL
    public class TrolleyDetails
     {
         /// <summary>
-        /// 购物车明细ID
+        /// 菜品ID
         /// </summary>
         public int ID { get; set; }
+
+        /// <summary>
+        /// 购物车明细ID
+        /// </summary>
+        public int AID { get; set; }
 
         /// <summary>
         /// 购物车编号
