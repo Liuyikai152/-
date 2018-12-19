@@ -64,5 +64,25 @@ namespace SunFlower.Services
                 return ordersList.ToList<Orders>();
             }
         }
+
+
+        /// <summary>
+        /// 删除订单
+        /// </summary>
+        /// <param name="userOrder"></param>
+        /// <returns></returns>
+        public int DeleteOrder(int id)
+        {
+            using (OracleConnection conn = DapperHelper.GetConnString())
+            {
+                conn.Open();
+
+                string sql = @"delete from Orders where id=:id";
+
+                var result = conn.Execute(sql, new { id = id });
+                return result;
+            }
+        }
+
     }
 }

@@ -48,5 +48,18 @@ namespace SunFlower.Api.Controllers
             var OrdersList = Orders.GetOrder(id);
             return OrdersList;
         }
+
+        /// <summary>
+        /// 删除订单
+        /// </summary>
+        /// <param name="userOrder"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("DeleteOrder")]
+        public int DeleteOrder(int id)
+        {
+            var result = Orders.DeleteOrder(id);
+            return result;
+        }
     }
 }

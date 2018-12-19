@@ -33,5 +33,14 @@ namespace SunFlower.IServices
         /// <param name="id"></param>
         /// <returns></returns>
         List<Orders> GetOrder(int id);
+
+        /// <summary>
+        /// 删除订单
+        /// </summary>
+        /// <param name="userOrder"></param>
+        /// <returns></returns>
+        int DeleteOrder(int id);
+       
+        
     }
 }

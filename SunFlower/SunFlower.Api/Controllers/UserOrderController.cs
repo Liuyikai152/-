@@ -71,10 +71,10 @@ namespace SunFlower.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("DeleteOrder")]
-        public int DeleteOrder(int id)
+        public int DeleteOrder(int OrderNumber)
         {
 
-            var result = UserOrder.DeleteOrder(id);
+            var result = UserOrder.DeleteOrder(OrderNumber);
             return result;
 
         }

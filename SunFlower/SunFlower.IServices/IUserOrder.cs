@@ -41,7 +41,7 @@ namespace SunFlower.IServices
         /// </summary>
         /// <param name="userOrder"></param>
         /// <returns></returns>
-        int DeleteOrder(int id);
+        int DeleteOrder(int OrderNumber);
 
     }
 }

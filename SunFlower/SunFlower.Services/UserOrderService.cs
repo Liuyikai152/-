@@ -91,15 +91,15 @@ namespace SunFlower.Services
         /// </summary>
         /// <param name="userOrder"></param>
         /// <returns></returns>
-        public int DeleteOrder(int id)
+        public int DeleteOrder(int OrderNumber)
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 conn.Open();
 
-                string sql = @"delete from userorder where id=:id";
+                string sql = @"delete from userorder where OrderNumber=:OrderNumber";
 
-                var result = conn.Execute(sql,new { id=id});
+                var result = conn.Execute(sql,new { OrderNumber = OrderNumber });
                 return result;
             }
         }
