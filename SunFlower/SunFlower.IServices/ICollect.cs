@@ -32,5 +32,14 @@ namespace SunFlower.IServices
         /// </summary>
         /// <returns></returns>
         List<Collect> GetCollectByID(string storenumber);
+
+
+        /// <summary>
+        /// 取消收藏
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        int DeleteCollect(int id);
+       
     }
 }

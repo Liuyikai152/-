@@ -57,5 +57,18 @@ namespace SunFlower.Api.Controllers
             var result = Collect.AddCollect(collect);
             return result;
         }
+
+        /// <summary>
+        /// 取消收藏
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("DeleteCollect")]
+        public int DeleteCollect(int id)
+        {
+            var result = Collect.DeleteCollect(id);
+            return result;
+        }
     }
 }

@@ -16,6 +16,12 @@ namespace SunFlower.MODEL
         /// </summary>
         public int ID { get; set; }
 
+
+        /// <summary>
+        /// 收藏编号
+        /// </summary>
+        public int AID { get; set; }
+
         /// <summary>
         /// 店铺编号
         /// </summary>
