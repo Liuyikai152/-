@@ -49,7 +49,7 @@ namespace SunFlower.Services
             {
                 conn.Open();
 
-                string sql = @"select * from users  left join  userorder  on (users.id=userorder.userid)";
+                string sql = @"select * from users  left join  userorder  on (users.id=userorder.userid) order by ID desc";
 
                 var userOrdersList = conn.Query<UserOrder>(sql, null);
                 if (userOrdersList != null)

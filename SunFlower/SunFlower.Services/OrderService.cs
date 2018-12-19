@@ -42,7 +42,7 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = @"select o.id,o.ordernumber,o.money,o.num,a.address,a.username,o.createtime from Orders o join user_adders a on o.addressid=a.id";
+                string sql = @"select o.id,o.ordernumber,o.money,o.num,a.address,a.username,o.createtime from Orders o join user_adders a on o.addressid=a.id order by ID desc";
                 var ordersList = conn.Query<Orders>(sql, null);
                 return ordersList.ToList<Orders>();
             }
@@ -59,7 +59,7 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = @"select o.id as oid,f.id as fid,s.id as sid,f.filename,f.foodname,u.num,f.foodsprice,s.storename from Orders o right join userorder u on o.ordernumber=u.ordernumber join food f on u.foodnumber=f.foodnumber join store s on f.storenumber=s.storenumber  where o.id=:id";
+                string sql = @"select o.id as oid,f.id as fid,s.id as sid,f.filename,f.foodname,u.num,f.foodsprice,s.storename from Orders o right join userorder u on o.ordernumber=u.ordernumber join food f on u.foodnumber=f.foodnumber join store s on f.storenumber=s.storenumber  where o.id=:id ";
                 var ordersList = conn.Query<Orders>(sql, new { id = id });
                 return ordersList.ToList<Orders>();
             }

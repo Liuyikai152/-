@@ -78,7 +78,7 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 conn.Open();
-                string sql = @"select e.id,a.trolleynumber,e.foodnumber,e.foodname,e.filename,a.num,a.num*e.foodsprice as money,e.foodsprice,e.storenumber,b.userphone from trolleydetails a join Users b on (a.userid=b.id) join food e on(a.foodnumber=e.foodnumber)where a.userid=:id";
+                string sql = @"select e.id,a.trolleynumber,e.foodnumber,e.foodname,e.filename,a.num,a.num*e.foodsprice as money,e.foodsprice,e.storenumber,b.userphone from trolleydetails a join Users b on (a.userid=b.id) join food e on(a.foodnumber=e.foodnumber)where a.userid=:id order by ID desc";
                 var trolleyDetailsList = conn.Query<TrolleyDetails>(sql, new { id = id });
                 if (trolleyDetailsList != null)
                 {
@@ -113,7 +113,7 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString()) {
                 conn.Open();
-                string sql =@"select t.trolleynumber,t.userid,t.id,t.foodnumber,d.num,t.money from trolley t join trolleydetails d on t.trolleynumber=d.trolleynumber where d.trolleynumber=:TrolleyNumber";
+                string sql =@"select t.trolleynumber,t.userid,t.id,t.foodnumber,d.num,t.money from trolley t join trolleydetails d on t.trolleynumber=d.trolleynumber where d.trolleynumber=:TrolleyNumber ";
                 var trolleyDetailsList=conn.Query<TrolleyDetails>(sql,new{ TrolleyNumber= TrolleyNumber });
                 return trolleyDetailsList.ToList();
 
