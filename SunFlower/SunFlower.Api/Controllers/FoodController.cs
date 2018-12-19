@@ -83,5 +83,12 @@ namespace SunFlower.Api.Controllers
             int result = Food.UpdateFood(food);
             return result;
         }
+        [HttpGet]
+        [Route("GetFood")]
+        public List<Food> GetFood()
+        {
+            var foodList = Food.GetFood();
+            return foodList;
+        }
     }
 }

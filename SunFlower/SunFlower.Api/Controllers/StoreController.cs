@@ -110,6 +110,18 @@ namespace SunFlower.Api.Controllers
             var result = Store.UptdateStoreState(ID,state);
             return result;
         }
+
+        /// <summary>
+        /// 查看所有商铺
+        /// </summary>
+        /// <returns></returns>
+        [Route("ShowStores")]
+        [HttpGet]
+        public List<Store> ShowStores()
+        {
+            var result = Store.ShowStores();
+            return result;
+        }
     }
 }
 

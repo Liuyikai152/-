@@ -35,7 +35,7 @@ namespace SunFlower.IServices
         int DeleteFood(int ID);
 
         /// <summary>
-        /// 查看点个店铺所有菜品
+        /// 查看单个店铺所有菜品
         /// </summary>
         /// <returns></returns>
         List<Food> GetFoods(int id);
@@ -45,5 +45,11 @@ namespace SunFlower.IServices
         /// </summary>
         /// <returns></returns>
         List<Food> GetFoodByID(int id);
+
+        /// <summary>
+        /// 查看所有菜品
+        /// </summary>
+        /// <returns></returns>
+        List<Food> GetFood();
     }
 }

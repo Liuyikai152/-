@@ -26,6 +26,13 @@ namespace SunFlower.IServices
         /// <returns></returns>
         List<Store> GetStores();
 
+
+        /// <summary>
+        /// 显示商家
+        /// </summary>
+        /// <returns></returns>
+        List<Store> ShowStores();
+
         /// <summary>
         /// 销量显示
         /// </summary>

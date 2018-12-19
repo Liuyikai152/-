@@ -65,5 +65,7 @@ namespace SunFlower.MODEL
         /// 类别ID
         /// </summary>
         public int FoodTypeID { get; set; }
+
+        public string TypeName { get; set; }
     }
 }

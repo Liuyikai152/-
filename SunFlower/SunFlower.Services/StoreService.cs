@@ -102,5 +102,20 @@ namespace SunFlower.Services
                 return result;
             }
         }
+
+        /// <summary>
+        /// 查看所有商铺
+        /// </summary>
+        /// <returns></returns>
+       
+        public List<Store> ShowStores()
+        {
+            using (OracleConnection conn = DapperHelper.GetConnString())
+            {
+                string sql = @"select * from Store ";
+                var soreList = conn.Query<MODEL.Store>(sql, null);
+                return soreList.ToList<MODEL.Store>();
+            }
+        }
     }
 }

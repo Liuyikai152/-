@@ -172,14 +172,15 @@
 				`
                         <tr class="text-c">
                             <th width="25"><input type="checkbox" name="" value=""></th>
-                            <th width="60">商家ID</th>
-                            <th width="60">商家编号</th>
-                            <th width="60">店铺名称</th>
-                            <th width="60">店铺具体位置</th>
-                            <th width="60">商家电话</th>
-                            <th width="60">商家描述</th>
-							<th width="60">申请时间</th>
-                            <th width="60">申请状态</th>
+                            <th width="60">菜品ID</th>
+                            <th width="60">菜品编号</th>
+                            <th width="60">店铺编号</th>
+                            <th width="60">菜品名</th>
+                            <th width="60">菜品图片</th>
+                            <th width="60">菜品描述</th>
+                            <th width="60">菜品价格</th>
+                            <th width="60">加入时间</th>
+                            <th width="60">所属菜系</th>
                             
                         </tr>
 					
@@ -203,19 +204,21 @@
 <script type="text/javascript">
     $(function () {
         $.ajax({
-            url: "http://localhost:24380/Store/ShowStores",
+            url: "http://localhost:24380/Food/GetFood",
             data: {
 
             },
             type: "get",
             success: function (data) {
                 $(data).each(function (index, data) {
-                    $("#tabPane").append("<tr><th><input type='checkbox' class='cks'></th><td>" + data.ID + "</td><td>" + data.StoreNumber + "</td><td>" + data.StoreName + "</td><td>" + data.Address + "</td><td>" + data.StorePhone + "</td><td>" + data.Conntent + "</td><td>" + data.CreateTime + "</td><td>" + (data.Auditing == 5?"待审核":"通过") + "</td></tr>");
+                    $("#tabPane").append("<tr><td><input type='checkbox' class='cks'></td><td>" + data.ID + "</td><td>" + data.FoodNumber + "</td><td>" + data.StoreNumber + "</td><td>" + data.FoodName + "</td><td><img src='" + data.FileName+"'></td><td>" + data.FoodSummary + "</td><td>" + data.FoodSprice + "</td><td>" + data.CreateTime + "</td><td>" + data.TypeName + "</td></tr>");
+                  
 
                 })
             }
         })
     })
+
    
 $('.table-sort').dataTable({
 	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
@@ -241,6 +244,12 @@ function system_category_del(obj,id){
 	});
 }
 </script>
+    <style>
+        img {
+        width:100px;
+        height:60px;
+        }
+    </style>
 <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>

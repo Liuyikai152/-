@@ -88,8 +88,18 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 string sql = @"update Food set foodnumber=:foodnumber,storenumber=:storenumber,foodname=:foodname,filename=:filename,foodsummary=:foodsummary,foodsprice=:foodsprice,createtime=:createtime,sale=:sale,state=:state, foodtypeid=:foodtypeid where id=:id";
-                int result = conn.Execute(sql,food);
+                int result = conn.Execute(sql, food);
                 return result;
+            }
+        }
+
+        public List<Food> GetFood()
+        {
+            using (OracleConnection conn = DapperHelper.GetConnString())
+            {
+                string sql = @" select f.id,f.foodnumber,f.foodname,f.storenumber,f.createtime,f.foodsprice,f.filename,t.typename,s.storename,f.foodsummary from Food f left join foodtype t on f.foodtypeid=t.id join store s on f.storenumber=s.storenumber ";
+                var foodList = conn.Query<Food>(sql, null);
+                return foodList.ToList<Food>();
             }
         }
     }
