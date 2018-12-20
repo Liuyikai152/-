@@ -21,5 +21,12 @@ namespace SunFlower.IServices
         /// </summary>
         /// <returns></returns>
         List<ApprovalActivity> GetApprovalActivity();
+        /// <summary>
+        /// 修改审批
+        /// </summary>
+        /// <param name="approvalActivity"></param>
+        /// <returns></returns>
+
+        int UpdateApprovalActivity(ApprovalActivity approvalActivity);
     }
 }

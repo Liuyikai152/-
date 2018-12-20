@@ -42,5 +42,18 @@ namespace SunFlower.Api.Controllers
             var approvalActivityList = ApprovalActivity.GetApprovalActivity();
             return approvalActivityList;
         }
+
+        /// <summary>
+        /// 审批实现
+        /// </summary>
+        /// <param name="food"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("UpdateApprovalActivity")]
+        public int UpdateApprovalActivity(ApprovalActivity approvalActivity)
+        {
+            var result = ApprovalActivity.UpdateApprovalActivity(approvalActivity);
+            return result;
+        }
     }
 }
