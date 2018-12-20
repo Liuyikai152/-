@@ -55,6 +55,9 @@ namespace SunFlower.Api.Controllers
             var result = ApprovalActivity.UpdateApprovalActivity(approvalActivity);
             return result;
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4b21647210b9b43c6fa149eb32e0d085f4567564
     }
 }
