@@ -78,5 +78,9 @@ left join approvalconditions c on(p.judgmentid=c.id)
             }
         }
 
+        public int UpdateApprovalActivity(ApprovalActivity approvalActivity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
