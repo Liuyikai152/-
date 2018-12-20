@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IApprovalActivity.cs" />
+    <Compile Include="IApprovalProcess.cs" />
     <Compile Include="IArea.cs" />
     <Compile Include="IBootstrap.cs" />
     <Compile Include="ICollect.cs" />
@@ -50,6 +52,7 @@
     <Compile Include="IFoodType.cs" />
     <Compile Include="IOrders.cs" />
     <Compile Include="IPermission.cs" />
+    <Compile Include="IProcessConfiguration.cs" />
     <Compile Include="IRole.cs" />
     <Compile Include="ITUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

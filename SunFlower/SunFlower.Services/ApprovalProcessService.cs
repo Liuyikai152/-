@@ -69,12 +69,12 @@ namespace SunFlower.Services
         /// </summary>
         /// <param name="food"></param>
         /// <returns></returns>
-        public int UpdateApprovalProcess(Food approvalProcess)
+        public int UpdateApprovalProcess(ApprovalProcess approvalProcess)
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 conn.Open();
-                string sql = @"update ApprovalProcess set name =:name,isallowmodity =:isallowmodity,isallowversion =:isallowversion,creator =:creator where id =:id";
+                string sql = @"update ApprovalProcess set name=:name,isallowmodity=:isallowmodity,isallowversion=:isallowversion,creator=:creator where id=:id";
                 var result = conn.Execute(sql, approvalProcess);
                 return result;
             }

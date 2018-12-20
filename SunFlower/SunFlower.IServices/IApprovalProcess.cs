@@ -38,7 +38,7 @@ namespace SunFlower.IServices
         /// </summary>
         /// <param name="approvalProcess"></param>
         /// <returns></returns>
-        int UpdateApprovalProcess(Food approvalProcess);
+        int UpdateApprovalProcess(ApprovalProcess approvalProcess);
 
         /// <summary>
         /// 获取单个流程

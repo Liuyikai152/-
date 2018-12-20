@@ -63,7 +63,7 @@ namespace SunFlower.Api.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("UpdateApprovalProcess")]
-        public int UpdateApprovalProcess(Food approvalProcess)
+        public int UpdateApprovalProcess(ApprovalProcess approvalProcess)
         {
             var result = ApprovalProcess.UpdateApprovalProcess(approvalProcess);
             return result;
