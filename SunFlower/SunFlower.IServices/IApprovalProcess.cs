@@ -3,45 +3,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SunFlower.MODEL;
-
 
 namespace SunFlower.IServices
 {
-   public interface IRole
+    using MODEL;
+
+    /// <summary>
+    /// 流程接口
+    /// </summary>
+    public interface IApprovalProcess
     {
         /// <summary>
-        /// 添加角色
+        /// 显示所有流程
         /// </summary>
-        /// <param name="t_Role"></param>
         /// <returns></returns>
-        int AddRole(Role t_Role);
+        List<ApprovalProcess> GetApprovalProcess();
 
         /// <summary>
-        /// 删除角色
+        /// 删除流程
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        int DeleteRole(int id);
+        int DeleteApprovalProcess(int id);
 
         /// <summary>
-        /// 修改
-        /// </summary>
-        /// <param name="t_Role"></param>
-        /// <returns></returns>
-        int UpdateRole(Role t_Role);
-
-        /// <summary>
-        /// 查看
-        /// </summary>
-        /// <returns></returns>
-        List<Role> GetRoles();
-
-        /// <summary>
-        /// 获取id
+        /// 添加流程
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-       List<Role> GetByID(int id);
+        int AddApprovalProcess(ApprovalProcess approvalProcess);
+
+        /// <summary>
+        /// 修改流程
+        /// </summary>
+        /// <param name="approvalProcess"></param>
+        /// <returns></returns>
+        int UpdateApprovalProcess(ApprovalProcess approvalProcess);
+
+        /// <summary>
+        /// 获取单个流程
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        List<ApprovalProcess> GetApprovalProcessByID(int id);
     }
 }

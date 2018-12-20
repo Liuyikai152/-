@@ -38,5 +38,13 @@ namespace SunFlower.IServices
         /// <returns></returns>
         List<Permission> GetPermissions();
 
+        /// <summary>
+        /// 获取id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        List<Permission> GetByID(int id);
     }
+
 }
+

@@ -6,33 +6,25 @@ using System.Threading.Tasks;
 
 namespace SunFlower.MODEL
 {
-    public class Role
+   public class ApprovalStatus
     {
         /// <summary>
-        /// 角色id
+        /// 状态ID
         /// </summary>
         public int ID { get; set; }
 
         /// <summary>
-        /// 角色名称
+        /// 审批状态
         /// </summary>
-        public string Name { get; set; }
-
+        public int Condtion { get; set; }
         /// <summary>
-        /// 角色描述
+        /// 创建人
         /// </summary>
-        public string Description { get; set; }
-
+        public string Creator { get; set; }
         /// <summary>
-        /// 角色权限
+        /// 创建时间
         /// </summary>
-        public string Permission { get; set; }
+        public DateTime CreateTime { get; set; }
 
-        /// <summary>
-        /// 权限id
-        /// </summary>
-        public string Pid { get; set; }
-
-    
     }
 }

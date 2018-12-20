@@ -19,7 +19,10 @@ namespace SunFlower.Api.Controllers
         [Unity.Attributes.Dependency]
         public ITUsers Users { get; set; }
 
-
+        /// <summary>
+        /// 查看角色
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetUsers")]
         public List<TUsers> GetUsers()
@@ -28,6 +31,12 @@ namespace SunFlower.Api.Controllers
             return t_UsersList;
         }
         
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="passWord"></param>
+        /// <returns></returns>
         [HttpGet]
         public int Login(string userName, string passWord)
         {
@@ -35,6 +44,11 @@ namespace SunFlower.Api.Controllers
             return result;
         }
         
+        /// <summary>
+        /// 删除用户
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         [Route("DeleteUsers")]
         [HttpGet]
         public int DeleteUsers(int ID)
@@ -43,21 +57,65 @@ namespace SunFlower.Api.Controllers
             return result;
         }
 
-        
+        /// <summary>
+        /// 添加角色
+        /// </summary>
+        /// <param name="t_Users"></param>
+        /// <returns></returns>
+        [Route("AddTUsers")]
         [HttpPost]
-        public int AddT_Users(TUsers  t_Users)
+        public int AddTUsers(string userName,string passWord,string roleId)
         {
-            var result = Users.AddUsers(t_Users);
+            TUsers users = new TUsers();
+            users.UserName = userName;
+            users.PassWord = passWord;
+            users.RoleId = roleId;
+            var result = Users.AddUsers(users);
             return result;
         }
 
+        /// <summary>
+        /// 修改权限
+        /// </summary>
+        /// <param name="t_Users"></param>
+        /// <returns></returns>
         [Route("UpdateUsers")]
         [HttpPost]
-        public int UpdateUsers(TUsers  t_Users)
+        public int UpdateUsers(string userName, string passWord, string roleId,int id)
         {
-            int result = Users.UpdateUsers(t_Users);
+            TUsers users = new TUsers();
+            users.UserName = userName;
+            users.PassWord = passWord;
+            users.RoleId = roleId;
+            users.ID = id;
+            var result = Users.AddUsers(users);
             return result;
         }
 
+        /// <summary>
+        /// 获取角色id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Route("GetByID")]
+        [HttpGet]
+        public List<TUsers> GetByID(int id)
+        {
+            var result = Users.GetByID(id);
+            return result;
+        }
+
+        /// <summary>
+        /// 获取权限路径
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Route("GetPermissiomUrl")]
+        [HttpGet]
+        public List<TUsers> GetPermissiomUrl(int id)
+        {
+            var result = Users.GetPermissiomUrl(id);
+            return result;
+        }       
     }
 }

@@ -30,6 +30,8 @@
 <body>
     <article class="cl pd-20">
         <form action="" method="post" class="form form-horizontal" id="form">
+            <!--<input type="hidden" name="ID" />-->
+            <!--<input type="hidden" name="ID" value="Request.QueryString["id"]" />-->
             <input type="hidden" name="ID" value="@Request.QueryString[" id"]" />
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>权限名称：</label>
@@ -55,7 +57,7 @@
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-3">是否启用：</label>
                 <div class="check-box">
-                    <input type="radio" id="IsUser" name="IsUser" value="启用" checked="checked" />
+                    <input type="radio" id="IsUser" name="IsUser" value="启用" />
                     启用
                 </div>
                 <div class="check-box">
@@ -65,7 +67,7 @@
             </div>
             <div class="row cl">
                 <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                    <input class="btn btn-primary radius" onclick="add()" type="button" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                    <input class="btn btn-primary radius" onclick="update()" type="button" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
                 </div>
 
             </div>
@@ -83,19 +85,45 @@
     <script type="text/javascript" src="lib/jquery.validation/1.14.0/jquery.validate.js"></script>
     <script type="text/javascript" src="lib/jquery.validation/1.14.0/validate-methods.js"></script>
     <script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
+    <script src="../Scirpt/GetParse.js"></script>
+    <script src="../Scirpt/jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
 
-        function add() {
+
+        var id = getPar("id");
+        $(function () {
+            alert(id);
+            //反填
             $.ajax({
-                url: "http://localhost:24380/api/Permission/AddPermission",
+                url: 'http://localhost:24380/Permission/GetByID?id=' + id,
+                async: false,
+                type: "get",
+              //  data: { id: getUrlParam("id")},
+            success: function (data) {
+                $("input[name=ID]").val(data[0].ID);
+                $("input[name=Name]").val(data[0].Name);
+                $("input[name=Discription]").val(data[0].Discription);
+                $("input[name=URL]").val(data[0].URL);
+                $("input[name=IsUser][value='" + data[0].IsUser + "']").attr("checked", "checked")
+
+            }
+            })
+        
+            })
+ 
+
+        function update() {
+            $.ajax({
+                url: "http://localhost:24380/Permission/updatePermission",
                 type: "post",
                 data: $("#form").serialize(),
-                //data: { Name: $("#Name").val(), Discription: $("#description").val(), URL: $("#url").val(), IsUser: $("IsUser").val() },
+                //data: { ID: $("input[name=ID]").val(), Name: $("#Name").val(), Discription: $("#Discription").val(), URL: $("#url").val(), IsUser: $("IsUser").val() },
                 success: function (data) {
-
+             
                     if (data > 0) {
                         alert("修改成功");
-                        location.href = "admin-permission.html"
+                       
+                       
                     }
                     else {
                         alert("修改失败")
@@ -103,39 +131,10 @@
                 }
             })
         }
-      
+
 
     </script>
     <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>
 
-<script>
-    $(function () {
-        //反填
-        $.ajax({
-            url: 'http://localhost:8765/rbac/rightGetId?id=' +@Request.QueryString["id"],
-                async: false,
-                    success: function (data) {
-                        $("input[name=RightName]").val(data.RightName)
-                        $("input[name=URL]").val(data.URL)
-                        $("input[name=IsUser][value='" + data.IsUser + "']").attr("checked", "checked")
-                    }
-    })
-    $("#btnupt").click(function () {
-        $.ajax({
-            url: 'http://localhost:8765/rbac/rightUpdate',
-            type: 'post',
-            data: $("#form1").serialize(),
-            success: function (data) {
-                console.log(data);
-                if (data > 0) {
-                    alert("修改成功");
-                } else {
-                    alert("修改失败");
-                }
-            }
-        })
-    })
-    })
-</script>

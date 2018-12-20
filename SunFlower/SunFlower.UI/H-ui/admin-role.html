@@ -178,7 +178,7 @@
                 <div class="mt-10">
                     <table class="table table-border table-bordered table-hover table-bg" id="tab">
                         <thead>
-                            <tr>
+                            <!--<tr>
                                 <th scope="col" colspan="6">角色管理</th>
                             </tr>
                             <tr class="text-c">
@@ -189,7 +189,7 @@
                                 <th width="300">描述</th>
                                 <th width="70">操作</th>
                                 <th width="70">操作</th>
-                            </tr>
+                            </tr>-->
                         </thead>
                         <!--<tbody>
                             <tr class="text-c">
@@ -251,7 +251,7 @@
                 type: "get",
                 dataType: "json",
                 success: function (data) {
-                    console.log(data);
+               
                     $("#tab").empty();
                     $("#tab").append(
                         '<tr>'
@@ -264,6 +264,7 @@
                         + '</tr>'
                     )
                     for (var i = 0; i < data.length; i++) {
+
                         $("#tab").append(
                             '<tr>'
                             + '<td>' + data[i]["ID"] + '</td>'
@@ -280,22 +281,19 @@
         }
 
 
-        function update(id) {
-            location.href = "admin-role-update.html?id=" + id;
-        }
+
         /*管理员-角色-添加*/
         function admin_role_add(title, url, w, h) {
             layer_show(title, url, w, h);
         }
-        /*管理员-角色-编辑*/
-        function admin_role_edit(title, url, id, w, h) {
-            layer_show(title, url, w, h);
+        function update(id) {
+            layer_show("编辑角色", "admin-role-update.html?id=" + id, 300, 500);
         }
         /*管理员-角色-删除*/
         function del(ID, obj) {
             if (confirm("确定删除吗?")) {
                 $.ajax({
-                    url: 'http://localhost:24380/T_Role/DeleteRole?id=' + ID,
+                    url: 'http://localhost:24380/Role/DeleteRole?id=' + ID,
                     type: 'get',
                     data: {
                         //ID: ID
@@ -305,6 +303,7 @@
                         if (data > 0) {
                             alert("删除成功");
                             $(obj).parent().parent().remove();
+                            location.href = "admin-role.html";
                         }
                         else {
                             alert("删除失败");

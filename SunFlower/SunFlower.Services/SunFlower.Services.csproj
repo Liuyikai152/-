@@ -54,6 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApprovalActivityService.cs" />
+    <Compile Include="ApprovalProcessService.cs" />
     <Compile Include="AreaService.cs" />
     <Compile Include="BootstrapServices.cs" />
     <Compile Include="CollectService.cs" />
@@ -62,6 +64,18 @@
     <Compile Include="FoodService.cs" />
     <Compile Include="FoodTypeService.cs" />
     <Compile Include="OrderService.cs" />
+
+
+
+    <Compile Include="RolePermissionServices.cs" />
+
+    <Compile Include="ProcessConfigurationService.cs" />
+
+
+    <Compile Include="ProcessConfigurationService.cs" />
+
+    <Compile Include="ProcessConfigurationService.cs" />
+
     <Compile Include="StoreLogsService.cs" />
     <Compile Include="TrolleyDetailService.cs" />
     <Compile Include="TrolleyService.cs" />
@@ -74,6 +88,7 @@
     <Compile Include="StoreService.cs" />
     <Compile Include="UserService.cs" />
     <Compile Include="User_AddersService.cs" />
+    <Compile Include="UserRoleServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SunFlower.Cache\SunFlower.Cache.csproj">

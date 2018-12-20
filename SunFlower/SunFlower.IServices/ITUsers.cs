@@ -37,6 +37,21 @@ namespace SunFlower.IServices
         /// <returns></returns>
         List<TUsers> GetUsers();
 
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="passWord"></param>
+        /// <returns></returns>
         int Login(string userName, string passWord);
+
+        /// <summary>
+        /// 获取id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        List<TUsers> GetByID(int id);
+
+        List<TUsers> GetPermissiomUrl(int id);
     }
 }

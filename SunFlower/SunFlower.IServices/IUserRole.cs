@@ -8,40 +8,37 @@ using SunFlower.MODEL;
 
 namespace SunFlower.IServices
 {
-   public interface IRole
+    public interface IUserRole
     {
         /// <summary>
-        /// 添加角色
+        /// 添加
         /// </summary>
-        /// <param name="t_Role"></param>
+        /// <param name="user_Role"></param>
         /// <returns></returns>
-        int AddRole(Role t_Role);
+        int AddUserRole(UserRole user_Role);
 
         /// <summary>
-        /// 删除角色
+        /// 删除
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        int DeleteRole(int id);
+        int DeleteUserRole(int id);
 
         /// <summary>
         /// 修改
         /// </summary>
-        /// <param name="t_Role"></param>
+        /// <param name="user_Role"></param>
         /// <returns></returns>
-        int UpdateRole(Role t_Role);
+        int UpdateUserRole(UserRole user_Role);
 
         /// <summary>
         /// 查看
         /// </summary>
         /// <returns></returns>
-        List<Role> GetRoles();
+        List<UserRole> GetUserRoles();
 
-        /// <summary>
-        /// 获取id
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-       List<Role> GetByID(int id);
+
+
+
     }
 }
