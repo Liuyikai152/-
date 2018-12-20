@@ -22,7 +22,7 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = @"insert into User_Adders (UserName,UserGender,ProvinceName,Address,CreateTime, IsDefault) values (:UserName,:UserGender,:ProvinceName,:Address,:CreateTime,:IsDefault)";
+                string sql = @"insert into User_Adders (UserName,UserGender,ProvinceName,Address,CreateTime, IsDefault,userid) values (:UserName,:UserGender,:ProvinceName,:Address,:CreateTime,:IsDefault,:userid)";
                 int result = conn.Execute(sql, adders);
                 return result;
             }
@@ -51,7 +51,8 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = @"select * from Food";
+                string sql = @" select a.id ,a.turename,a.userphone,b.address,a.useraddressid from users a 
+ join user_adders b on a.id=b.userid ";
                 var user_AddersList = conn.Query<User_Adders>(sql, null);
                 return user_AddersList.ToList<User_Adders>();
             }
