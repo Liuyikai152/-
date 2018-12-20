@@ -65,6 +65,9 @@ namespace SunFlower.Api
             container.RegisterType<ITUsers, TUsersService>();
             container.RegisterType<IPermission, PermissionService>();
             container.RegisterType<IRole, RoleService>();
+            container.RegisterType<IApprovalProcess, ApprovalProcessService>();
+            container.RegisterType<IProcessConfiguration, ProcessConfigurationService>();
+            container.RegisterType<IApprovalActivity, ApprovalActivityService>();
         }
     }
 }
