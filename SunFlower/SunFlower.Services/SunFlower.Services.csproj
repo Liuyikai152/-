@@ -76,6 +76,7 @@
 
     <Compile Include="ProcessConfigurationService.cs" />
 
+>>>>>>> 4b21647210b9b43c6fa149eb32e0d085f4567564
     <Compile Include="StoreLogsService.cs" />
     <Compile Include="TrolleyDetailService.cs" />
     <Compile Include="TrolleyService.cs" />
