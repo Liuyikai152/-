@@ -94,9 +94,9 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 conn.Open();
-                //               string sql = @"select WMSYS.WM_CONCAT(r.name) as rolename, p.name,p.url from t_Users u join user_role ur on u.id=ur.user_id join t_Role r on ur.role_id=r.id join
-                //role_permission rp on r.id=rp.role_id join t_permission p on rp.permission_id=p.id where u.id=:id group by p.name,p.url";
-                string sql = @"select r.name as rolename, p.name,p.url from t_Users u join user_role ur on u.id=ur.user_id join t_Role r on ur.role_id=r.id join role_permission rp on r.id=rp.role_id join t_permission p on rp.permission_id=p.id where u.id=:id";
+                string sql = @"select WMSYS.WM_CONCAT(r.name) as rolename, p.name,p.url from t_Users u join user_role ur on u.id=ur.user_id join t_Role r on ur.role_id=r.id join
+                role_permission rp on r.id=rp.role_id join t_permission p on rp.permission_id=p.id where u.id=:id group by p.name,p.url";
+                //string sql = @"select r.name as rolename, p.name,p.url from t_Users u join user_role ur on u.id=ur.user_id join t_Role r on ur.role_id=r.id join role_permission rp on r.id=rp.role_id join t_permission p on rp.permission_id=p.id where u.id=:id";
                 var result = conn.Query<TUsers>(sql, new { id = id });
 
                 if (result.Count() > 0)
