@@ -88,7 +88,7 @@ namespace SunFlower.Api.Controllers
             users.PassWord = passWord;
             users.RoleId = roleId;
             users.ID = id;
-            var result = Users.AddUsers(users);
+            var result = Users.UpdateUsers(users);
             return result;
         }
 

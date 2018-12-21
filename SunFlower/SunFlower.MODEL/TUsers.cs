@@ -33,8 +33,14 @@ namespace SunFlower.MODEL
         /// </summary>
         public string RoleName { get; set; }
 
+        /// <summary>
+        /// 权限路径
+        /// </summary>
         public string URL { get; set; }
 
+        /// <summary>
+        /// 权限名称
+        /// </summary>
         public string Name { get; set; }
     }
 }

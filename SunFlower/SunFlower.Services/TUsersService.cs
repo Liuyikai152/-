@@ -78,7 +78,7 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 conn.Open();
-                string sql = @" select u.Id,u.UserName,u.PassWord,ur.Role_id from t_users u,user_role ur where u.id=ur.user_id and u.id=:id ";
+                string sql = @"select u.Id,u.UserName,u.PassWord,u.roleid,ur.Role_id from t_users u,user_role ur where u.id=ur.user_id  and u.id=:id ";
                 var result = conn.Query<TUsers>(sql, new { id = id });
                    return result.ToList(); 
             }
@@ -94,9 +94,8 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 conn.Open();
-                string sql = @"select WMSYS.WM_CONCAT(r.name) as rolename, p.name,p.url from t_Users u join user_role ur on u.id=ur.user_id join t_Role r on ur.role_id=r.id join
-                role_permission rp on r.id=rp.role_id join t_permission p on rp.permission_id=p.id where u.id=:id group by p.name,p.url";
-                //string sql = @"select r.name as rolename, p.name,p.url from t_Users u join user_role ur on u.id=ur.user_id join t_Role r on ur.role_id=r.id join role_permission rp on r.id=rp.role_id join t_permission p on rp.permission_id=p.id where u.id=:id";
+                string sql = @"select WMSYS.WM_CONCAT(r.name) as rolename, p.name,p.url from t_Users u join user_role ur on u.id=ur.user_id join t_Role r on ur.role_id=r.id join role_permission rp on r.id=rp.role_id join t_permission p on rp.permission_id=p.id where u.id=:id and p.isuser='启用' group by p.name,p.url";
+             
                 var result = conn.Query<TUsers>(sql, new { id = id });
 
                 if (result.Count() > 0)
@@ -157,24 +156,24 @@ namespace SunFlower.Services
                     string sql1 = @"select * from T_Users where UserName=:UserName";
                     var Roles = conn.Query<TUsers>(sql1, users);
                     int result = -1;
-                    if (Roles.Count() == 0)
+                    if (Roles.Count() == 1)
                     {
                         //修改角色
-                        string sql = @"update T_Users set UserName=:UserName,PassWord=:PassWord,RoleId=:RoleId,RoleName=:RoleName where id=:id";
+                        string sql = @"update T_Users set UserName=:UserName,PassWord=:PassWord,RoleId=:RoleId where id=:id";
                         int result2 = conn.Execute(sql, users);
 
                         //获取角色id
-                        string sql2 = ("select id from T_Users where UserName=:UserName");
-                        var id = conn.Query<int>(sql2, users).FirstOrDefault();
+                        string sql2 = ("delete from user_role where user_id=:user_id");
+                        conn.Execute(sql2, new { user_id = users.ID });
 
                         var roles = users.RoleId.Split(',');
 
                         for (int i = 0; i < roles.Length; i++)
                         {
                             UserRole userRole = new UserRole();
-                            userRole.User_Id = id;
+                            userRole.User_Id = users.ID;
                             userRole.Role_Id = Convert.ToInt32(roles[i]);
-                            string sql3 = @"update User_Role set Role_Id=:Role_Id,User_Id=:User_Id where User_Id=:User_Id ";
+                            string sql3 = @"insert into user_role(user_role,role_id) values (:user_role,:role_id) ";
                             result = conn.Execute(sql3, userRole);
                         }
                     }

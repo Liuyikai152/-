@@ -42,7 +42,7 @@
                     <input type="password" class="input-text" autocomplete="off" value="" placeholder="密码" id="PassWord" name="PassWord">
                 </div>
             </div>
-   
+
 
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-3">角色名称：</label>
@@ -73,95 +73,74 @@
     <script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
     <script src="../../Scirpt/jquery-1.10.2.min.js"></script>
     <script src="../Scirpt/GetParse.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $.ajax({
-                url: 'http://localhost:24380/Role/GetRoles',
-                type: 'get',
-                async: false,
-                data: {},
-                success: function (res) {
-                    console.log(res);
-                    $(res).each(function (index, data) {
-                        $(".check-box").append('<input type="checkbox" class="cks" id="' + data.ID + '" name="RoleName" value="' + data.ID + '"  />' + data.Name)
-                    })
-
-                }
-            })
-        })
 
 
 
-        var id = getPar("id");
-        $(function () {
+    <!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>
+<script type="text/javascript">
 
+    var id = getPar("id");
+    $(function () {
+        $.ajax({
+            url: 'http://localhost:24380/Role/GetRoles',
+            type: 'get',
+            async: false,
+            data: {},
+            success: function (res) {
+                console.log(res);
+                $(res).each(function (index, data) {
+                    $(".check-box").append('<input type="checkbox" class="cks" id="' + data.ID + '" name="RoleName" value="' + data.ID + '"  />' + data.Name)
+                })
+
+            }
+        }),
             //反填
             $.ajax({
                 url: 'http://localhost:24380/TUsers/GetByID?id=' + id,
-                async: false,
+               
                 type: "get",
                 success: function (data) {
                     $("input[name=ID]").val(data[0].ID);
                     $("input[name=UserName]").val(data[0].UserName);
                     $("input[name=PassWord]").val(data[0].PassWord);
+                
                     $(data[0].RoleId.split(',')).each(function (index, data) {
-                        alert(data);
-                        $("input[name=Permission][value=" + this + "]").prop("checked", true)
-
+                        $("input[name=RoleName][value=" + this + "]").prop("checked", true);
+                    })
+                   
 
                 }
             })
+    })
+
+
+
+
+    function update() {
+        var ids = "";
+        $(".cks:checked").each(function () {
+            ids += $(this).val() + ",";
         })
+        ids = ids.substring(0, ids.lastIndexOf(','));
+        alert(ids);
+        $.ajax({
+            url: "http://localhost:24380/TUsers/UpdateUsers?userName=" + $("input[name=UserName]").val() + '&passWord=' + $("input[name=PassWord]").val() + '&roleId=' + ids + '&id=' + id,
+            type: "post",
+            async: false,
+            success: function (data) {
 
-        function update() {
-            var role = "";
-            $(".cks:checked").each(function () {
-                role += $(this).val() + ",";
-            })
-            role = role.substring(0, role.lastIndexOf(','));
-            alert(role);
-            $.ajax({
-                url: "http://localhost:24380/TUsers/UpdateUsers?userName=" + $("#UserName").val() + '&&passWord=' + $("#PassWord").val() + '&&roleId=' + role + '&&id=' + id,
-                type: "post",
-                data: {
-
-                },
-                success: function (data) {
-
-                    if (data > 0) {
-                        alert("添加成功")
-                    }
-                    else {
-                        alert("添加失败")
-                    }
+                if (data > 0) {
+                    alert("修改成功")
                 }
-            })
-        }
-
-
-
-    </script>
-
-    <!--<script type="text/javascript">
-        function add() {
-            $.ajax({
-                url: "http://localhost:24380/TUsers/AddTUsers",
-                type: "post",
-                data: { UserName: $("#adminName").val(), PassWord: $("#password").val(), RoleID: $("#Role").val() },
-                success: function (data) {
-                    if (data > 0) {
-                        alert("添加成功")
-
-
-                    }
-                    else {
-                        alert("添加失败")
-                    }
+                else {
+                    alert("修改失败")
                 }
-            })
-        }
+            }
+        })
+    }
 
-    </script>-->
-    <!--/请在上方写此页面业务相关的脚本-->
-</body>
-</html>
+
+
+</script>
