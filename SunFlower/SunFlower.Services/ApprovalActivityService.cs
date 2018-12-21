@@ -78,9 +78,27 @@ left join approvalconditions c on(p.judgmentid=c.id)
             }
         }
 
+        /// <summary>
+        /// 审批实现
+        /// </summary>
+        /// <param name="food"></param>
+        /// <returns></returns>
         public int UpdateApprovalActivity(ApprovalActivity approvalActivity)
         {
-            throw new NotImplementedException();
+            using (OracleConnection conn = DapperHelper.GetConnString())
+            {
+                string sql = @"update  approvalactivity set
+ nodeid=:nodeid,
+ approvalroleid=:approvalroleid,
+ nextapprovalroleid=:nextapprovalroleid,
+ ApprovalUserID=:ApprovalUserID,
+ NextApprovalUserID=:NextApprovalUserID
+ CondtionID=:CondtionID, 
+ TureCondtionID=:TureCondtionID
+ where id=:id";
+                int result = conn.Execute(sql, approvalActivity);
+                return result;
+            }
         }
     }
 }

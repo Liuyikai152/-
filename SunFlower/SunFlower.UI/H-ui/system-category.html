@@ -147,18 +147,16 @@
 				</ul>
 			</dd>
 		</dl>
-		<dl id="menu-system">
-			<dt class="selected"><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-			<dd style="display:block">
-				<ul>
-					<li><a href="system-base.html" title="系统设置">系统设置</a></li>
-					<li class="current"><a href="system-category.html" title="栏目管理">栏目管理</a></li>
-					<li><a href="system-data.html" title="数据字典">数据字典</a></li>
-					<li><a href="system-shielding.html" title="屏蔽词">屏蔽词</a></li>
-					<li><a href="system-log.html" title="系统日志">系统日志</a></li>
-				</ul>
-			</dd>
-		</dl>
+        <dl id="menu-system">
+            <dt class="selected"><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd style="display:block">
+                <ul>
+                    <li><a href="food-list.html">所有菜品</a></li>
+                    <li><a href="system-category.html">所有店铺</a></li>
+                    <li><a href="product-add.html">添加菜品</a></li>
+                </ul>
+            </dd>
+        </dl>
 	</div>
 </aside>
 <!--<div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>-->
@@ -171,7 +169,7 @@
 				<table class="table table-border table-bordered table-hover table-bg table-sort" id="tabPane">
 				`
                         <tr class="text-c">
-                            <th width="25"><input type="checkbox" name="" value=""></th>
+                           
                             <th width="60">商家ID</th>
                             <th width="60">商家编号</th>
                             <th width="60">店铺名称</th>
@@ -181,7 +179,6 @@
 							<th width="60">申请时间</th>
                             <th width="60">店铺类型</th>
                             <th width="60">申请状态</th>
-                            
                         </tr>
 					
 				</table>
@@ -211,7 +208,7 @@
             type: "get",
             success: function (data) {
                 $(data).each(function (index, data) {
-                    $("#tabPane").append("<tr><th><input type='checkbox' class='cks'></th><td>" + data.ID + "</td><td>" + data.StoreNumber + "</td><td>" + data.StoreName + "</td><td>" + data.Address + "</td><td>" + data.StorePhone + "</td><td>" + data.Conntent + "</td><td>" + data.CreateTime + "</td><td>" + data.StoreType + "</td><td>" + (data.Auditing == 5 ? "待审核" : "通过") + "</td></tr>");
+                    $("#tabPane").append("<tr class='text-c'><td>" + data.ID + "</td><td>" + data.StoreNumber + "</td><td>" + data.StoreName + "</td><td>" + data.Address + "</td><td>" + data.StorePhone + "</td><td>" + data.Conntent + "</td><td>" + data.CreateTime + "</td><td>" + data.StoreType + "</td><td>" + (data.Auditing == 5 ? "待审核" : "通过") + "</td></tr>");
 
 
                 })
