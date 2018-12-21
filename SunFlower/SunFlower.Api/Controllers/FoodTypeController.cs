@@ -39,5 +39,17 @@ namespace SunFlower.Api.Controllers
             var foodTypeList = FoodType.GetFoodType();
             return foodTypeList;
         }
+
+        /// <summary>
+        /// 根据店铺编号查询菜品类型
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("StoreFoodType")]
+        public List<FoodType> StoreFoodType(int sid)
+        {
+            var foodTypeList = FoodType.StoreFoodType(sid);
+            return foodTypeList;
+        }
     }
 }

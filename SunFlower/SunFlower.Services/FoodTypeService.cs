@@ -31,6 +31,20 @@ namespace SunFlower.Services
         }
 
         /// <summary>
+        /// 根据店铺编号查询菜品类型
+        /// </summary>
+        /// <returns></returns>
+        public List<FoodType> StoreFoodType(int sid)
+        {
+            using (OracleConnection conn = DapperHelper.GetConnString())
+            {
+                string sql = "select s.id,ft.typename from food f join foodtype ft on f.foodtypeid=ft.id join store s on f.storenumber=s.storenumber group by  s.id,ft.typename having s.id =:sid";
+                var foodTypeList = conn.Query<FoodType>(sql, new { sid=sid});
+                return foodTypeList.ToList<FoodType>();
+            }
+        }
+
+        /// <summary>
         /// 显示菜品类别
         /// </summary>
         /// <returns></returns>

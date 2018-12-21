@@ -63,6 +63,21 @@ namespace SunFlower.Services
             }
         }
 
+
+        /// <summary>
+        /// 根据菜品类别查看单个店铺菜品
+        /// </summary>
+        /// <returns></returns>
+        public List<Food> StoreGetFoods(int id,string typeName)
+        {
+            using (OracleConnection conn = DapperHelper.GetConnString())
+            {
+                string sql = @"select f.id,s.id as sid, s.storenumber, f.foodname,f.filename,f.foodsprice,f.sale,fp.typename from food f join  foodtype fp on  f.foodtypeid=fp.id join Store s on(f.storenumber=s.storenumber) where s.id=:id and fp.typename=:typename order by f.ID desc ";
+                var foodList = conn.Query<Food>(sql, new { id = id,typename=typeName });
+                return foodList.ToList<Food>();
+            }
+        }
+
         /// <summary>
         /// 查看单个菜品
         /// </summary>

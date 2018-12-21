@@ -21,5 +21,10 @@ namespace SunFlower.MODEL
         /// 类别名称
         /// </summary>
         public string TypeName { get; set; }
+
+        /// <summary>
+        /// 店铺id
+        /// </summary>
+        public int sid { get; set; }
     }
 }

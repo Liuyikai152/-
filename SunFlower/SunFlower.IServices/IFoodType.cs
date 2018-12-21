@@ -17,5 +17,13 @@ namespace SunFlower.IServices
         List<FoodType> GetFoodTypes();
 
         List<FoodType> GetFoodType();
+
+
+        /// <summary>
+        /// 根据店铺编号查询菜品类型
+        /// </summary>
+        /// <returns></returns>
+        List<FoodType> StoreFoodType(int sid);
+      
     }
 }

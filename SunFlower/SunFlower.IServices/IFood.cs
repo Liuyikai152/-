@@ -41,6 +41,13 @@ namespace SunFlower.IServices
         List<Food> GetFoods(int id);
 
         /// <summary>
+        /// 根据菜品类别查看单个店铺菜品
+        /// </summary>
+        /// <returns></returns>
+         List<Food> StoreGetFoods(int id, string typename);
+       
+
+        /// <summary>
         /// 查看单个菜品
         /// </summary>
         /// <returns></returns>

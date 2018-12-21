@@ -43,6 +43,18 @@ namespace SunFlower.Api.Controllers
         }
 
         /// <summary>
+        /// 根据菜品类别查看单个店铺菜品
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("StoreGetFoods")]
+        public List<Food> StoreGetFoods(int id, string typename)
+        {
+            var foodList = Food.StoreGetFoods(id,typename);
+            return foodList;
+        }
+
+        /// <summary>
         /// 添加菜品
         /// </summary>
         /// <param name="food"></param>
