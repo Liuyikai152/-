@@ -173,7 +173,7 @@ namespace SunFlower.Services
                             UserRole userRole = new UserRole();
                             userRole.User_Id = users.ID;
                             userRole.Role_Id = Convert.ToInt32(roles[i]);
-                            string sql3 = @"insert into user_role(user_role,role_id) values (:user_role,:role_id) ";
+                            string sql3 = @"insert into user_role(user_id,role_id) values (:user_id,:role_id) ";
                             result = conn.Execute(sql3, userRole);
                         }
                     }
