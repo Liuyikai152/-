@@ -70,7 +70,7 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 conn.Open();
-                string sql = @"select * from  T_Permission";
+                string sql = @"select * from  T_Permission ";
                 var t_PermissionList = conn.Query<Permission>(sql, null);
                 return t_PermissionList.ToList<Permission>();
             }
