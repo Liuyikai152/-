@@ -93,7 +93,7 @@ namespace SunFlower.Services
         /// </summary>
         /// <param name="store"></param>
         /// <returns></returns>
-        public int UptdateStoreState(int ID ,int state)
+        public int UptdateBoStoreState(int ID ,int state)
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
@@ -102,20 +102,35 @@ namespace SunFlower.Services
                 return result;
             }
         }
+        /// <summary>
+        /// 修改店铺信息
+        /// </summary>
+        /// <param name="store"></param>
+        /// <returns></returns>
+        public int UptdateToStoreState(int ID, int state)
+        {
+            using (OracleConnection conn = DapperHelper.GetConnString())
+            {
+                string sql = @"update store set  Auditing=:Auditing where id=:ID";
+                var result = conn.Execute(sql, new { ID = ID, Auditing = state });
+                return result;
+            }
+        }
 
         /// <summary>
         /// 查看所有商铺
         /// </summary>
         /// <returns></returns>
-       
-        public List<Store> ShowStores()
+        public List<Store> ShowStores(int Auditing)
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = @"select * from Store ";
-                var soreList = conn.Query<MODEL.Store>(sql, null);
+                string sql = @"select * from Store where Auditing =:Auditing ";
+                var soreList = conn.Query<MODEL.Store>(sql, new { Auditing=Auditing });
                 return soreList.ToList<MODEL.Store>();
             }
         }
+
+       
     }
 }

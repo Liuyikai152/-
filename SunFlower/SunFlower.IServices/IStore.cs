@@ -31,7 +31,7 @@ namespace SunFlower.IServices
         /// 显示商家
         /// </summary>
         /// <returns></returns>
-        List<Store> ShowStores();
+        List<Store> ShowStores(int Auditing);
 
         /// <summary>
         /// 销量显示
@@ -59,7 +59,15 @@ namespace SunFlower.IServices
         /// </summary>
         /// <param name="store"></param>
         /// <returns></returns>
-        int UptdateStoreState(int ID, int state);
-       
+        int UptdateBoStoreState(int ID, int state);
+
+        /// <summary>
+        /// 修改店铺信息
+        /// </summary>
+        /// <param name="store"></param>
+        /// <returns></returns>
+        int UptdateToStoreState(int ID, int state);
+
+
     }
 }

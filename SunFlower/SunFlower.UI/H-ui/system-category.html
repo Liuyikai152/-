@@ -162,28 +162,40 @@
 <!--<div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>-->
 <!--/_menu 作为公共模版分离出去-->
 <section class="Hui-article-box">
-	
-		<div class="pd-20 text-c">
-		
-			<div class="mt-20">
-				<table class="table table-border table-bordered table-hover table-bg table-sort" id="tabPane">
-				`
-                        <tr class="text-c">
-                           
-                            <th width="60">商家ID</th>
-                            <th width="60">商家编号</th>
-                            <th width="60">店铺名称</th>
-                            <th width="60">店铺具体位置</th>
-                            <th width="60">商家电话</th>
-                            <th width="60">商家描述</th>
-							<th width="60">申请时间</th>
-                            <th width="60">店铺类型</th>
-                            <th width="60">申请状态</th>
-                        </tr>
-					
-				</table>
-			</div>
-		</div>
+   
+    
+   
+    <div class="pd-20 text-c">
+        <div class="mt-20">
+            <div style="padding-left:100px;">
+                <span class="select-box" style="width:150px">
+                    <select class="select" id="Auditing" name="brandclass" size="1">
+                        <option value="6" selected>已通过</option>
+                        <option value="5">待审核</option>
+                    </select>
+
+                </span>
+                <a href="javascript:;" onclick="shodata()" class="btn btn-primary radius">
+                    搜索
+                </a>
+            </div>
+            <table class="table table-border table-bordered table-hover table-bg table-sort" id="tabPane">
+                <tr class="text-c">
+                    <th width="60">商家ID</th>
+                    <th width="60">商家编号</th>
+                    <th width="60">店铺名称</th>
+                    <th width="60">店铺具体位置</th>
+                    <th width="60">商家电话</th>
+                    <th width="60">商家描述</th>
+                    <th width="60">申请时间</th>
+                    <th width="60">店铺类型</th>
+                    <th width="60">申请状态</th>
+                    <th width="60">操作</th>
+                </tr>
+
+            </table>
+        </div>
+    </div>
 
 </section>
 
@@ -200,45 +212,74 @@
 <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
     $(function () {
+        shodata();
+    })
+    function StateUptBo(ID, State) {
+        if (confirm("是否要继续进行审核？")) {
+           
+                $.ajax({
+                    url: "http://localhost:24380/Store/UptdateBoStoreState",
+                    data: {
+                        ID: ID,
+                        State: State,
+                    },
+                    type: "get",
+                    success: function (data) {
+                        if (data > 0) {
+                            alert("成功");
+                            shodata();
+                        }
+                        else {
+                            alert("失败");
+                        }
+                    }
+                })
+            
+         
+        }
+    }
+    //通过商品状态
+    function StateUptTo(ID, State) {
+        if (confirm("是否要继续进行审核？")) {
+      
+                $.ajax({
+                    url: "http://localhost:24380/Store/UptdateToStoreState",
+                    data: {
+                        ID: ID,
+                        State: State,
+                    },
+                    type: "get",
+                    success: function (data) {
+                        if (data > 0) {
+
+                            alert("成功");
+                            Show();
+                        }
+                        else {
+                            alert("失败");
+                        }
+                    }
+                })
+            
+           
+        }
+
+    }
+    function shodata() {
         $.ajax({
             url: "http://localhost:24380/Store/ShowStores",
             data: {
-
+                Auditing: $("#Auditing").val(),
             },
             type: "get",
             success: function (data) {
+                $("table tr :gt(0)").remove();
                 $(data).each(function (index, data) {
-                    $("#tabPane").append("<tr class='text-c'><td>" + data.ID + "</td><td>" + data.StoreNumber + "</td><td>" + data.StoreName + "</td><td>" + data.Address + "</td><td>" + data.StorePhone + "</td><td>" + data.Conntent + "</td><td>" + data.CreateTime + "</td><td>" + data.StoreType + "</td><td>" + (data.Auditing == 5 ? "待审核" : "通过") + "</td></tr>");
-
-
+                    $("#tabPane").append("<tr class='text-c'><td>" + data.ID + "</td><td>" + data.StoreNumber + "</td><td>" + data.StoreName + "</td><td>" + data.Address + "</td><td>" + data.StorePhone + "</td><td>" + data.Conntent + "</td><td>" + data.CreateTime + "</td><td>" + data.StoreType + "</td><td>" + (data.Auditing == 5 ? "待审核" : "通过") + "</td><td><a href='#' onclick='StateUptTo(" + data.ID + "," + (data.Auditing == 5 ? 6 : data.Auditing) + ")' >通过</a><a href='#' onclick='StateUptTo(" + data.ID + "," + (data.Auditing == 5 ? 7 : data.Auditing) + ")'>驳回</a></td></tr > ");
                 })
             }
         })
-    })
-   
-$('.table-sort').dataTable({
-	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
-	"bStateSave": true,//状态保存
-	"aoColumnDefs": [
-	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-	  {"orderable":false,"aTargets":[0,4]}// 制定列不参与排序
-	]
-});
-/*系统-栏目-添加*/
-function system_category_add(title,url,w,h){
-	layer_show(title,url,w,h);
-}
-/*系统-栏目-编辑*/
-function system_category_edit(title,url,id,w,h){
-	layer_show(title,url,w,h);
-}
-/*系统-栏目-删除*/
-function system_category_del(obj,id){
-	layer.confirm('确认要删除吗？',function(index){
-		$(obj).parents("tr").remove();
-		layer.msg('已删除!',{icon:1,time:1000});
-	});
-}
+    }
 </script>
 <!--/请在上方写此页面业务相关的脚本-->
 </body>

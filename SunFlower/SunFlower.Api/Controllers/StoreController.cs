@@ -99,15 +99,28 @@ namespace SunFlower.Api.Controllers
         }
 
         /// <summary>
-        /// 修改店铺信息
+        /// 修改店铺通过状态
         /// </summary>
         /// <param name="store"></param>
         /// <returns></returns>
-        [HttpPut]
-        [Route("UptdateStoreState")]
-        public int UptdateStoreState(int ID, int state)
+        [HttpGet]
+        [Route("UptdateBoStoreState")]
+        public int UptdateBoStoreState(int ID, int state)
         {
-            var result = Store.UptdateStoreState(ID,state);
+            var result = Store.UptdateBoStoreState(ID,state);
+            return result;
+        }
+
+        /// <summary>
+        /// 修改店铺驳回状态
+        /// </summary>
+        /// <param name="store"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("UptdateToStoreState")]
+        public int UptdateToStoreState(int ID, int state)
+        {
+            var result = Store.UptdateToStoreState(ID, state);
             return result;
         }
 
@@ -117,9 +130,9 @@ namespace SunFlower.Api.Controllers
         /// <returns></returns>
         [Route("ShowStores")]
         [HttpGet]
-        public List<Store> ShowStores()
+        public List<Store> ShowStores(int Auditing)
         {
-            var result = Store.ShowStores();
+            var result = Store.ShowStores(Auditing);
             return result;
         }
     }
