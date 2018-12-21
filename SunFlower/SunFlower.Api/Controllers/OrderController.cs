@@ -30,6 +30,22 @@ namespace SunFlower.Api.Controllers
             var result = Orders.AddOrders(orders);
             return result;
         }
+
+
+        /// <summary>
+        /// 修改订单状态
+        /// </summary>
+        /// <param name="orders"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("UpdateOrders")]
+        public int UpdateOrders(string orderNumber, string orderState)
+        {
+            var result = Orders.UpdateOrders(orderNumber, orderState);
+            return result;
+        }
+
+
         [HttpGet]
         [Route("GetOrders")]
         public List<Orders> GetOrders()
@@ -48,6 +64,7 @@ namespace SunFlower.Api.Controllers
             var OrdersList = Orders.GetOrder(id);
             return OrdersList;
         }
+
 
         /// <summary>
         /// 删除订单

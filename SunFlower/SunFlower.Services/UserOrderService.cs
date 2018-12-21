@@ -70,13 +70,13 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 conn.Open();
-                string sql = @"select sum(num) as  Num,Sum(OrderMoney) as OrderMoney,OrderNumber,CreateTime,addersid from userorder  group by orderNumber,createtime,addersid having orderNumber=:OrderNumber";
+                string sql = @"select sum(num) as  Num,Sum(OrderMoney) as OrderMoney,OrderNumber,CreateTime,addersid,orderstate from userorder  group by orderNumber,createtime,addersid,orderstate having orderNumber=:OrderNumber";
                 var userOrdersList = conn.Query<UserOrder>(sql, new { OrderNumber = OrderNumber }).FirstOrDefault();
 
                 if (userOrdersList != null)
                 {
-                    string sql2 = "insert into orders (money,createtime,ordernumber,num,addressid) values(:money,:createtime,:ordernumber,:num,:addressid)";
-                    var result = conn.Execute(sql2, new { money = userOrdersList.OrderMoney, createtime = userOrdersList.CreateTime, ordernumber = userOrdersList.OrderNumber, num = userOrdersList.Num, addressid = userOrdersList.AddersID });
+                    string sql2 = "insert into orders (money,createtime,ordernumber,num,addressid,orderstate) values(:money,:createtime,:ordernumber,:num,:addressid,:orderstate)";
+                    var result = conn.Execute(sql2, new { money = userOrdersList.OrderMoney, createtime = userOrdersList.CreateTime, ordernumber = userOrdersList.OrderNumber, num = userOrdersList.Num, addressid = userOrdersList.AddersID,orderstate=userOrdersList.OrderState });
                     return result;
                 }
                

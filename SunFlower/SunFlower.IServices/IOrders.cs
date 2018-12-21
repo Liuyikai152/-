@@ -21,6 +21,15 @@ namespace SunFlower.IServices
         /// <returns></returns>
         int AddOrders(Orders orders);
 
+
+        /// <summary>
+        /// 修改订单状态
+        /// </summary>
+        /// <param name="orders"></param>
+        /// <returns></returns>
+        int UpdateOrders(string orderNumber, string orderState);
+    
+
         /// <summary>
         /// 查看订单详情
         /// </summary>

@@ -35,14 +35,32 @@ namespace SunFlower.Services
         }
 
         /// <summary>
-        /// 显示订单
+        /// 修改订单状态
         /// </summary>
+        /// <param name="orders"></param>
         /// <returns></returns>
-         public List<Orders> GetOrders()
+        public int UpdateOrders(string orderNumber,string orderState)
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = @"select o.id,o.ordernumber,o.money,o.num,a.address,a.username,o.createtime from Orders o join user_adders a on o.addressid=a.id order by ID desc";
+                string sql = @"update Orders set orderstate=:orderstate where OrderNumber=:OrderNumber";
+                int result = conn.Execute(sql, new {  OrderNumber=orderNumber,orderstate =orderState });
+                string sql2 = @"update UserOrder set orderstate=:orderstate where OrderNumber=:OrderNumber";
+                int result2 = conn.Execute(sql2, new { OrderNumber = orderNumber, orderstate = orderState });
+
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// 显示订单
+        /// </summary>
+        /// <returns></returns>
+        public List<Orders> GetOrders()
+        {
+            using (OracleConnection conn = DapperHelper.GetConnString())
+            {
+                string sql = @"select o.id,o.ordernumber,o.money,o.num,a.address,a.username,o.createtime,o.orderstate from Orders o join user_adders a on o.addressid=a.id order by ID desc";
                 var ordersList = conn.Query<Orders>(sql, null);
                 return ordersList.ToList<Orders>();
             }
@@ -59,7 +77,7 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = @"select o.id as oid,f.id as fid,s.id as sid,f.filename,f.foodname,u.num,f.foodsprice,f.storenumber,s.storename from Orders o right join userorder u on o.ordernumber=u.ordernumber join food f on u.foodnumber=f.foodnumber join store s on f.storenumber=s.storenumber  where o.id=:id ";
+                string sql = @"   select o.id as oid,f.id as fid,u.ordernumber,s.id as sid,f.filename,f.foodname,u.num,f.foodsprice,f.storenumber,s.storename from Orders o right join userorder u on o.ordernumber=u.ordernumber join food f on u.foodnumber=f.foodnumber join store s on f.storenumber=s.storenumber  where o.id=:id ";
                 var ordersList = conn.Query<Orders>(sql, new { id = id });
                 return ordersList.ToList<Orders>();
             }
