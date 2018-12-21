@@ -98,7 +98,12 @@
         <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span class="c-gray en">&gt;</span> 角色管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
         <div class="Hui-article">
             <article class="cl pd-20">
-                <div class="cl pd-5 bg-1 bk-gray"> <span class="l"> <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" href="javascript:;" onclick="admin_role_add('添加角色','admin-role-add.html','800')"><i class="Hui-iconfont">&#xe600;</i> 添加角色</a> </span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
+                <div class="cl pd-5 bg-1 bk-gray"> 
+                    <span class="l"> 
+                    
+                        <a class="btn btn-primary radius" href="javascript:;" onclick="admin_role_add('添加角色','admin-role-add.html','800')"><i class="Hui-iconfont">&#xe600;</i> 添加角色</a>
+                    </span> 
+                 </div>
                 <div class="mt-10">
                     <table class="table table-border table-bordered table-hover table-bg" id="tab">
                         <thead>
@@ -178,7 +183,7 @@
                
                     $("#tab").empty();
                     $("#tab").append(
-                        '<tr>'
+                        '<tr class="text-c">'
                         + '<td>id</td>'
                         + '<td>角色名</td>'
                         + '<td>描述</td>'
@@ -190,14 +195,17 @@
                     for (var i = 0; i < data.length; i++) {
 
                         $("#tab").append(
-                            '<tr>'
+                            '<tr class="text-c">'
                             + '<td>' + data[i]["ID"] + '</td>'
                             + '<td>' + data[i]["Name"] + '</td>'
                             + '<td>' + data[i]["Description"] + '</td>'
                             + '<td>' + data[i]["Permission"] + '</td>'
-                            + '<td> <input type="button" value="修改" onclick="update(' + data[i]["ID"] + ')"/></td>'
-                            + '<td> <input type="button" value="删除" onclick="del(' + data[i]["ID"] + ')"/></td>'
+                            + '<td><a href="javascript:;"onclick="update(' + data[i]["ID"] + ')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe6df;</i>修改</a></td>'
+                            
+                                
+                            + '<td><a href="javascript:;" onclick="del(' + data[i]["ID"] + ')" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 删除</a></td>'
                             + '</tr>'
+                           
                         )
                     }
                 }
@@ -223,7 +231,7 @@
                         //ID: ID
                     },
                     success: function (data) {
-                        alert(data);
+                       
                         if (data > 0) {
                             alert("删除成功");
                             $(obj).parent().parent().remove();
@@ -244,7 +252,7 @@
                 type: 'get',
                 data: { id: localStorage.userid },
                 success: function (data) {
-                    console.log(data);
+                
                     $(data).each(function (index, data) {
                         $("#powerList").append("<li><a href=" + data.URL + "  data-title=\"" + data.Name + "\" href=\"javascript:void(0)\">" + data.Name + "</a></li>")
                     })

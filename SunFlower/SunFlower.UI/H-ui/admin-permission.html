@@ -104,7 +104,10 @@
                         <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜权限节点</button>
                     </form>
                 </div>
-                <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="admin_permission_add()" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加权限节点</a></span> <span class="r">共有数据：<strong></strong> 条</span> </div>
+                <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l">
+                    <a href="javascript:;" onclick="admin_permission_add()" class="btn btn-primary radius">
+                    <i class="Hui-iconfont">&#xe600;</i> 添加权限节点</a></span> 
+                </div>
                 <table class="table table-border table-bordered table-bg" id="tab">
                     <!--<thead>
                         <tr>
@@ -159,25 +162,26 @@
                     console.log(data);
                     $("#tab").empty();
                     $("#tab").append(
-                        '<tr>'
+                        '<tr class="text-c">'
                         + '<td>id</td>'
                         + '<td>权限名称</td>'
                         + '<td>权限描述</td>'
                         + '<td>权限URL</td>'
                         + '<td>是否启用</td>'
-
+                        + '<td>操作</td>'
                         + '</tr>'
                     )
                     for (var i = 0; i < data.length; i++) {
              
                         $("#tab").append(
-                            '<tr>'
+                            '<tr class="text-c">'
                             + '<td>' + data[i]["ID"] + '</td>'
                             + '<td>' + data[i]["Name"] + '</td>'
                             + '<td>' + data[i]["Discription"] + '</td>'
                             + '<td>' + data[i]["URL"] + '</td>'
                             + '<td>' + data[i]["IsUser"] + '</td>'
-                            + '<td>' + '<td> <input type="button" value="修改状态" onclick="update(' + data[i]["ID"] + ')"/></td>'
+                            + '<td><a href="javascript:;" onclick="update(' + data[i]["ID"] + ')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe6df;</i>修改</a></td>'
+                           
                             + '</tr>'
                         )
                     }
