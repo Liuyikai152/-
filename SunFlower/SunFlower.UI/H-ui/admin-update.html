@@ -89,7 +89,7 @@
             async: false,
             data: {},
             success: function (res) {
-                console.log(res);
+                
                 $(res).each(function (index, data) {
                     $(".check-box").append('<input type="checkbox" class="cks" id="' + data.ID + '" name="RoleName" value="' + data.ID + '"  />' + data.Name)
                 })
@@ -124,7 +124,7 @@
             ids += $(this).val() + ",";
         })
         ids = ids.substring(0, ids.lastIndexOf(','));
-        alert(ids);
+      
         $.ajax({
             url: "http://localhost:24380/TUsers/UpdateUsers?userName=" + $("input[name=UserName]").val() + '&passWord=' + $("input[name=PassWord]").val() + '&roleId=' + ids + '&id=' + id,
             type: "post",
