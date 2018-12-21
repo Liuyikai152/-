@@ -75,7 +75,6 @@
     <!--/_header 作为公共模版分离出去-->
     <!--_menu 作为公共模版分离出去-->
     <aside class="Hui-aside">
-
         <div class="menu_dropdown bk_2">
             <dl id="menu-article">
                 <dt><i class="Hui-iconfont">&#xe616;</i> 资讯管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
@@ -154,11 +153,9 @@
                 <dt class="selected"><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
                 <dd style="display:block">
                     <ul>
-                        <li><a href="system-base.html" title="系统设置">系统设置</a></li>
-                        <li class="current"><a href="system-category.html" title="栏目管理">栏目管理</a></li>
-                        <li><a href="system-data.html" title="数据字典">数据字典</a></li>
-                        <li><a href="system-shielding.html" title="屏蔽词">屏蔽词</a></li>
-                        <li><a href="system-log.html" title="系统日志">系统日志</a></li>
+                        <li><a href="food-list.html">所有菜品</a></li>
+                        <li><a href="system-category.html">所有店铺</a></li>
+                        <li><a href="product-add.html">添加菜品</a></li>
                     </ul>
                 </dd>
             </dl>
@@ -167,14 +164,17 @@
     <!--<div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>-->
     <!--/_menu 作为公共模版分离出去-->
     <section class="Hui-article-box">
-
+        
         <div class="pd-20 text-c">
-
+          
             <div class="mt-20">
+                <a href="javascript:;" style="margin-right:1300px;" onclick="product_add('添加用户', 'product-add.html', '', '510')" class="btn btn-primary radius">
+                    <i class="Hui-iconfont">&#xe600;</i> 添加菜品
+                </a>
                 <table class="table table-border table-bordered table-hover table-bg table-sort" id="tabPane">
                     `
                     <tr class="text-c">
-                        <th width="25"><input type="checkbox" name="" value=""></th>
+                        
                         <th width="60">菜品ID</th>
                         <th width="60">菜品编号</th>
                         <th width="60">店铺编号</th>
@@ -233,7 +233,7 @@
                     PageCount = data.PageCount;
                     $("#tabPane tr:gt(0)").remove();
                     $(data.Data).each(function (index, data) {
-                        $("#tabPane").append("<tr><td><input type='checkbox' class='cks'></td><td>" + data.ID + "</td><td>" + data.FoodNumber + "</td><td>" + data.StoreNumber + "</td><td>" + data.FoodName + "</td><td><img src='" + data.FileName + "'></td><td>" + data.FoodSummary + "</td><td>" + data.FoodSprice + "</td><td>" + data.CreateTime + "</td><td>" + data.TypeName + "</td></tr>");
+                        $("#tabPane").append("<tr class='text-c'><td>" + data.ID + "</td><td>" + data.FoodNumber + "</td><td>" + data.StoreNumber + "</td><td>" + data.FoodName + "</td><td><img src='" + data.FileName + "'></td><td>" + data.FoodSummary + "</td><td>" + data.FoodSprice + "</td><td>" + data.CreateTime + "</td><td>" + data.TypeName + "</td></tr>");
 
 
                     })
@@ -278,7 +278,7 @@
             ]
         });
         /*系统-栏目-添加*/
-        function system_category_add(title, url, w, h) {
+        function product_add(title, url, w, h) {
             layer_show(title, url, w, h);
         }
         /*系统-栏目-编辑*/
