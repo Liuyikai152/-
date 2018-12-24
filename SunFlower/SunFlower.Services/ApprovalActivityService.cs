@@ -21,38 +21,40 @@ namespace SunFlower.Services
         /// <returns></returns>
         public int AddApprovalActivity()
         {
-            using (OracleConnection conn = DapperHelper.GetConnString())
-            {
-                conn.Open();
-                ProcessConfiguration pc = new ProcessConfiguration();
+            return 1;
+            //            using (OracleConnection conn = DapperHelper.GetConnString())
+            //            {
+            //                conn.Open();
+            //                ProcessConfiguration pc = new ProcessConfiguration();
 
-                string sql = @"select  *  from ProcessConfiguration where JudgmentID=1 and NodeID=1";
+            //                string sql = @"select  *  from ProcessConfiguration where JudgmentID=1 and NodeID=1";
 
-                var configurationList = conn.Query<ProcessConfiguration>(sql, null).FirstOrDefault();
-                ApprovalActivity activity = new ApprovalActivity();
-                activity.ProcessID = configurationList.ProcessID;
-                activity.NodeID = configurationList.NodeID;
-                activity.ProcessCode = configurationList.ProcessCode;
-                activity.ApprovalRoleID = configurationList.ApprovalRoleID;
-                activity.NextApprovalRoleID = configurationList.NextApprovalRoleID;
-                activity.ApprovalUserID = configurationList.ApprovalUserID;
-                activity.TureCondtion = configurationList.ApprovalUserID;
-                activity.NextApprovalUserID = configurationList.NextApprovalUserID;
-                activity.JudgmentID = configurationList.JudgmentID;
-                activity.CondtionID = configurationList.CondtionID;
-                activity.TureCondtionID = configurationList.CondtionID;
-                activity.Creator = configurationList.Creator;
-                activity.CreateTime = configurationList.CreateTime;
+            //                var configurationList = conn.Query<ProcessConfiguration>(sql, null).FirstOrDefault();
+            //                ApprovalActivity activity = new ApprovalActivity();
+            //                activity.ProcessID = configurationList.ProcessID;
+            //                activity.NodeID = configurationList.NodeID;
+            //                activity.ProcessCode = configurationList.ProcessCode;
+            //                activity.ApprovalRoleID = configurationList.ApprovalRoleID;
+            //                activity.NextApprovalRoleID = configurationList.NextApprovalRoleID;
+            //                activity.ApprovalUserID = configurationList.ApprovalUserID;
+            //                activity.TureCondtion = configurationList.ApprovalUserID;
+            //                activity.NextApprovalUserID = configurationList.NextApprovalUserID;
+            //                activity.JudgmentID = configurationList.JudgmentID;
+            //                activity.CondtionID = configurationList.CondtionID;
+            //                activity.TureCondtionID = configurationList.CondtionID;
+            //                activity.Creator = configurationList.Creator;
+            //                activity.CreateTime = configurationList.CreateTime;
 
-                string sql1 = @"insert into ApprovalActivity
-(processid,turecondtion, nodeid,processcode,approvalroleid,nextapprovalroleid,approvaluserid,nextapprovaluserid,judgmentid,condtionid,creator,createtime)
-values
-(:processid,turecondtion,:nodeid,:processcode,:approvalroleid,:nextapprovalroleid,:approvaluserid,:nextapprovaluserid,:judgmentid,:condtionid,:creator,:createtime)";
+            //                string sql1 = @"insert into ApprovalActivity
+            //(processid,turecondtion, nodeid,processcode,approvalroleid,nextapprovalroleid,approvaluserid,nextapprovaluserid,judgmentid,condtionid,creator,createtime,turecondtionid)
+            //values
+            //(:processid,turecondtion,:nodeid,:processcode,:approvalroleid,:nextapprovalroleid,:approvaluserid,:nextapprovaluserid,:judgmentid,:condtionid,:creator,:createtime,:turecondtionid)";
 
-                int result = conn.Execute(sql1, activity);
-                return result;
-            }
+            //                int result = conn.Execute(sql1, activity);
+            //                return result;
+            //            }
         }
+
         /// <summary>
         /// 显示待审批数据
         /// </summary>

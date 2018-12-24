@@ -74,7 +74,6 @@
 
 <!--_menu 作为公共模版分离出去-->
 <aside class="Hui-aside">
-	
 	<div class="menu_dropdown bk_2">
 		<dl id="menu-article">
 			<dt><i class="Hui-iconfont">&#xe616;</i> 资讯管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
@@ -96,6 +95,9 @@
             <dt><i class="Hui-iconfont">&#xe620;</i>审批<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
+                    <li><a href="food-list.html">所有菜品</a></li>
+                    <li><a href="system-category.html">所有店铺</a></li>
+                    <li><a href="product-add.html">添加菜品</a></li>
                     <li><a href="ApprovalProcessList.html">审批流程</a></li>
                     <li><a href="ConfigurationList.html">审批配置</a></li>
                     <li><a href="ApprovalActivity-list.html">审批活动</a></li>
@@ -212,7 +214,7 @@
 <script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
-$(function(){
+    $(function () {
     $.ajax({
         url: "http://localhost:24380/ProcessConfiguration/GetProcessConfiguration",
         type: "get",
