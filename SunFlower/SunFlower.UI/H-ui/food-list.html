@@ -30,32 +30,32 @@
     <header class="navbar-wrapper">
         <div class="navbar navbar-fixed-top">
             <div class="container-fluid cl">
-                <a class="logo navbar-logo f-l mr-10 hidden-xs" href="/aboutHui.shtml">H-ui.admin</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/aboutHui.shtml">H-ui</a> <span class="logo navbar-slogan f-l mr-10 hidden-xs">v3.0</span> <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
+                <a class="logo navbar-logo f-l mr-10 hidden-xs" href="/aboutHui.shtml">向阳花订餐系统</a> <!--<a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/aboutHui.shtml">H-ui</a> <span class="logo navbar-slogan f-l mr-10 hidden-xs">v3.0</span>--> <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
                 <nav class="nav navbar-nav">
                     <ul class="cl">
                         <li class="dropDown dropDown_hover">
-                            <a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>
+                            <a href="javascript:;" class="dropDown_A"><!--<i class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i>--></a>
                             <ul class="dropDown-menu menu radius box-shadow">
-                                <li><a href="javascript:;" onclick="article_add('添加资讯','article-add.html')"><i class="Hui-iconfont">&#xe616;</i> 资讯</a></li>
+                                <!--<li><a href="javascript:;" onclick="article_add('添加资讯','article-add.html')"><i class="Hui-iconfont">&#xe616;</i> 资讯</a></li>
                                 <li><a href="javascript:;" onclick="picture_add('添加资讯','picture-add.html')"><i class="Hui-iconfont">&#xe613;</i> 图片</a></li>
                                 <li><a href="javascript:;" onclick="product_add('添加资讯','product-add.html')"><i class="Hui-iconfont">&#xe620;</i> 产品</a></li>
-                                <li><a href="javascript:;" onclick="member_add('添加用户','member-add.html','','510')"><i class="Hui-iconfont">&#xe60d;</i> 用户</a></li>
+                                <li><a href="javascript:;" onclick="member_add('添加用户','member-add.html','','510')"><i class="Hui-iconfont">&#xe60d;</i> 用户</a></li>-->
                             </ul>
                         </li>
                     </ul>
                 </nav>
                 <nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
                     <ul class="cl">
-                        <li>超级管理员</li>
+                        
                         <li class="dropDown dropDown_hover">
-                            <a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
+                            <i class="Hui-iconfont">&#xe6d5;</i>
                             <ul class="dropDown-menu menu radius box-shadow">
-                                <li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
+                               
                                 <li><a href="#">切换账户</a></li>
                                 <li><a href="#">退出</a></li>
                             </ul>
                         </li>
-                        <li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
+                        <li id="Hui-msg">  </li>
                         <li id="Hui-skin" class="dropDown right dropDown_hover">
                             <a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
                             <ul class="dropDown-menu menu radius box-shadow">
@@ -177,31 +177,31 @@
         <div class="pd-20 text-c">
           
             <div class="mt-20">
-                <a href="javascript:;" style="margin-right:1300px;" onclick="product_add('添加用户', 'product-add.html', '', '510')" class="btn btn-primary radius">
+                <a href="javascript:;" style="margin-right:1300px;" onclick="product_add('添加菜品', 'Food-add.html', '', '510')" class="btn btn-primary radius">
                     <i class="Hui-iconfont">&#xe600;</i> 添加菜品
                 </a>
                 <table class="table table-border table-bordered table-hover table-bg table-sort" id="tabPane">
                     `
                     <tr class="text-c">
-                        
-                        <th width="60">菜品ID</th>
+
+                        <th width="40">菜品ID</th>
                         <th width="60">菜品编号</th>
                         <th width="60">店铺编号</th>
                         <th width="60">菜品名</th>
                         <th width="60">菜品图片</th>
                         <th width="60">菜品描述</th>
-                        <th width="60">菜品价格</th>
+                        <th width="40">菜品价格</th>
                         <th width="60">加入时间</th>
                         <th width="60">所属菜系</th>
-
+                        <th width="60">操作</th>
                     </tr>
 
                 </table>
 
                 <div>
                     <a href="#" onclick="Frist()">首页</a>
-                    <a href="#" onclick="Prve()">上一页</a>
-                    <label id="PageCount" style="margin:0px 10px;"></label>
+                    <a href="#" onclick="Prve()">上一页</a>&nbsp;
+                    <label id="PageCount" style="margin:0px 10px;"></label>&nbsp;
                     <a href="#" onclick="Next()">下一页</a>
                     <a href="#" onclick="List()">尾页</a>
 
@@ -236,19 +236,21 @@
                 data: {
                     Page: PageIndex,
                 },
+                dataType:"json",
                 type: "get",
                 success: function (data) {
                     PageIndex = data.PageIndex;
                     PageCount = data.PageCount;
                     $("#tabPane tr:gt(0)").remove();
                     $(data.Data).each(function (index, data) {
-                        $("#tabPane").append("<tr class='text-c'><td>" + data.ID + "</td><td>" + data.FoodNumber + "</td><td>" + data.StoreNumber + "</td><td>" + data.FoodName + "</td><td><img src='" + data.FileName + "'></td><td>" + data.FoodSummary + "</td><td>" + data.FoodSprice + "</td><td>" + data.CreateTime + "</td><td>" + data.TypeName + "</td></tr>");
+                        $("#tabPane").append("<tr class='text-c'><td>" + data.ID + "</td><td>" + data.FoodNumber + "</td><td>" + data.StoreNumber + "</td><td>" + data.FoodName + "</td><td><img src='" + data.FileName + "'></td><td>" + data.FoodSummary + "</td><td>" + data.FoodSprice + "</td><td>" + data.CreateTime + "</td><td>" + data.TypeName + "</td><td> <a href='javascript:;' onclick='Delete(" + data.ID + ")'>删除</a> &nbsp;|&nbsp; <a href='javascript:;' onclick=\"system_category_edit('编辑菜品', 'Food-Update.html?id='+"+data.ID+", '', '510')\" >编辑</a></td></tr>");
 
 
                     })
                 }
             })
         }
+        
         //首页
         function Frist() {
             PageIndex = 1;
@@ -278,20 +280,45 @@
             PageIndex++;
             Show();
         }
-        $('.table-sort').dataTable({
-            "aaSorting": [[1, "desc"]],//默认第几个排序
-            "bStateSave": true,//状态保存
-            "aoColumnDefs": [
-                //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-                { "orderable": false, "aTargets": [0, 4] }// 制定列不参与排序
-            ]
-        });
+
+
+        //删除
+        function Delete(id) {
+            if (confirm("真的要删除该菜品吗？"))
+                $.ajax({
+                    url: "http://localhost:24380/Food/DeleteFood",
+                    data: {
+                        ID: id
+                    },
+                    type: "get",
+                    success: function (data) {
+                        if (data > 0) {
+                            alert("删除成功！");
+                            Show();
+                        }
+                        else {
+                            alert("删除失败！")
+                        }
+                    }
+                })
+
+        }
+
+        //$('.table-sort').dataTable({
+        //    "aaSorting": [[1, "desc"]],//默认第几个排序
+        //    "bStateSave": true,//状态保存
+        //    "aoColumnDefs": [
+        //        //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+        //        { "orderable": false, "aTargets": [0, 4] }// 制定列不参与排序
+        //    ]
+        //});
         /*系统-栏目-添加*/
         function product_add(title, url, w, h) {
             layer_show(title, url, w, h);
         }
         /*系统-栏目-编辑*/
-        function system_category_edit(title, url, id, w, h) {
+        function system_category_edit(title, url,w, h) {
+            
             layer_show(title, url, w, h);
         }
         /*系统-栏目-删除*/

@@ -10,11 +10,17 @@ using SunFlower.MODEL;
 using SunFlower.Services;
 using Unity.Attributes;
 using SunFlower.IServices;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
 namespace SunFlower.Api.Controllers
 {
     [RoutePrefix("Food")]
     public class FoodController : ApiController
     {
+
+       
+
         [Dependency]
         public IFood Food { get; set; }
         /// <summary>
@@ -75,7 +81,7 @@ namespace SunFlower.Api.Controllers
         /// </summary>
         /// <param name="ID"></param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpGet]
         [Route("DeleteFood")]
         public int DeleteFood(int ID)
         {
@@ -88,14 +94,16 @@ namespace SunFlower.Api.Controllers
         /// </summary>
         /// <param name="food"></param>
         /// <returns></returns>
-        [HttpPut]
+        [HttpPost]
         [Route("UpdateFood")]
         public int UpdateFood(Food food)
         {
+            food.CreateTime = DateTime.Now;
             int result = Food.UpdateFood(food);
             return result;
         }
         private const int PAGESIZE = 4;
+
         [HttpGet]
         [Route("GetFood")]
         public PageBox GetFood( int Page = 1)
@@ -106,6 +114,7 @@ namespace SunFlower.Api.Controllers
             pagebox.PageIndex = Page;          
             pagebox.PageCount = foodlist.Count / PAGESIZE + (foodlist.Count % PAGESIZE == 0 ? 0 : 1);
             pagebox.Data = foodlist.Skip((Page - 1) * PAGESIZE).Take(PAGESIZE);
+
             return pagebox;
         }
     }

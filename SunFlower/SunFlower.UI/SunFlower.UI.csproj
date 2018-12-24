@@ -961,7 +961,8 @@
     <Content Include="H-ui\picture-add.html" />
     <Content Include="H-ui\picture-list.html" />
     <Content Include="H-ui\picture-show.html" />
-    <Content Include="H-ui\product-add.html" />
+    <Content Include="H-ui\Food-Update.html" />
+    <Content Include="H-ui\Food-add.html" />
     <Content Include="H-ui\product-brand.html" />
     <Content Include="H-ui\product-category-add.html" />
     <Content Include="H-ui\product-category.html" />
