@@ -24,8 +24,8 @@ namespace SunFlower.Api.Controllers
         [Route("GetPermissions")]
         public List<Permission> GetPermissions()
         {
-            var t_PermissionList = t_Permission.GetPermissions();
-            return t_PermissionList;
+            var tPermissionList = t_Permission.GetPermissions();
+            return tPermissionList;
         }
 
         /// <summary>
@@ -77,6 +77,20 @@ namespace SunFlower.Api.Controllers
         {
             var result = t_Permission.GetByID(id);
             return result;
+        }
+
+
+        private const int PAGESIZE = 4;
+        [HttpGet]
+        [Route("GetPermission")]
+        public PageBox GetPermission(int Page = 1)
+        {
+            List<Permission> tPermissionList = t_Permission.GetPermissions();
+            PageBox pagebox = new PageBox();
+            pagebox.PageIndex = Page;
+            pagebox.PageCount = tPermissionList.Count / PAGESIZE + (tPermissionList.Count % PAGESIZE == 0 ? 0 : 1);
+            pagebox.Data = tPermissionList.Skip((Page - 1) * PAGESIZE).Take(PAGESIZE);
+            return pagebox;
         }
     }
 }

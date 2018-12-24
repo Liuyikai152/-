@@ -104,37 +104,22 @@
                         <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜权限节点</button>
                     </form>
                 </div>
-                <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l">
-                    <a href="javascript:;" onclick="admin_permission_add()" class="btn btn-primary radius">
-                    <i class="Hui-iconfont">&#xe600;</i> 添加权限节点</a></span> 
+                <div class="cl pd-5 bg-1 bk-gray mt-20">
+                    <span class="l">
+                        <a href="javascript:;" onclick="admin_permission_add()" class="btn btn-primary radius">
+                            <i class="Hui-iconfont">&#xe600;</i> 添加权限节点
+                        </a>
+                    </span>
                 </div>
-                <table class="table table-border table-bordered table-bg" id="tab">
-                    <!--<thead>
-                        <tr>
-                            <th scope="col" colspan="7">权限节点</th>
-                        </tr>
-                        <tr class="text-c">
-                            <th width="25"><input type="checkbox" name="" value=""></th>
-                            <th width="40">ID</th>
-                            <th width="200">权限名称</th>
-                            <th width="200">权限URL</th>
-                            <th width="200">是否启用</th>
-                            <th width="100">操作</th>
-                            <th width="100">权限操作</th>
-                            <th width="100">操作</th>
-                        </tr>
-                    </thead>-->
-                    <!--<tbody>
-                        <tr class="text-c">
-                            <td><input type="checkbox" value="1" name=""></td>
-                            <td>1</td>
-                            <td>栏目添加</td>
-                            <td></td>
-                            <td><a title="编辑" href="javascript:;" onclick="admin_permission_edit('角色编辑','admin-permission-add.html','1','','310')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_permission_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-                        </tr>
-                    </tbody>-->
-                </table>
+                <table class="table table-border table-bordered table-bg" id="tab"></table>
             </article>
+            <div>
+                <a href="#" onclick="Frist()">首页</a>
+                <a href="#" onclick="Prve()">上一页</a>
+                <label id="PageCount" style="margin:0px 10px;"></label>
+                <a href="#" onclick="Next()">下一页</a>
+                <a href="#" onclick="List()">尾页</a>
+            </div>
         </div>
     </section>
 
@@ -150,15 +135,24 @@
     <script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
     <script type="text/javascript">
+        //当前页
+        var PageIndex = 1;
+        //总页数
+        var PageCount = 0;
         $(function () {
             login()
         })
         function login() {
             $.ajax({
-                url: "http://localhost:24380/Permission/GetPermissions",
+                url: "http://localhost:24380/Permission/GetPermission",
                 type: "get",
                 dataType: "json",
+                data: {
+                    Page: PageIndex
+                },
                 success: function (data) {
+                    PageIndex = data.PageIndex;
+                    PageCount = data.PageCount;
                     console.log(data);
                     $("#tab").empty();
                     $("#tab").append(
@@ -171,16 +165,16 @@
                         + '<td>操作</td>'
                         + '</tr>'
                     )
-                    for (var i = 0; i < data.length; i++) {
-             
+                    for (var i=0; i <data.Data.length; i++) {
+                     
                         $("#tab").append(
                             '<tr class="text-c">'
-                            + '<td>' + data[i]["ID"] + '</td>'
-                            + '<td>' + data[i]["Name"] + '</td>'
-                            + '<td>' + data[i]["Discription"] + '</td>'
-                            + '<td>' + data[i]["URL"] + '</td>'
-                            + '<td>' + data[i]["IsUser"] + '</td>'
-                            + '<td><a href="javascript:;" onclick="update(' + data[i]["ID"] + ')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe6df;</i>修改</a></td>'
+                            + '<td>' + data.Data[i]["ID"] + '</td>'
+                            + '<td>' + data.Data[i]["Name"] + '</td>'
+                            + '<td>' + data.Data[i]["Discription"] + '</td>'
+                            + '<td>' + data.Data[i]["URL"] + '</td>'
+                            + '<td>' + data.Data[i]["IsUser"] + '</td>'
+                            + '<td><a href="javascript:;" onclick="update(' + data.Data[i]["ID"] + ')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe6df;</i>修改</a></td>'
                            
                             + '</tr>'
                         )
@@ -188,9 +182,40 @@
                    
                 }
             })
+
+
         }
 
+      
+        //首页
+        function Frist() {
+            PageIndex = 1;
+            login();
+        }
+        //尾页
+        function List() {
+            PageIndex = PageCount;
+            login();
+        }
+        //上一页
+        function Prve() {
+            if (PageIndex <= 1) {
+                alert("这是第一页");
+                return;
+            }
+            PageIndex--;
+            login();
+        }
 
+        //下一页
+        function Next() {
+            if (PageIndex >= PageCount) {
+                alert("这是最后一页");
+                return;
+            }
+            PageIndex++;
+            login();
+        }
 
         function admin_permission_add() {
 
