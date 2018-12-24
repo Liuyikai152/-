@@ -21,7 +21,6 @@ namespace SunFlower.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public List<User_Adders> GetUser_Adders()
         [Route("GetUserAdders")]
         public List<User_Adders> GetUserAdders()
         {
@@ -47,7 +46,6 @@ namespace SunFlower.Api.Controllers
         /// </summary>
         /// <param name="ID"></param>
         /// <returns></returns>
-        [HttpDelete]
         [HttpGet]
         [Route("DeleteUserAdder")]
         public int DeleteUserAdder(int ID)
@@ -61,7 +59,6 @@ namespace SunFlower.Api.Controllers
         /// </summary>
         /// <param name="food"></param>
         /// <returns></returns>
-        [HttpPut]
         [HttpPost]
         [Route("UptdateUserAdder")]
         public int UptdateUserAdder(User_Adders user_Adders)
