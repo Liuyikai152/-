@@ -95,29 +95,83 @@
     <div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
     <!--/_menu 作为公共模版分离出去-->
     <h1 style="padding-left:500px;padding-top:100px;font-size:50px;">欢迎登陆向阳花订餐管理平台</h1>
+    <h3 style="padding-left:500px;"><span id="mytime"></span></h3>
+
+    <div id="container" style="min-width:70px;height:500px;margin-top:100px;"></div>
 
     <!--_footer 作为公共模版分离出去-->
     <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
     <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
     <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>
+    <script type="text/javascript" src="lib/hcharts/Highcharts/5.0.6/js/highcharts.js"></script>
+    <script type="text/javascript" src="lib/hcharts/Highcharts/5.0.6/js/modules/exporting.js"></script>
     <!--/_footer /作为公共模版分离出去-->
     <!--请在下方写此页面业务相关的脚本-->
     <script type="text/javascript">
         $(function () {
+            setInterval("showTime()", 1000);
             $.ajax({
                 url: 'http://localhost:24380/Tusers/GetPermissiomUrl',
                 async: false,
                 type: 'get',
                 data: { id: localStorage.userid },
                 success: function (data) {
-                    console.log(data);
+                  
                     $(data).each(function (index, data) {
                         $("#powerList").append("<li><a href=" + data.URL + "  data-title=\"" + data.Name + "\" href=\"javascript:void(0)\">" + data.Name + "</a></li>")
                     })
                 }
             })
+
+
+            $('#container').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false
+                },
+                title: {
+                    text: 'Flower takeaway management platform'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            color: '#000000',
+                            connectorColor: '#000000',
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                        }
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'Browser share',
+                    data: [
+                        ['姚太齐', 45.0],
+                        ['康杨杨', 26.8],
+                        ['刘奕凯', 33.3]
+                    ]
+                }]
+            });
+
         })
+
+        function showTime() {
+            nowtime = new Date();
+            year = nowtime.getFullYear();
+            month = nowtime.getMonth() + 1;
+            date = nowtime.getDate();
+            document.getElementById("mytime").innerText = year + "年" + month + "月" + date + " " + nowtime.toLocaleTimeString();
+        }
+
+      
+
     </script>
     <!--/请在上方写此页面业务相关的脚本-->
 
