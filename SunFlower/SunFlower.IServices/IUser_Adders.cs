@@ -40,5 +40,14 @@ namespace SunFlower.IServices
         /// <returns></returns>
         int DeleteUserAdder(int ID);
 
+
+
+        /// <summary>
+        /// 根据用户查询地址
+        /// </summary>
+        /// <returns></returns>
+        List<User_Adders> GetUserAdder();
+       
+
     }
 }

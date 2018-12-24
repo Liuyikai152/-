@@ -72,5 +72,19 @@ namespace SunFlower.Services
                 return result;
             }
         }
+
+        /// <summary>
+        /// 根据用户查询地址
+        /// </summary>
+        /// <returns></returns>
+        public List<User_Adders> GetUserAdder()
+        {
+            using (OracleConnection conn = DapperHelper.GetConnString())
+            {
+                string sql = @"select * from user_adders  ";
+                var user_AddersList = conn.Query<User_Adders>(sql,null);
+                return user_AddersList.ToList<User_Adders>();
+            }
+        }
     }
 }
