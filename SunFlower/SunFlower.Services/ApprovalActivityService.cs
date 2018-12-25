@@ -62,7 +62,10 @@ namespace SunFlower.Services
             {
                 string sql1 = @"select * from ApprovalActivity where condtionid=0 and ApprovalUserID= :ApprovalUserID";
                 var approvalActivityList1 = conn.Query<ApprovalActivity>(sql1, new { ApprovalUserID= ApprovalUserID }).FirstOrDefault();
-
+                if(approvalActivityList1==null)
+                {
+                    return null;
+                }
                 if(approvalActivityList1.ApprovalUserID== ApprovalUserID && approvalActivityList1!=null)
                 {
                            string sql = @"
