@@ -106,10 +106,10 @@ namespace SunFlower.Api.Controllers
 
         [HttpGet]
         [Route("GetFood")]
-        public PageBox GetFood( int Page = 1)
+        public PageBox GetFood(int id, int Page = 1)
         {
             
-            List<Food> foodlist = Food.GetFood();
+            List<Food> foodlist = Food.GetFoods(id);
             PageBox pagebox = new PageBox();
             pagebox.PageIndex = Page;          
             pagebox.PageCount = foodlist.Count / PAGESIZE + (foodlist.Count % PAGESIZE == 0 ? 0 : 1);

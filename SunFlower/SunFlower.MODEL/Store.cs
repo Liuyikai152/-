@@ -85,5 +85,10 @@ namespace SunFlower.MODEL
         /// 商品类型
         /// </summary>
         public string StoreType { get; set; }
+
+        /// <summary>
+        /// 用户ID
+        /// </summary>
+        public int UserID { get; set; }
     }
 }
