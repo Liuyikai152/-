@@ -36,16 +36,16 @@
                 <a class="logo navbar-logo f-l mr-10 hidden-xs" href="/aboutHui.shtml">向阳花订餐系统</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/aboutHui.shtml"></a> <span class="logo navbar-slogan f-l mr-10 hidden-xs"></span> <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
                 <nav class="nav navbar-nav">
                     <!--<ul class="cl">
-                    <li class="dropDown dropDown_hover">
-                        <a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>
-                        <ul class="dropDown-menu menu radius box-shadow">
-                            <li><a href="javascript:;" onclick="article_add('添加资讯','article-add.html')"><i class="Hui-iconfont">&#xe616;</i> 资讯</a></li>
-                            <li><a href="javascript:;" onclick="picture_add('添加资讯','picture-add.html')"><i class="Hui-iconfont">&#xe613;</i> 图片</a></li>
-                            <li><a href="javascript:;" onclick="product_add('添加资讯','product-add.html')"><i class="Hui-iconfont">&#xe620;</i> 产品</a></li>
-                            <li><a href="javascript:;" onclick="member_add('添加用户','member-add.html','','510')"><i class="Hui-iconfont">&#xe60d;</i> 用户</a></li>
-                        </ul>
-                    </li>
-                </ul>-->
+                        <li class="dropDown dropDown_hover">
+                            <a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>
+                            <ul class="dropDown-menu menu radius box-shadow">
+                                <li><a href="javascript:;" onclick="article_add('添加资讯','article-add.html')"><i class="Hui-iconfont">&#xe616;</i> 资讯</a></li>
+                                <li><a href="javascript:;" onclick="picture_add('添加资讯','picture-add.html')"><i class="Hui-iconfont">&#xe613;</i> 图片</a></li>
+                                <li><a href="javascript:;" onclick="product_add('添加资讯','product-add.html')"><i class="Hui-iconfont">&#xe620;</i> 产品</a></li>
+                                <li><a href="javascript:;" onclick="member_add('添加用户','member-add.html','','510')"><i class="Hui-iconfont">&#xe60d;</i> 用户</a></li>
+                            </ul>
+                        </li>
+                    </ul>-->
                 </nav>
                 <nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
                     <ul class="cl">
@@ -96,15 +96,16 @@
     <h1 style="padding-left:500px;padding-top:100px;font-size:50px;">欢迎登陆向阳花订餐管理平台</h1>
     <h3 style="padding-left:500px;"><span id="mytime"></span></h3>
 
-    <div id="container" style="min-width:70px;height:500px;margin-top:100px;"></div>
+    <div id="firstPieChart" style="min-width:70px;height:500px;margin-top:100px;"></div>
 
     <!--_footer 作为公共模版分离出去-->
     <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
     <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
     <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>
-    <script type="text/javascript" src="lib/hcharts/Highcharts/5.0.6/js/highcharts.js"></script>
-    <script type="text/javascript" src="lib/hcharts/Highcharts/5.0.6/js/modules/exporting.js"></script>
+    <!--<script type="text/javascript" src="lib/hcharts/Highcharts/5.0.6/js/highcharts.js"></script>
+    <script type="text/javascript" src="lib/hcharts/Highcharts/5.0.6/js/modules/exporting.js"></script>-->
+    <script src="../Scirpt/echarts.min.js"></script>
     <!--/_footer /作为公共模版分离出去-->
     <!--请在下方写此页面业务相关的脚本-->
     <script type="text/javascript">
@@ -116,7 +117,7 @@
                 type: 'get',
                 data: { id: localStorage.userid },
                 success: function (data) {
-                  
+
                     $(data).each(function (index, data) {
                         $("#powerList").append("<li><a href=" + data.URL + "  data-title=\"" + data.Name + "\" href=\"javascript:void(0)\">" + data.Name + "</a></li>")
                     })
@@ -124,40 +125,92 @@
             })
 
 
-            $('#container').highcharts({
-                chart: {
-                    plotBackgroundColor: null,
-                    plotBorderWidth: null,
-                    plotShadow: false
-                },
-                title: {
-                    text: 'Flower takeaway management platform'
-                },
-                tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                },
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        cursor: 'pointer',
-                        dataLabels: {
-                            enabled: true,
-                            color: '#000000',
-                            connectorColor: '#000000',
-                            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+            var StoreName = [];
+            var DaySale = [];
+
+            $(function () {
+                loadOneColumn();
+            })
+            function loadOneColumn() {
+                var myChart = echarts.init(document.getElementById('firstPieChart'));
+                // 显示标题，图例和空的坐标轴
+                myChart.setOption({
+                    color: ['#ff7d27', '#47b73d', '#fcc36e', '#57a2fd', "#228b22"],//饼图颜色
+                    title: {
+                        text: '店铺日销量排行',
+                        subtext: '向阳花订餐',
+                        x: 'center'
+                    },
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        x: 'left',
+                        data: []
+                    },
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            mark: { show: true },
+                            dataView: { show: true, readOnly: false },
+                            magicType: {
+                                show: true,
+                                type: ['pie', 'funnel'],
+                                option: {
+                                    funnel: {
+                                        x: '25%',
+                                        width: '50%',
+                                        funnelAlign: 'left',
+                                        max: 1548
+                                    }
+                                }
+                            },
+                            restore: { show: true },
+                            saveAsImage: { show: true }
                         }
+                    },
+                    series: [{
+                        name: '日销量',
+                        type: 'pie',
+                        radius: '55%',
+                        center: ['50%', '60%'],
+                        data: []
+                    }]
+                });
+                myChart.showLoading();    //数据加载完之前先显示一段简单的loading动画
+
+                $.ajax({
+                    type: 'get',
+                    url: 'http://localhost:24380/store/ShowStores?Auditing=' + 6,//请求数据的地址
+                    // dataType: "json",        //返回数据形式为json
+                    success: function (result) {
+                        //请求成功时执行该函数内容，result即为服务器返回的json对象
+                        $(result).each(function (index, item) {
+                            StoreName.push(item.StoreName);    //挨个取出类别并填入类别数组 
+                            DaySale.push({
+                                name: item.StoreName,
+                                value: item.DaySale
+                            });
+                        });
+                        myChart.hideLoading();    //隐藏加载动画
+                        myChart.setOption({        //加载数据图表                
+                            legend: {
+                                data: StoreName
+                            },
+                            series: [{
+                                data: DaySale
+                            }]
+                        });
+                    },
+                    error: function (errorMsg) {
+                        //请求失败时执行该函数
+                        alert("图表请求数据失败!");
+                        myChart.hideLoading();
                     }
-                },
-                series: [{
-                    type: 'pie',
-                    name: 'Browser share',
-                    data: [
-                        ['姚太齐', 45.0],
-                        ['康杨杨', 26.8],
-                        ['刘奕凯', 33.3]
-                    ]
-                }]
-            });
+                });
+            }
 
         })
 
@@ -169,7 +222,7 @@
             document.getElementById("mytime").innerText = year + "年" + month + "月" + date + " " + nowtime.toLocaleTimeString();
         }
 
-      
+
 
     </script>
     <!--/请在上方写此页面业务相关的脚本-->
