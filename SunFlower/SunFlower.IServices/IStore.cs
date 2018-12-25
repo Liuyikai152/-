@@ -34,6 +34,14 @@ namespace SunFlower.IServices
         List<Store> ShowStores(int Auditing);
 
         /// <summary>
+        /// 查看所有店铺信息
+        /// </summary>
+        /// <returns></returns>
+        List<Store> GetStoreShow();
+       
+
+
+        /// <summary>
         /// 销量显示
         /// </summary>
         /// <returns></returns>

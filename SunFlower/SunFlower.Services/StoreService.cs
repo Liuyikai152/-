@@ -44,6 +44,20 @@ namespace SunFlower.Services
         }
 
         /// <summary>
+        /// 查看所有店铺信息
+        /// </summary>
+        /// <returns></returns>
+        public List<Store> GetStoreShow()
+        {
+            using (OracleConnection conn = DapperHelper.GetConnString())
+            {
+                string sql = @"select * from Store ";
+                var soreList = conn.Query<MODEL.Store>(sql, null);
+                return soreList.ToList<MODEL.Store>();
+            }
+        }
+
+        /// <summary>
         ///查询单个店铺 
         /// </summary>
         /// <param name="id"></param>

@@ -57,6 +57,6 @@ namespace SunFlower.IServices
         /// 查看所有菜品
         /// </summary>
         /// <returns></returns>
-        List<Food> GetFood();
+        List<Food> GetFood(int id);
     }
 }
