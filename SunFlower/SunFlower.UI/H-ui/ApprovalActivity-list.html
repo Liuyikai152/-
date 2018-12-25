@@ -187,10 +187,9 @@
                         <th width="50">是否允许修改</th>
                         <th width="50">是否允许撤销</th>
                         <th width="50">审批条件</th>
-                        <th width="50">审批状态</th>
                         <th width="50">创建人</th>
                         <th width="50">创建时间</th>
-                        <th width="50">实际审批状态</th>
+                        <th width="50">审批状态</th>
                         <th width="50">操作</th>
                     </tr>
 				</table>
@@ -212,17 +211,43 @@
 <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
     $(function () {
+        shodata();
+    })
+   
+    function shodata() {
         $.ajax({
             url: "http://localhost:24380/ApprovalActivity/GetApprovalActivity",
             type: "get",
             success: function (data) {
+                $("table tr :gt(0)").remove();
                 $(data).each(function (index, data) {
-                    $("table").append("<tr class='text-c'><td>" + data.ProcessCode + "</td><td>" + data.Name + "</td><td> " + data.NodeName + "</td ><td>" + data.ResponsibleRole1 + "</td><td>" + data.ResponsibleRole2 + "</td><td>" + data.UserName1 + "</td><td>" + data.UserName2 + "</td><td>" + (data.IsAllowModity == 0 ? "不允许" : "允许") + "</td><td>" + (data.IsAllowVersion == 1 ? "不允许" : "允许") + "</td><td>" + (data.Conditions == 1 ? "个体" : "连锁") + "</td><td>" + (data.Condtion == 1 ? "未审批" : "已审批") + "</td><td>" + data.Creator + "</td><td>" + data.CreateTime + "</td><td>" + (data.TureCondtion == 1 ? "未审批" : "已审批") + "</td><td><a href='#'>通过</a> | <a href='#'>驳回</a></td></tr>")
+                    $("table").append("<tr class='text-c'><td>" + data.ProcessCode + "</td><td>" + data.Name + "</td><td> " + data.NodeName + "</td ><td>" + data.ResponsibleRole1 + "</td><td>" + data.ResponsibleRole2 + "</td><td>" + data.UserName1 + "</td><td>" + data.UserName2 + "</td><td>" + (data.IsAllowModity == 0 ? "不允许" : "允许") + "</td><td>" + (data.IsAllowVersion == 1 ? "不允许" : "允许") + "</td><td>" + (data.Conditions == 1 ? "个体" : "连锁") + "</td><td>" + data.Creator + "</td><td>" + data.CreateTime + "</td><td>" + (data.CondtionID == 0 ? "未审批" : data.CondtionID == 1 ? "通过" : "驳回") + "</td><td><a href='#' onclick='StateUptBo(" + data.ID + "," + (data.CondtionID == 0 ? 1 : data.CondtionID) + ")'>通过</a><a href='#' onclick='StateUptBo(" + data.ID + "," + (data.CondtionID == 0 ? 2 : data.CondtionID) + ")'>驳回</a></td></tr>")
                 })
             }
         })
-    })
+    }
 
+    function StateUptBo(ID, CondtionID) {
+        if (confirm("是否要继续进行审核？")) {
+            $.ajax({
+                url: "http://localhost:24380/ApprovalActivity/UpdateApprovalActivity",
+                data: {
+                    ID: ID,
+                    CondtionID: CondtionID,
+                },
+                type: "get",
+                success: function (data) {
+                    if (data > 0) {
+                        alert("成功");
+                        shodata();
+                    }
+                    else {
+                        alert("失败");
+                    }
+                }
+            })
+        }
+    }
     /*添加*/
     function ApprovalProcess_add(title, url, w, h) {
         layer_show(title, url, w, h);

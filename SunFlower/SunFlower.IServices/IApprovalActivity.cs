@@ -14,13 +14,13 @@ namespace SunFlower.IServices
         /// 添加审批活动
         /// </summary>
         /// <returns></returns>
-        int AddApprovalActivity();
+        int AddApprovalActivity(int JudgmentID, int NodeID);
 
         /// <summary>
         /// 显示审批活动
         /// </summary>
         /// <returns></returns>
-        List<ApprovalActivity> GetApprovalActivity();
+        List<ApprovalActivity> GetApprovalActivity(int ApprovalUserID);
 
 
 
@@ -32,8 +32,7 @@ namespace SunFlower.IServices
         /// </summary>
         /// <param name="approvalActivity"></param>
         /// <returns></returns>
-
-        int UpdateApprovalActivity(ApprovalActivity approvalActivity);
+        int UpdateApprovalActivity(int ID, int CondtionID);
 
 
 

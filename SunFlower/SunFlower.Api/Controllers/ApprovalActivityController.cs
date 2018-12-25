@@ -25,9 +25,9 @@ namespace SunFlower.Api.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("AddApprovalActivity")]
-        public int AddApprovalActivity()
+        public int AddApprovalActivity(int JudgmentID, int NodeID)
         {
-            var result = ApprovalActivity.AddApprovalActivity();
+            var result = ApprovalActivity.AddApprovalActivity(JudgmentID,NodeID);
             return result;
         }
 
@@ -37,9 +37,9 @@ namespace SunFlower.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetApprovalActivity")]
-        public List<ApprovalActivity> GetApprovalActivity()
+        public List<ApprovalActivity> GetApprovalActivity(int ApprovalUserID)
         {
-            var approvalActivityList = ApprovalActivity.GetApprovalActivity();
+            var approvalActivityList = ApprovalActivity.GetApprovalActivity(ApprovalUserID);
             return approvalActivityList;
         }
 
@@ -48,11 +48,11 @@ namespace SunFlower.Api.Controllers
         /// </summary>
         /// <param name="food"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [Route("UpdateApprovalActivity")]
-        public int UpdateApprovalActivity(ApprovalActivity approvalActivity)
+        public int UpdateApprovalActivity(int ID, int CondtionID)
         {
-            var result = ApprovalActivity.UpdateApprovalActivity(approvalActivity);
+            var result = ApprovalActivity.UpdateApprovalActivity(ID, CondtionID);
             return result;
         }
 

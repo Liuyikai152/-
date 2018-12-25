@@ -25,14 +25,10 @@ namespace SunFlower.Services
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 conn.Open();
-                string sql = @"insert into ProcessConfiguration(processid, nodeid,processcode,approvalroleid,nextapprovalroleid,approvaluserid,nextapprovaluserid,judgmentid,condtionid,creator,createtime)
-                                                   values(:processid,:nodeid,:processcode,:approvalroleid,:nextapprovalroleid,:approvaluserid,:nextapprovaluserid,:judgmentid,:condtionid,:creator,:createtime)";
+                string sql = @"insert into ProcessConfiguration(processid, nodeid,processcode,approvalroleid,nextapprovalroleid,approvaluserid,nextapprovaluserid,judgmentid,condtionid,creator,createtime)values(:processid,:nodeid,:processcode,:approvalroleid,:nextapprovalroleid,:approvaluserid,:nextapprovaluserid,:judgmentid,:condtionid,:creator,:createtime)";
                 processConfiguration.CreateTime = DateTime.Now;
                 int result = conn.Execute(sql, processConfiguration);
                 return result;
-
-
-
             }
         }
 

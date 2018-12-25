@@ -219,8 +219,9 @@
         url: "http://localhost:24380/ProcessConfiguration/GetProcessConfiguration",
         type: "get",
         success: function (data) {
+
             $(data).each(function (index, data) {
-                $("table").append("<tr class='text-c'><td>" + data.ProcessCode + "</td><td>" + data.Name + "</td><td> " + data.NodeName + "</td ><td>" + data.ResponsibleRole1 + "</td> <td>" + data.ResponsibleRole2 + "</td><td>" + data.UserName1 + "</td><td>" + data.UserName2 + "</td><td>" + (data.Conditions == 1 ? "个体" : "连锁") + "</td><td>" + (data.Condtion == 1 ? "未审批" : "已审批") + "</td><td>" + data.Creator + "</td> <td>" + data.CreateTime + "</td><td><a href='#' onclick='Delete(" + data.ID + ",this)'>删除</a></td></tr >")
+                $("table").append("<tr class='text-c'><td>" + data.ProcessCode + "</td><td>" + data.Name + "</td><td> " + data.NodeName + "</td ><td>" + data.ResponsibleRole1 + "</td> <td>" + data.ResponsibleRole2 + "</td><td>" + data.UserName1 + "</td><td>" + data.UserName2 + "</td><td>" + (data.Conditions == 1 ? "个体" : "连锁") + "</td><td>" + (data.CondtionID == 0 ? "未审批" : "已审批") + "</td><td>" + data.Creator + "</td> <td>" + data.CreateTime + "</td><td><a href='#' onclick='Delete(" + data.ID + ",this)'>删除</a></td></tr >")
             })
         }
     })

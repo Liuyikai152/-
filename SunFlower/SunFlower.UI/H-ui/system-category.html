@@ -245,7 +245,6 @@
     //通过商品状态
     function StateUptTo(ID, State) {
         if (confirm("是否要继续进行审核？")) {
-      
                 $.ajax({
                     url: "http://localhost:24380/Store/UptdateToStoreState",
                     data: {
@@ -279,7 +278,7 @@
             success: function (data) {
                 $("table tr :gt(0)").remove();
                 $(data).each(function (index, data) {
-                    $("#tabPane").append("<tr class='text-c'><td>" + data.ID + "</td><td>" + data.StoreNumber + "</td><td>" + data.StoreName + "</td><td>" + data.Address + "</td><td>" + data.StorePhone + "</td><td>" + data.Conntent + "</td><td>" + data.CreateTime + "</td><td>" + data.StoreType + "</td><td>" + (data.Auditing == 5 ? "待审核" : "通过") + "</td><td><a href='#' onclick='StateUptTo(" + data.ID + "," + (data.Auditing == 5 ? 6 : data.Auditing) + ")' >通过</a><a href='#' onclick='StateUptTo(" + data.ID + "," + (data.Auditing == 5 ? 7 : data.Auditing) + ")'>驳回</a></td></tr > ");
+                    $("#tabPane").append("<tr class='text-c'><td>" + data.ID + "</td><td>" + data.StoreNumber + "</td><td>" + data.StoreName + "</td><td>" + data.Address + "</td><td>" + data.StorePhone + "</td><td>" + data.Conntent + "</td><td>" + data.CreateTime + "</td><td>" + data.StoreType + "</td><td>" + (data.Auditing == 5 ? "待审核" : "通过") + "</td><td><a href='#' onclick='StateUptTo(" + data.ID + "," + (data.Auditing == 5 ? 6 : data.Auditing) + ")'>通过</a><a href='#' onclick='StateUptTo(" + data.ID + "," + (data.Auditing == 5 ? 7 : data.Auditing) + ")'>驳回</a></td></tr>");
                 })
             }
         })

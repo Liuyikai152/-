@@ -18,6 +18,10 @@ namespace SunFlower.Api.Controllers
         [Dependency]
         public IProcessConfiguration ProcessConfiguration { get; set; }
 
+        [Dependency]
+        public IApprovalActivity ApprovalActivity { get; set; }
+
+
         /// <summary>
         /// 添加流程配置
         /// </summary>
@@ -28,6 +32,9 @@ namespace SunFlower.Api.Controllers
         public int AddConfiguration(ProcessConfiguration processConfiguration)
         {
             var result = ProcessConfiguration.AddConfiguration(processConfiguration);
+            if (result>0) {
+                ApprovalActivity.AddApprovalActivity(processConfiguration.JudgmentID,processConfiguration.NodeID);
+            }
             return result;
         }
 

@@ -19,52 +19,51 @@ namespace SunFlower.Services
         /// 添加审批活动
         /// </summary>
         /// <returns></returns>
-        public int AddApprovalActivity()
+        public int AddApprovalActivity(int JudgmentID,int NodeID)
         {
-            return 1;
-            //            using (OracleConnection conn = DapperHelper.GetConnString())
-            //            {
-            //                conn.Open();
-            //                ProcessConfiguration pc = new ProcessConfiguration();
+            using (OracleConnection conn = DapperHelper.GetConnString())
+            {
+                conn.Open();
+                ProcessConfiguration pc = new ProcessConfiguration();
 
-            //                string sql = @"select  *  from ProcessConfiguration where JudgmentID=1 and NodeID=1";
+                string sql = @"select  *  from ProcessConfiguration where JudgmentID=:JudgmentID and NodeID=:NodeID";
 
-            //                var configurationList = conn.Query<ProcessConfiguration>(sql, null).FirstOrDefault();
-            //                ApprovalActivity activity = new ApprovalActivity();
-            //                activity.ProcessID = configurationList.ProcessID;
-            //                activity.NodeID = configurationList.NodeID;
-            //                activity.ProcessCode = configurationList.ProcessCode;
-            //                activity.ApprovalRoleID = configurationList.ApprovalRoleID;
-            //                activity.NextApprovalRoleID = configurationList.NextApprovalRoleID;
-            //                activity.ApprovalUserID = configurationList.ApprovalUserID;
-            //                activity.TureCondtion = configurationList.ApprovalUserID;
-            //                activity.NextApprovalUserID = configurationList.NextApprovalUserID;
-            //                activity.JudgmentID = configurationList.JudgmentID;
-            //                activity.CondtionID = configurationList.CondtionID;
-            //                activity.TureCondtionID = configurationList.CondtionID;
-            //                activity.Creator = configurationList.Creator;
-            //                activity.CreateTime = configurationList.CreateTime;
+                var configurationList = conn.Query<ProcessConfiguration>(sql, new { JudgmentID = JudgmentID, NodeID= NodeID }).FirstOrDefault();
+               
+                ApprovalActivity activity = new ApprovalActivity();
+                activity.ProcessID = configurationList.ProcessID;
+                activity.NodeID = configurationList.NodeID;
+                activity.ProcessCode = configurationList.ProcessCode;
+                activity.ApprovalRoleID = configurationList.ApprovalRoleID;
+                activity.NextApprovalRoleID = configurationList.NextApprovalRoleID;
+                activity.ApprovalUserID = configurationList.ApprovalUserID;
+                activity.NextApprovalUserID = configurationList.NextApprovalUserID;
+                activity.JudgmentID = configurationList.JudgmentID;
+                activity.CondtionID = configurationList.CondtionID;
+                activity.TureCondtionID = configurationList.CondtionID;
+                activity.Creator = configurationList.Creator;
+                activity.CreateTime = configurationList.CreateTime;
 
-            //                string sql1 = @"insert into ApprovalActivity
-            //(processid,turecondtion, nodeid,processcode,approvalroleid,nextapprovalroleid,approvaluserid,nextapprovaluserid,judgmentid,condtionid,creator,createtime,turecondtionid)
-            //values
-            //(:processid,turecondtion,:nodeid,:processcode,:approvalroleid,:nextapprovalroleid,:approvaluserid,:nextapprovaluserid,:judgmentid,:condtionid,:creator,:createtime,:turecondtionid)";
+                string sql1 = @"insert into ApprovalActivity
+            (processid,nodeid,processcode,approvalroleid,nextapprovalroleid,approvaluserid,nextapprovaluserid,judgmentid,condtionid,turecondtionid,creator,createtime)
+            values
+  (:processid,:nodeid,:processcode,:approvalroleid,:nextapprovalroleid,:approvaluserid,:nextapprovaluserid,:judgmentid,:condtionid,:turecondtionid,:creator,:createtime)";
 
-            //                int result = conn.Execute(sql1, activity);
-            //                return result;
-            //            }
+                int result = conn.Execute(sql1, activity);
+                return result;
+            }
         }
 
         /// <summary>
         /// 显示待审批数据
         /// </summary>
         /// <returns></returns>
-        public List<ApprovalActivity> GetApprovalActivity()
+        public List<ApprovalActivity> GetApprovalActivity(int ApprovalUserID)
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 string sql = @"
-select p.id, p.processcode, p.creator,p.createtime,a.name,a.isallowmodity,a.isallowversion,b.nodename,b.responsiblerole as responsiblerole1,b1.responsiblerole
+select p.id, p.processcode, p.creator,p.createtime,a.name,p.condtionid,a.isallowmodity,a.isallowversion,b.nodename,b.responsiblerole as responsiblerole1,b1.responsiblerole
  as responsiblerole2,u.username as username1,u1.username as username2,c.conditions,s.condtion as condtion ,s1.condtion as turecondtion
 from approvalactivity p
  left join Approvalprocess a on(p.processid=a.id)
@@ -74,8 +73,8 @@ left join t_users u on(p.approvaluserid=u.id)
  left join t_users u1 on(p.nextapprovaluserid=u1.id)  
 left join approvalconditions c on(p.judgmentid=c.id)
  left join approvalstatus s on(p.condtionid=s.id)
- left join approvalstatus s1 on(p.turecondtionid=s1.id)";
-                var approvalActivityList = conn.Query<ApprovalActivity>(sql, null);
+ left join approvalstatus s1 on(p.turecondtionid=s1.id) where ApprovalUserID=:ApprovalUserID";
+                var approvalActivityList = conn.Query<ApprovalActivity>(sql, new { ApprovalUserID = ApprovalUserID });
                 return approvalActivityList.ToList<ApprovalActivity>();
             }
         }
@@ -85,20 +84,12 @@ left join approvalconditions c on(p.judgmentid=c.id)
         /// </summary>
         /// <param name="food"></param>
         /// <returns></returns>
-        public int UpdateApprovalActivity(ApprovalActivity approvalActivity)
+        public int UpdateApprovalActivity(int ID, int CondtionID)
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql = @"update  approvalactivity set
- nodeid=:nodeid,
- approvalroleid=:approvalroleid,
- nextapprovalroleid=:nextapprovalroleid,
- ApprovalUserID=:ApprovalUserID,
- NextApprovalUserID=:NextApprovalUserID
- CondtionID=:CondtionID, 
- TureCondtionID=:TureCondtionID
- where id=:id";
-                int result = conn.Execute(sql, approvalActivity);
+                string sql = @"update ApprovalActivity set  CondtionID=:CondtionID where ID=:ID";
+                var result = conn.Execute(sql, new { ID = ID, CondtionID = CondtionID });
                 return result;
             }
         }
