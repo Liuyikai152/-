@@ -31,19 +31,20 @@
 
         <form action="" method="post" class="form form-horizontal" id="form">
             <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2">所属商铺:</label>
+
+                <div class="formControls col-xs-8 col-sm-9">
+                    <input type="text" class="input-text" name="StoreNumber" style="width:25%;" readonly >
+                </div>
+
+            </div>
+            <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">菜品编号：</label>
                 <div class="formControls col-xs-8 col-sm-9">
                     <input type="text" class="input-text" name="FoodNumber" style="width:25%">
                 </div>
             </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-2">所属商铺:</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <select class="input-text" id="Num" name="StoreNumber" style="width:25%">
-                        <option>--请选择--</option>
-                    </select>
-                </div>
-            </div>
+
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">菜品名：</label>
                 <div class="formControls col-xs-8 col-sm-9">
@@ -114,6 +115,9 @@
             });
         })
         $(function () {
+
+            $("input[name=StoreNumber]").val(localStorage.StoreNumber);
+
             $.ajax({
                 url: "http://localhost:24380/FoodType/GetFoodType",
                 data: {

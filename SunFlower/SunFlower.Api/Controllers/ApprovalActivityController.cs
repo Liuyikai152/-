@@ -37,9 +37,9 @@ namespace SunFlower.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetApprovalActivity")]
-        public List<ApprovalActivity> GetApprovalActivity(int ApprovalUserID)
+        public List<ApprovalActivity> GetApprovalActivity(int ApprovalUserID, int condtionid)
         {
-            var approvalActivityList = ApprovalActivity.GetApprovalActivity(ApprovalUserID);
+            var approvalActivityList = ApprovalActivity.GetApprovalActivity(ApprovalUserID, condtionid);
             return approvalActivityList;
         }
 

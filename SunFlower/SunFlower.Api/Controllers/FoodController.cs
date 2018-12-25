@@ -109,7 +109,7 @@ namespace SunFlower.Api.Controllers
         public PageBox GetFood(int id, int Page = 1)
         {
             
-            List<Food> foodlist = Food.GetFoods(id);
+            List<Food> foodlist = Food.GetFood(id);
             PageBox pagebox = new PageBox();
             pagebox.PageIndex = Page;          
             pagebox.PageCount = foodlist.Count / PAGESIZE + (foodlist.Count % PAGESIZE == 0 ? 0 : 1);

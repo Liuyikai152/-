@@ -1234,6 +1234,7 @@
     <Content Include="Scirpt\BootstrapSouce\js\jquery.min.js" />
     <Content Include="Scirpt\BootstrapSouce\js\npm.js" />
     <Content Include="Scirpt\BootstrapSouce\js\respond.min.js" />
+    <Content Include="Scirpt\echarts.min.js" />
     <Content Include="Scirpt\GetParse.js" />
     <Content Include="Scirpt\jquery-1.10.2.min.js" />
     <Content Include="Scripts\bootstrap.js" />

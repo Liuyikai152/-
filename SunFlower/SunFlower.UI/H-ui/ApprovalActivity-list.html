@@ -44,14 +44,15 @@
 			</nav>
 			<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
 				<ul class="cl">
-					<li>超级管理员</li>
-					<li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
-						<ul class="dropDown-menu menu radius box-shadow">
-							<li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
-							<li><a href="#">切换账户</a></li>
-							<li><a href="#">退出</a></li>
-						</ul>
-					</li>
+					
+                    <li class="dropDown dropDown_hover">
+                        <label id="uname" class="dropDown_A"><i class="Hui-iconfont">&#xe6d5;</i></label>
+                        <ul class="dropDown-menu menu radius box-shadow">
+                            <li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
+                            <li><a href="login.html">切换账户</a></li>
+                            <li><a href="#">退出</a></li>
+                        </ul>
+                    </li>
 					<li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
 					<li id="Hui-skin" class="dropDown right dropDown_hover"> <a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
@@ -210,14 +211,25 @@
 <script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
+    
     $(function () {
         shodata();
     })
-   
+    
+    
+    if (localStorage.uname) {
+        $("#uname").html("当前登陆：" + localStorage.uname);
+    }
+
     function shodata() {
         $.ajax({
             url: "http://localhost:24380/ApprovalActivity/GetApprovalActivity",
             type: "get",
+            data: {
+                ApprovalUserID: localStorage.userid,
+                condtionid: 0,
+               
+            },
             success: function (data) {
                 $("table tr :gt(0)").remove();
                 $(data).each(function (index, data) {
@@ -228,6 +240,7 @@
     }
 
     function StateUptBo(ID, CondtionID) {
+        alert(CondtionID)
         if (confirm("是否要继续进行审核？")) {
             $.ajax({
                 url: "http://localhost:24380/ApprovalActivity/UpdateApprovalActivity",
@@ -238,8 +251,9 @@
                 type: "get",
                 success: function (data) {
                     if (data > 0) {
-                        alert("成功");
+                      
                         shodata();
+                        alert("成功");
                     }
                     else {
                         alert("失败");

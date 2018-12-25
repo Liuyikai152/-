@@ -32,6 +32,18 @@ namespace SunFlower.Api.Controllers
         }
 
         /// <summary>
+        /// 查看所有店铺信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetStoreShow")]
+        public Store GetStoreShow(int id)
+        {
+            var list = Store.GetStoreShow().Where(n=>n.UserID.Equals(id)).FirstOrDefault();
+            return list;
+        }
+
+        /// <summary>
         /// 查看店铺信息
         /// </summary>
         /// <returns></returns>

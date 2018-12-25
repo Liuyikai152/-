@@ -20,12 +20,7 @@ namespace SunFlower.IServices
         /// 显示审批活动
         /// </summary>
         /// <returns></returns>
-        List<ApprovalActivity> GetApprovalActivity(int ApprovalUserID);
-
-
-
-
-
+        List<ApprovalActivity> GetApprovalActivity(int ApprovalUserID, int condtionid);
 
         /// <summary>
         /// 修改审批

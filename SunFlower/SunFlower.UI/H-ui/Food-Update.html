@@ -45,9 +45,8 @@
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">所属商铺:</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    <select class="input-text" id="Num" name="StoreNumber" style="width:25%">
-                        <option>--请选择--</option>
-                    </select>
+                    <input class="input-text" id="Num" name="StoreNumber" style="width:25%"  readonly />
+                                          
                 </div>
             </div>
             <div class="row cl">
@@ -179,7 +178,7 @@
                 {
                     $("input[name=ID]").val(data[0].ID);
                     $("input[name=FoodNumber]").val(data[0].FoodNumber);
-                    $("select[name=StoreNumber]").val(data[0].StoreNumber);
+                    $("input[name=StoreNumber]").val(data[0].StoreNumber);
                     $("input[name=FoodName]").val(data[0].FoodName);
                     $("input[name=FoodSprice]").val(data[0].FoodSprice);
                     $("#img").attr("src", data[0].FileName);
