@@ -25,9 +25,9 @@ namespace SunFlower.Api.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("AddApprovalActivity")]
-        public int AddApprovalActivity(int JudgmentID, int NodeID)
+        public int AddApprovalActivity()
         {
-            var result = ApprovalActivity.AddApprovalActivity(JudgmentID,NodeID);
+            var result = ApprovalActivity.AddApprovalActivity();
             return result;
         }
 

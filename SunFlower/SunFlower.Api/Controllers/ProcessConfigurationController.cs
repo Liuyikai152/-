@@ -32,9 +32,7 @@ namespace SunFlower.Api.Controllers
         public int AddConfiguration(ProcessConfiguration processConfiguration)
         {
             var result = ProcessConfiguration.AddConfiguration(processConfiguration);
-            if (result>0) {
-                ApprovalActivity.AddApprovalActivity(processConfiguration.JudgmentID,processConfiguration.NodeID);
-            }
+          
             return result;
         }
 

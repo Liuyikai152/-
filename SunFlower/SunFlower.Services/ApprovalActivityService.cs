@@ -19,36 +19,40 @@ namespace SunFlower.Services
         /// 添加审批活动
         /// </summary>
         /// <returns></returns>
-        public int AddApprovalActivity(int JudgmentID,int NodeID)
+        public int AddApprovalActivity()
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
                 conn.Open();
                 ProcessConfiguration pc = new ProcessConfiguration();
+                int result = 0;
+                string sql = @"select  *  from ProcessConfiguration";
+                var configurationList = conn.Query<ProcessConfiguration>(sql, null).ToList();
 
-                string sql = @"select  *  from ProcessConfiguration where JudgmentID=:JudgmentID and NodeID=:NodeID";
-
-                var configurationList = conn.Query<ProcessConfiguration>(sql, new { JudgmentID = JudgmentID, NodeID= NodeID }).FirstOrDefault();
-               
-                ApprovalActivity activity = new ApprovalActivity();
-                activity.ProcessID = configurationList.ProcessID;
-                activity.NodeID = configurationList.NodeID;
-                activity.ProcessCode = configurationList.ProcessCode;
-                activity.ApprovalRoleID = configurationList.ApprovalRoleID;
-                activity.NextApprovalRoleID = configurationList.NextApprovalRoleID;
-                activity.ApprovalUserID = configurationList.ApprovalUserID;
-                activity.NextApprovalUserID = configurationList.NextApprovalUserID;
-                activity.JudgmentID = configurationList.JudgmentID;
-                activity.CondtionID = configurationList.CondtionID;
-                activity.TureCondtionID = configurationList.CondtionID;
-                activity.Creator = configurationList.Creator;
-                activity.CreateTime = configurationList.CreateTime;
-                string sql1 = @"insert into ApprovalActivity
+                for (var i = 0; i <= 1; i++)
+                {
+                    ApprovalActivity activity = new ApprovalActivity();
+                    activity.ProcessID = configurationList[i].ProcessID;
+                    activity.NodeID = configurationList[i].NodeID;
+                    activity.ProcessCode = configurationList[i].ProcessCode;
+                    activity.ApprovalRoleID = configurationList[i].ApprovalRoleID;
+                    activity.NextApprovalRoleID = configurationList[i].NextApprovalRoleID;
+                    activity.ApprovalUserID = configurationList[i].ApprovalUserID;
+                    activity.NextApprovalUserID = configurationList[i].NextApprovalUserID;
+                    activity.JudgmentID = configurationList[i].JudgmentID;
+                    activity.CondtionID = configurationList[i].CondtionID;
+                    activity.TureCondtionID = configurationList[i].CondtionID;
+                    activity.Creator = configurationList[i].Creator;
+                    activity.CreateTime = configurationList[i].CreateTime;
+                    string sql1 = @"insert into ApprovalActivity
             (processid,nodeid,processcode,approvalroleid,nextapprovalroleid,approvaluserid,nextapprovaluserid,judgmentid,condtionid,turecondtionid,creator,createtime)
             values
   (:processid,:nodeid,:processcode,:approvalroleid,:nextapprovalroleid,:approvaluserid,:nextapprovaluserid,:judgmentid,:condtionid,:turecondtionid,:creator,:createtime)";
-                int result = conn.Execute(sql1, activity);
+                    result = conn.Execute(sql1, activity);
+
+                }
                 return result;
+
             }
         }
 
@@ -60,12 +64,13 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql1 = @"select * from ApprovalActivity where condtionid=0 and ApprovalUserID= :ApprovalUserID";
-                var approvalActivityList1 = conn.Query<ApprovalActivity>(sql1, new { ApprovalUserID= ApprovalUserID }).FirstOrDefault();
+                string sql1 = @"select * from ApprovalActivity where condtionid=0 ";
+                var approvalActivityList1 = conn.Query<ApprovalActivity>(sql1,null).FirstOrDefault();
                 if(approvalActivityList1==null)
                 {
                     return null;
                 }
+
                 if(approvalActivityList1.ApprovalUserID== ApprovalUserID && approvalActivityList1!=null)
                 {
                            string sql = @"

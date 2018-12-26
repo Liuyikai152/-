@@ -19,6 +19,9 @@ namespace SunFlower.Api.Controllers
         [Dependency]
         public IApprovalProcess ApprovalProcess { get; set; }
 
+        [Dependency]
+        public IApprovalActivity ApprovalActivity { get; set; }
+
         /// <summary>
         /// 显示审批
         /// </summary>
@@ -53,6 +56,10 @@ namespace SunFlower.Api.Controllers
         public int AddApprovalProcess(ApprovalProcess approvalProcess)
         {
             var result = ApprovalProcess.AddApprovalProcess(approvalProcess);
+            if (result > 0)
+            {
+                ApprovalActivity.AddApprovalActivity();
+            }
             return result;
         }
 

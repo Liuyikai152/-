@@ -14,7 +14,7 @@ namespace SunFlower.IServices
         /// 添加审批活动
         /// </summary>
         /// <returns></returns>
-        int AddApprovalActivity(int JudgmentID, int NodeID);
+        int AddApprovalActivity();
 
         /// <summary>
         /// 显示审批活动
