@@ -143,8 +143,6 @@
         //总页数
         var PageCount = 0;
         $(function () {
-            Show();
-
             $.ajax({
                 url: 'http://localhost:24380/Tusers/GetPermissiomUrl',
                 async: false,
@@ -157,6 +155,9 @@
                     })
                 }
             })
+            Show();
+
+         
         })
         function Show() {
 
