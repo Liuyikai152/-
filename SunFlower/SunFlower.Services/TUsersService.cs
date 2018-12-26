@@ -155,7 +155,7 @@ namespace SunFlower.Services
                     conn.Open();
                     string sql1 = @"select * from T_Users where UserName=:UserName";
                     var Roles = conn.Query<TUsers>(sql1, users);
-                    int result = -1;
+                    int result = 1;
                     if (Roles.Count() == 1)
                     {
                         //修改角色
