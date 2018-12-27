@@ -64,7 +64,7 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql1 = @"select * from ApprovalActivity where condtionid=0 ";
+                string sql1 = @"select * from ApprovalActivity where condtionid=0 or  condtionid=2 ";
                 var approvalActivityList1 = conn.Query<ApprovalActivity>(sql1,null).FirstOrDefault();
                 if(approvalActivityList1==null)
                 {
@@ -84,8 +84,8 @@ left join t_users u on(p.approvaluserid=u.id)
  left join t_users u1 on(p.nextapprovaluserid=u1.id)  
 left join approvalconditions c on(p.judgmentid=c.id)
  left join approvalstatus s on(p.condtionid=s.id)
- left join approvalstatus s1 on(p.turecondtionid=s1.id) where ApprovalUserID=:ApprovalUserID and condtionid=condtionid";
-                    var approvalActivityList = conn.Query<ApprovalActivity>(sql, new { ApprovalUserID = ApprovalUserID });
+ left join approvalstatus s1 on(p.turecondtionid=s1.id) where ApprovalUserID=:ApprovalUserID and condtionid=:condtionid";
+                    var approvalActivityList = conn.Query<ApprovalActivity>(sql, new { ApprovalUserID = ApprovalUserID, condtionid= condtionid });
                     return approvalActivityList.ToList<ApprovalActivity>();
                 }
 
