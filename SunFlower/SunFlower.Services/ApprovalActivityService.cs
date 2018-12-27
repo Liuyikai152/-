@@ -64,7 +64,7 @@ namespace SunFlower.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnString())
             {
-                string sql1 = @"select * from ApprovalActivity where condtionid=0 or  condtionid=2 ";
+                string sql1 = @"select * from ApprovalActivity where condtionid=0 ";
                 var approvalActivityList1 = conn.Query<ApprovalActivity>(sql1,null).FirstOrDefault();
                 if(approvalActivityList1==null)
                 {
